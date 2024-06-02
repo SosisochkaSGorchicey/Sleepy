@@ -60,4 +60,5 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(projects.core.ui)
+    implementation(projects.feature.initial)
 }
