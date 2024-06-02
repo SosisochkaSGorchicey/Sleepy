@@ -22,3 +22,4 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "Sleepy"
 include(":app")
+include(":core:ui")

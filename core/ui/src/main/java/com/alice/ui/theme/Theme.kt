@@ -1,4 +1,4 @@
-package com.alice.sleepy.ui.theme
+package com.alice.ui.theme
 
 import android.app.Activity
 import android.os.Build
