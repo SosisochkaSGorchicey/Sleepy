@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.alice.initial.splash.SplashScreen
+import cafe.adriel.voyager.core.registry.rememberScreen
+import cafe.adriel.voyager.navigator.Navigator
+import com.alice.common.navigation.SharedScreen
 import com.alice.ui.theme.SleepyTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +15,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SleepyTheme {
-                SplashScreen()
+                val loadingScreen = rememberScreen(provider = SharedScreen.Splash)
+                Navigator(screen = loadingScreen)
             }
         }
     }

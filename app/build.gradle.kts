@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.bundles.voyager)
+    implementation(libs.bundles.koin)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,5 +62,6 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(projects.core.ui)
+    implementation(projects.core.common)
     implementation(projects.feature.initial)
 }
