@@ -44,6 +44,13 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
+convetion-application = { id = "convention.android.application", version = "unspecified" }
+convetion-compose-app = { id = "convention.android.compose", version = "unspecified" }
+convetion-library = { id = "convention.android.library", version = "unspecified" }
+convetion-compose-lib = { id = "convention.android.library.compose", version = "unspecified" }
+convetion-feature = { id = "convention.android.feature.library", version = "unspecified" }
+convetion-key-provider = { id = "convention.apikey.provider", version = "unspecified" }
+
 [bundles]
 voyager = ["voyager-navigator", "voyager-koin"]
 koin = ["koin-android", "koin-compose"]
