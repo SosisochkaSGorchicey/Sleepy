@@ -24,3 +24,4 @@ rootProject.name = "Sleepy"
 include(":app")
 include(":core:ui")
 include(":feature:initial")
+include(":core:common")

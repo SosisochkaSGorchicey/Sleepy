@@ -7,6 +7,13 @@ activityCompose = "1.9.0"
 composeBom = "2023.08.00"
 appcompat = "1.6.1"
 animationCoreAndroid = "1.6.7"
+orbit = "6.1.1"
+voyager = "1.0.0"
+koin = "3.5.3"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+material = "1.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -20,8 +27,24 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-animation-core-android = { group = "androidx.compose.animation", name = "animation-core-android", version.ref = "animationCoreAndroid" }
 
+orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit" }
+
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
+
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+
+[bundles]
+voyager = ["voyager-navigator", "voyager-koin"]
+koin = ["koin-android", "koin-compose"]
 
