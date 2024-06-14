@@ -1,4 +1,11 @@
 [versions]
+
+compileSdk = "34"
+minSdk = "24"
+targetSdk = "34"
+versionCode = "1"
+versionName = "1.0"
+
 agp = "8.3.2"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
@@ -15,6 +22,8 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 material = "1.12.0"
 ksp = "2.0.0-1.0.21"
+coroutines = "1.8.1"
+serializationJson = "1.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,7 +37,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-animation-core-android = { group = "androidx.compose.animation", name = "animation-core-android", version.ref = "animationCoreAndroid" }
 
-orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit" }
+orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
+orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
@@ -42,6 +52,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
 
 [plugins]
 
@@ -62,4 +76,5 @@ convetion-feature = { id = "convention.android.feature.library", version = "unsp
 [bundles]
 voyager = ["voyager-navigator", "voyager-koin"]
 koin = ["koin-android", "koin-compose"]
+compose = ["androidx-ui", "androidx-material3", ]
 
