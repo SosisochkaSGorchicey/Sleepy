@@ -1,19 +1,20 @@
 [versions]
-agp = "8.3.1"
-kotlin = "1.9.0"
+agp = "8.3.2"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycleRuntimeKtx = "2.8.1"
 activityCompose = "1.9.0"
-composeBom = "2023.08.00"
-appcompat = "1.6.1"
+composeBom = "2024.05.00"
+appcompat = "1.7.0"
 animationCoreAndroid = "1.6.7"
-orbit = "6.1.1"
+orbit = "8.0.0"
 voyager = "1.0.0"
 koin = "3.5.3"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-material = "1.11.0"
+material = "1.12.0"
+ksp = "2.0.0-1.0.21"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,17 +40,24 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 convetion-application = { id = "convention.android.application", version = "unspecified" }
 convetion-compose-app = { id = "convention.android.compose", version = "unspecified" }
 convetion-library = { id = "convention.android.library", version = "unspecified" }
 convetion-compose-lib = { id = "convention.android.library.compose", version = "unspecified" }
 convetion-feature = { id = "convention.android.feature.library", version = "unspecified" }
-convetion-key-provider = { id = "convention.apikey.provider", version = "unspecified" }
 
 [bundles]
 voyager = ["voyager-navigator", "voyager-koin"]
