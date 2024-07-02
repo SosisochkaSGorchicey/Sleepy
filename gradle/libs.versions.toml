@@ -61,6 +61,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 media3-exoplayer = {group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3_version"}
 media3-ui = {group = "androidx.media3", name = "media3-ui", version.ref = "media3_version"}
 media3-session = {group = "androidx.media3", name = "media3-session", version.ref = "media3_version"}
+media3-common = {group = "androidx.media3", name = "media3-common", version.ref = "media3_version"}
 
 [plugins]
 
@@ -82,5 +83,5 @@ convetion-feature = { id = "convention.android.feature.library", version = "unsp
 voyager = ["voyager-navigator", "voyager-koin"]
 koin = ["koin-android", "koin-compose"]
 compose = ["androidx-ui", "androidx-material3" ]
-media3 = ["media3-exoplayer", "media3-ui", "media3-session" ]
+media3 = ["media3-exoplayer", "media3-ui", "media3-session", "media3-common" ]
 
