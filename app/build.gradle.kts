@@ -17,4 +17,5 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.common)
     implementation(projects.feature.initial)
+    implementation(projects.feature.player)
 }

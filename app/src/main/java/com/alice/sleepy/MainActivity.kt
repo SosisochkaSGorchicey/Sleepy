@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SleepyTheme {
-                val loadingScreen = rememberScreen(provider = SharedScreen.Splash)
+                val loadingScreen = rememberScreen(provider = SharedScreen.Player)
                 Navigator(screen = loadingScreen)
             }
         }
