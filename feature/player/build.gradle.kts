@@ -5,5 +5,5 @@ plugins {
 android.namespace = "com.alice.player"
 
 dependencies {
-    implementation(projects.core.common)
+    implementation(libs.bundles.media3)
 }
