@@ -1,8 +1,8 @@
-package com.alice.initial.di
+package com.feature.initial.di
 
 import cafe.adriel.voyager.core.registry.screenModule
 import com.alice.common.navigation.SharedScreen
-import com.alice.initial.splash.SplashScreen
+import com.feature.initial.splash.SplashScreen
 
 val initialScreenModule = screenModule {
     register<SharedScreen.Splash> {

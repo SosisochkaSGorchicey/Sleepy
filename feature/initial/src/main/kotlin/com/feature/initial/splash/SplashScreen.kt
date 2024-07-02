@@ -1,4 +1,4 @@
-package com.alice.initial.splash
+package com.feature.initial.splash
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
