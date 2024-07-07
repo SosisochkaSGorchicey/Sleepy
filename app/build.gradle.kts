@@ -18,4 +18,6 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.feature.initial)
     implementation(projects.feature.player)
+
+    implementation(libs.bundles.media3) //todo delete later
 }
