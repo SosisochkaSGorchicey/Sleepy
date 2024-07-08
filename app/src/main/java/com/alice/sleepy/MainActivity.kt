@@ -30,20 +30,20 @@ class MainActivity : ComponentActivity() {
     private var mediaItemIndex = 0
     private var playbackPosition = 0L
 
-    private fun initializePlayer() {
-        player = ExoPlayer.Builder(this)
-            .build()
-            .also { exoPlayer ->
-                val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
-                exoPlayer.setMediaItem(mediaItem)
-
-                exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
-                exoPlayer.playWhenReady = playWhenReady
-
-
-               exoPlayer.prepare()
-            }
-    }
+//    private fun initializePlayer() {
+//        player = ExoPlayer.Builder(this)
+//            .build()
+//            .also { exoPlayer ->
+//                val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
+//                exoPlayer.setMediaItem(mediaItem)
+//
+//                exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
+//                exoPlayer.playWhenReady = playWhenReady
+//
+//
+//               exoPlayer.prepare()
+//            }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
