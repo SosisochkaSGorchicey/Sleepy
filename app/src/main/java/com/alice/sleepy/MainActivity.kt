@@ -4,6 +4,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material3.Icon
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -32,7 +39,9 @@ class MainActivity : ComponentActivity() {
 
                 exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
                 exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.prepare()
+
+
+               exoPlayer.prepare()
             }
     }
 
@@ -43,6 +52,28 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             SleepyTheme {
+
+                Row {
+
+                    Icon(
+                        modifier = Modifier.clickable {
+                            player?.play()
+                        },
+                        imageVector = Icons.Rounded.PlayArrow,
+                        contentDescription = null
+                    )
+
+                    Icon(
+                        modifier = Modifier.clickable {
+                            player?.pause()
+                        },
+                        imageVector = Icons.Rounded.Close,
+                        contentDescription = null
+                    )
+                }
+
+
+
 
 //                val loadingScreen = rememberScreen(provider = SharedScreen.Player)
 //                Navigator(screen = loadingScreen)
