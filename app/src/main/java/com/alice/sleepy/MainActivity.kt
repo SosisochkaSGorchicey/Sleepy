@@ -1,27 +1,16 @@
 package com.alice.sleepy
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material3.Icon
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.media3.common.MediaItem
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerControlView
-import androidx.media3.ui.PlayerView
 import com.alice.ui.theme.SleepyTheme
+import com.feature.player.PlayerActivity
 
 class MainActivity : ComponentActivity() {
 
@@ -52,27 +41,30 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             SleepyTheme {
-
-                Row {
-
-                    Icon(
-                        modifier = Modifier.clickable {
-                            player?.play()
-                        },
-                        imageVector = Icons.Rounded.PlayArrow,
-                        contentDescription = null
-                    )
-
-                    Icon(
-                        modifier = Modifier.clickable {
-                            player?.pause()
-                        },
-                        imageVector = Icons.Rounded.Close,
-                        contentDescription = null
-                    )
+                Button(onClick = {
+                    this.startActivity(Intent(this, PlayerActivity::class.java))
+                }) {
+                    Text(text = "Go to second activity")
                 }
 
-
+//                Row {
+//
+//                    Icon(
+//                        modifier = Modifier.clickable {
+//                            player?.play()
+//                        },
+//                        imageVector = Icons.Rounded.PlayArrow,
+//                        contentDescription = null
+//                    )
+//
+//                    Icon(
+//                        modifier = Modifier.clickable {
+//                            player?.pause()
+//                        },
+//                        imageVector = Icons.Rounded.Close,
+//                        contentDescription = null
+//                    )
+//                }
 
 
 //                val loadingScreen = rememberScreen(provider = SharedScreen.Player)
@@ -85,7 +77,7 @@ class MainActivity : ComponentActivity() {
     public override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
-            initializePlayer()
+            //initializePlayer()
         }
     }
 
@@ -94,7 +86,7 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         //hideSystemUi()
         if ((Util.SDK_INT <= 23 || player == null)) {
-            initializePlayer()
+            //initializePlayer()
         }
     }
 
