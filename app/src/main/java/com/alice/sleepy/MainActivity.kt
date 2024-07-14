@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
@@ -19,24 +20,25 @@ class MainActivity : ComponentActivity() {
     private var mediaItemIndex = 0
     private var playbackPosition = 0L
 
-//    private fun initializePlayer() {
-//        player = ExoPlayer.Builder(this)
-//            .build()
-//            .also { exoPlayer ->
-//                val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
-//                exoPlayer.setMediaItem(mediaItem)
-//
-//                exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
-//                exoPlayer.playWhenReady = playWhenReady
-//
-//
-//               exoPlayer.prepare()
-//            }
-//    }
+
+    private fun initializePlayer() {
+        player = ExoPlayer.Builder(this)
+            .build()
+            .also { exoPlayer ->
+                val mediaItem = MediaItem.fromUri("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3")
+                exoPlayer.setMediaItem(mediaItem)
+
+                exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
+                exoPlayer.playWhenReady = playWhenReady
+
+
+               exoPlayer.prepare()
+            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //initializePlayer()
 
         //enableEdgeToEdge()
         setContent {
