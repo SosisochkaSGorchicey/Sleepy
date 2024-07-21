@@ -1,173 +1,141 @@
 package com.feature.player
 
+import android.content.ComponentName
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
-import androidx.media3.common.Timeline
-import androidx.media3.common.util.UnstableApi
-import androidx.media3.common.util.Util
-import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerView
+import androidx.media3.common.Player.COMMAND_PLAY_PAUSE
+import androidx.media3.common.Player.COMMAND_PREPARE
+import androidx.media3.common.Player.COMMAND_SET_MEDIA_ITEM
+import androidx.media3.session.MediaController
+import androidx.media3.session.SessionToken
 import com.alice.ui.theme.SleepyTheme
+import com.google.common.util.concurrent.ListenableFuture
+import com.google.common.util.concurrent.MoreExecutors
 
 class PlayerActivity : ComponentActivity() {
+    private lateinit var controllerFuture: ListenableFuture<MediaController>
+    private lateinit var controller: MediaController
 
-    private var myplayer: ExoPlayer? = null
-    private var playWhenReady = false
-    private var mediaItemIndex = 0
-    private var playbackPosition = 0L
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initializePlayer()
-
-        enableEdgeToEdge()
+        log("onCreate MainActivity")
         setContent {
             SleepyTheme {
-                Scaffold {
 
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
 
-                    AndroidView(
-                        modifier = Modifier.padding(it),
-                        factory = {
-                        PlayerView(this).apply {
-                            player = myplayer
-                        }
+                    Button(onClick = {
+
+                        //val url = "android.resource://$packageName/${R.raw.test}"
+                        val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
+
+                        play(url)
+
+                    }) {
+                        Text(text = "Play")
                     }
-                    )
 
-//
-//                    Row(
-//                        modifier = Modifier
-//                            .padding(it)
-//                            .fillMaxSize(),
-//                        verticalAlignment = Alignment.CenterVertically,
-//                        horizontalArrangement = Arrangement.spacedBy(
-//                            20.dp,
-//                            Alignment.CenterHorizontally
-//                        )
-//                    ) {
-//                        IconButton(
-//                            onClick = {}
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
-//                                contentDescription = null
-//                            )
-//                        }
-//
-//                        IconButton(
-//                            onClick = {
-//                                player?.playWhenReady = true
-//                                //player?.play()
-//                            }
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.Rounded.PlayArrow,
-//                                contentDescription = null
-//                            )
-//                        }
-//
-//                        IconButton(
-//                            onClick = {
-//                                player?.playWhenReady = false
-//                            }
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.Rounded.Clear,
-//                                contentDescription = null
-//                            )
-//                        }
-//
-//                        IconButton(
-//                            onClick = {}
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-//                                contentDescription = null
-//                            )
-//                        }
-//
-//                        Text(text = player?.currentMediaItemIndex.toString())
-//                    }
                 }
+
             }
         }
     }
 
-
-    @UnstableApi
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT > 23) {
-            initializePlayer()
-        }
+        val sessionToken = SessionToken(this, ComponentName(this, PlaybackService::class.java))
+        controllerFuture = MediaController.Builder(this, sessionToken).buildAsync()
+        controllerFuture.addListener(
+            {
+                controller = controllerFuture.get()
+                initController()
+            },
+            MoreExecutors.directExecutor()
+        )
     }
 
-    @UnstableApi
-    public override fun onResume() {
-        super.onResume()
-        if ((Util.SDK_INT <= 23 || myplayer == null)) {
-            initializePlayer()
-        }
-    }
-
-    @UnstableApi
-    public override fun onPause() {
-        super.onPause()
-        if (Util.SDK_INT <= 23) {
-            releasePlayer()
-        }
-    }
-
-    @UnstableApi
-    public override fun onStop() {
+    override fun onStop() {
         super.onStop()
-        if (Util.SDK_INT > 23) {
-            releasePlayer()
-        }
+
+        MediaController.releaseFuture(controllerFuture)
+
     }
 
-    private fun initializePlayer() {
-        myplayer = ExoPlayer.Builder(this)
-            .build()
-            .also { exoPlayer ->
-                val mediaItem =
-                    MediaItem.fromUri("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3")
-                exoPlayer.setMediaItem(mediaItem)
+    private fun initController() {
+        //controller.playWhenReady = true
+        controller.addListener(object : Player.Listener {
 
-                exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
-                exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.prepare()
-
-                exoPlayer.addListener(
-                    object : Player.Listener {
-                        override fun onTimelineChanged(timeline: Timeline, reason: Int) {
-                            super.onTimelineChanged(timeline, reason)
-                            println("TAG:reason $reason periodCount ${timeline.periodCount}")
-                        }
-
-
-                    }
-                )
+            override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+                super.onMediaMetadataChanged(mediaMetadata)
+                log("onMediaMetadataChanged=$mediaMetadata")
             }
+
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                super.onIsPlayingChanged(isPlaying)
+                log("onIsPlayingChanged=$isPlaying")
+            }
+
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                super.onPlaybackStateChanged(playbackState)
+                log("onPlaybackStateChanged=${getStateName(playbackState)}")
+            }
+
+            override fun onPlayerError(error: PlaybackException) {
+                super.onPlayerError(error)
+                log("onPlayerError=${error.stackTraceToString()}")
+            }
+
+            override fun onPlayerErrorChanged(error: PlaybackException?) {
+                super.onPlayerErrorChanged(error)
+                log("onPlayerErrorChanged=${error?.stackTraceToString()}")
+            }
+        })
+        log("start=${getStateName(controller.playbackState)}")
+        log("COMMAND_PREPARE=${controller.isCommandAvailable(COMMAND_PREPARE)}")
+        log("COMMAND_SET_MEDIA_ITEM=${controller.isCommandAvailable(COMMAND_SET_MEDIA_ITEM)}")
+        log("COMMAND_PLAY_PAUSE=${controller.isCommandAvailable(COMMAND_PLAY_PAUSE)}")
     }
 
-    private fun releasePlayer() {
-        myplayer?.let { exoPlayer ->
-            playbackPosition = exoPlayer.currentPosition
-            mediaItemIndex = exoPlayer.currentMediaItemIndex
-            playWhenReady = exoPlayer.playWhenReady
-            exoPlayer.release()
+    private fun play(url: String) {
+        log("play($url)")
+        log("before=${getStateName(controller.playbackState)}")
+
+        val media = MediaItem.Builder().setMediaId(url).build()
+        controller.setMediaItem(media)
+
+        controller.prepare()
+        controller.play()
+        log("after=${getStateName(controller.playbackState)}")
+    }
+
+    private fun getStateName(i: Int): String? {
+        return when (i) {
+            1 -> "STATE_IDLE"
+            2 -> "STATE_BUFFERING"
+            3 -> "STATE_READY"
+            4 -> "STATE_ENDED"
+            else -> null
         }
-        myplayer = null
+    }
+
+    private fun log(message: String) {
+        Log.e("=====[TestMedia]=====", message)
     }
 }
