@@ -10,6 +10,9 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
+import cafe.adriel.voyager.core.registry.rememberScreen
+import cafe.adriel.voyager.navigator.Navigator
+import com.alice.common.navigation.SharedScreen
 import com.alice.ui.theme.SleepyTheme
 import com.feature.player.PlayerActivity
 
@@ -43,11 +46,11 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             SleepyTheme {
-                Button(onClick = {
-                    this.startActivity(Intent(this, PlayerActivity::class.java))
-                }) {
-                    Text(text = "Go to second activity")
-                }
+//                Button(onClick = {
+//                    this.startActivity(Intent(this, PlayerActivity::class.java))
+//                }) {
+//                    Text(text = "Go to second activity")
+//                }
 
 //                Row {
 //
@@ -69,8 +72,8 @@ class MainActivity : ComponentActivity() {
 //                }
 
 
-//                val loadingScreen = rememberScreen(provider = SharedScreen.Player)
-//                Navigator(screen = loadingScreen)
+                val loadingScreen = rememberScreen(provider = SharedScreen.Splash)
+                Navigator(screen = loadingScreen)
             }
         }
     }
