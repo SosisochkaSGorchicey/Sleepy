@@ -31,7 +31,7 @@ class SplashScreen : Screen {
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 SplashSideEffect.NavigateToAuth -> navigator.replace(
-                    SharedScreen.LogIn.screen()
+                    SharedScreen.SighIn.screen()
                 )
 
                 SplashSideEffect.NavigateToHome -> navigator.replace(
