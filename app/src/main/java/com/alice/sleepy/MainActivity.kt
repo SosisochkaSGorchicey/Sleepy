@@ -1,11 +1,9 @@
 package com.alice.sleepy
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.activity.enableEdgeToEdge
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
@@ -13,8 +11,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.navigator.Navigator
 import com.alice.common.navigation.SharedScreen
-import com.alice.ui.theme.SleepyTheme
-import com.feature.player.PlayerActivity
+import com.alice.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -28,14 +25,15 @@ class MainActivity : ComponentActivity() {
         player = ExoPlayer.Builder(this)
             .build()
             .also { exoPlayer ->
-                val mediaItem = MediaItem.fromUri("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3")
+                val mediaItem =
+                    MediaItem.fromUri("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3")
                 exoPlayer.setMediaItem(mediaItem)
 
                 exoPlayer.setMediaItems(listOf(mediaItem), mediaItemIndex, playbackPosition)
                 exoPlayer.playWhenReady = playWhenReady
 
 
-               exoPlayer.prepare()
+                exoPlayer.prepare()
             }
     }
 
@@ -43,9 +41,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         //initializePlayer()
 
-        //enableEdgeToEdge()
+        enableEdgeToEdge()
         setContent {
-            SleepyTheme {
+            AppTheme {
 //                Button(onClick = {
 //                    this.startActivity(Intent(this, PlayerActivity::class.java))
 //                }) {

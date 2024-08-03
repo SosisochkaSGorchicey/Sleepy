@@ -7,11 +7,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.alice.ui.theme.mainFont
+import com.alice.ui.theme.AppTheme
 import com.core.ui.R
 
 
@@ -19,19 +18,20 @@ import com.core.ui.R
 fun SplashScreenContent(
     modifier: Modifier
 ) {
+    val textModifier: Modifier = Modifier.padding(top = 32.dp)
+
     BackgroundUI()
 
     Box(
-        modifier = modifier
-            .fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
         Text(
-            modifier = Modifier.padding(top = 32.dp),
+            modifier = textModifier
+                .scale(getScaleTextAnimation()),
             text = stringResource(id = R.string.sleepy),
-            fontFamily = mainFont,
-            fontSize = 72.sp,
-            color = Color(0xFFF7EBE9) //todo all
+            style = AppTheme.typography.headlineLarge,
+            color = AppTheme.colors.milkyWhite
         )
     }
 }

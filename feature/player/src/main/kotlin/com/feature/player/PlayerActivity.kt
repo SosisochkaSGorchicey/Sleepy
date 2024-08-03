@@ -20,7 +20,6 @@ import androidx.media3.common.Player.COMMAND_PREPARE
 import androidx.media3.common.Player.COMMAND_SET_MEDIA_ITEM
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
-import com.alice.ui.theme.SleepyTheme
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 
@@ -37,7 +36,7 @@ class PlayerActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         log("onCreate MainActivity")
         setContent {
-            SleepyTheme {
+          //todo theme
 
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
 
@@ -54,7 +53,7 @@ class PlayerActivity : ComponentActivity() {
 
                 }
 
-            }
+
         }
     }
 
