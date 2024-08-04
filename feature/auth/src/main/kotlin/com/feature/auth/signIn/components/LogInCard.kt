@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alice.ui.theme.AppTheme
+import com.alice.ui.uiElements.RoundedTextField
 import com.core.ui.R
 
 @Composable
@@ -44,6 +45,14 @@ fun LogInCard(bottomSheetModifier: Modifier) {
             horizontalAlignment = Alignment.Start
         ) {
             LogInHeader()
+
+            RoundedTextField(
+                modifier = Modifier.fillMaxWidth(.8f),
+                currentText = "",
+                placeholderText = "email",
+                onValueChange = {}
+            )
+
             Text(text = ",mkjnhg")
             Text(text = ",mkjnhg")
             Text(text = ",mkjnhg")

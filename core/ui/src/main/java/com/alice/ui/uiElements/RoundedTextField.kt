@@ -1,0 +1,66 @@
+package com.alice.ui.uiElements
+
+import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
+import com.alice.ui.theme.AppTheme
+
+@Composable
+fun RoundedTextField(
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    currentText: String,
+    placeholderText: String,
+    onValueChange: (String) -> Unit,
+    @StringRes errorStringRes: Int? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+) {
+    SelectionContainer {
+        OutlinedTextField(
+            modifier = modifier,
+            value = currentText,
+            onValueChange = onValueChange,
+            shape = AppTheme.shapes.rounded,
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = AppTheme.colors.baseBlue.copy(alpha = .6f),
+                unfocusedBorderColor = AppTheme.colors.basePeachy,
+                focusedContainerColor = AppTheme.colors.milkyWhite,
+                unfocusedContainerColor = AppTheme.colors.milkyWhite,
+                focusedTextColor = AppTheme.colors.baseBlue,
+                unfocusedTextColor = AppTheme.colors.baseBlue.copy(alpha = .6f),
+                focusedPlaceholderColor = AppTheme.colors.baseBlue.copy(alpha = .6f),
+                unfocusedPlaceholderColor = AppTheme.colors.baseBlue.copy(alpha = .6f),
+                cursorColor = AppTheme.colors.baseBlue,
+                selectionColors = TextSelectionColors(
+                    handleColor = AppTheme.colors.baseBlue,
+                    backgroundColor = AppTheme.colors.baseBlue.copy(alpha = .3f)
+                ),
+                errorTextColor = AppTheme.colors.baseRed,
+                errorContainerColor = AppTheme.colors.milkyWhite,
+                errorBorderColor = AppTheme.colors.baseRed
+            ),
+            textStyle = AppTheme.typography.bodyMedium,
+            placeholder = {
+                Text(
+                    text = if (errorStringRes == null) placeholderText //todo
+                    else stringResource(errorStringRes),
+                    style = AppTheme.typography.bodyMedium
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            visualTransformation = visualTransformation,
+            isError = errorStringRes != null
+        )
+    }
+}
