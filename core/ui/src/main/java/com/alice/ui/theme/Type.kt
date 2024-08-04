@@ -12,6 +12,11 @@ class AppTypography(
         fontSize = 72.sp,
         textAlign = TextAlign.Center,
         fontFamily = mainFont
+    ),
+    val headlineMedium: TextStyle = TextStyle(
+        fontSize = 32.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = mainFont
     )
 )
 

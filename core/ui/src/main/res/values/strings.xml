@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sleepy">Sleepy</string>
+    <string name="sleepy">sleepy.</string>
+
+    # Auth
+    <string name="log_in_header">Welcome back</string>
 </resources>

@@ -8,6 +8,8 @@ import androidx.compose.ui.graphics.Color
 private val MilkyWhite = Color(0xFFF7EBE9)
 private val BaseBlue = Color(0xFF3873B8)
 private val BaseGray = Color(0xFFCACDD3)
+private val BasePeachy = Color(0xFFEECEC9)
+private val LightPeachy = Color(0xFFF1DEDB)
 
 private val BlueToGrayGradient = Brush.linearGradient(
     listOf(BaseBlue, BaseGray)
@@ -21,6 +23,8 @@ data class AppColors(
     val milkyWhite: Color = MilkyWhite,
     val baseBlue: Color = BaseBlue,
     val baseGray: Color = BaseGray,
+    val basePeachy: Color = BasePeachy,
+    val lightPeachy: Color = LightPeachy,
     val blueToGrayGradient: Brush = BlueToGrayGradient,
 )
 
