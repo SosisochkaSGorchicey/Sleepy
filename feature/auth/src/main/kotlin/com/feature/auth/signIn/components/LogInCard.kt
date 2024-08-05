@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alice.ui.theme.AppTheme
+import com.alice.ui.uiElements.MainButton
 import com.alice.ui.uiElements.RoundedTextField
 import com.core.ui.R
 
@@ -41,26 +42,34 @@ fun LogInCard(bottomSheetModifier: Modifier) {
                 .verticalScroll(rememberScrollState())
                 .then(bottomSheetModifier)
                 .padding(horizontal = 24.dp, vertical = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.Start
         ) {
             LogInHeader()
 
-            RoundedTextField(
+            RoundedTextField( //todo
                 modifier = Modifier.fillMaxWidth(.8f),
                 currentText = "",
                 placeholderText = "email",
                 onValueChange = {}
             )
 
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
-            Text(text = ",mkjnhg")
+            RoundedTextField( //todo
+                modifier = Modifier.fillMaxWidth(.8f),
+                currentText = "",
+                placeholderText = "password",
+                onValueChange = {}
+            )
+
+            MainButton(
+                modifier = Modifier.fillMaxWidth(.8f),
+                onClick = {},
+                text = stringResource(id = R.string.sign_in),
+                containerColor = AppTheme.colors.baseBlue,
+                borderColor = AppTheme.colors.baseBlueLight
+            )
+
+            OtherAuthActionsDisplay()
         }
 
         LogInImage()
@@ -74,9 +83,9 @@ private fun BoxScope.LogInImage() {
 
     Image(
         modifier = Modifier
-            .offset(y = -(screenWidth / 5))
+            .offset(y = -(screenWidth / 8))
             .align(Alignment.TopEnd)
-            .width(screenWidth / 2)
+            .width(screenWidth / 3)
             .rotate(25f),
         painter = painterResource(id = R.drawable.flower_dark_face),
         contentDescription = null,

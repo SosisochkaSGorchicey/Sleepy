@@ -19,11 +19,22 @@ class AppTypography(
         textAlign = TextAlign.Start,
         fontFamily = mainFont
     ),
+    val headlineSmall: TextStyle = TextStyle(
+        fontSize = 20.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = mainFont
+    ),
     val bodyMedium: TextStyle = TextStyle(
         fontSize = 20.sp,
         textAlign = TextAlign.Start,
         fontFamily = montserratFont,
         fontWeight = FontWeight.Normal
+    ),
+    val bodyMediumBold: TextStyle = TextStyle(
+        fontSize = 20.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = montserratFont,
+        fontWeight = FontWeight.Medium
     ),
 )
 

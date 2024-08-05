@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 private val MilkyWhite = Color(0xFFF7EBE9)
 private val BaseRed = Color(0xFFB93145)
 private val BaseBlue = Color(0xFF3873B8)
+private val BaseBlueLight = Color(0xFF719CCE)
 private val BaseGray = Color(0xFFCACDD3)
 private val DarkerGray = Color(0xFF798191)
 private val BasePeachy = Color(0xFFEECEC9)
@@ -25,6 +26,7 @@ data class AppColors(
     val milkyWhite: Color = MilkyWhite,
     val baseRed: Color = BaseRed,
     val baseBlue: Color = BaseBlue,
+    val baseBlueLight: Color = BaseBlueLight,
     val baseGray: Color = BaseGray,
     val darkerGray: Color = DarkerGray,
     val basePeachy: Color = BasePeachy,
