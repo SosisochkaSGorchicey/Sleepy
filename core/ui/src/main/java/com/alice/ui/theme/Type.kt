@@ -30,6 +30,18 @@ class AppTypography(
         fontFamily = montserratFont,
         fontWeight = FontWeight.Normal
     ),
+    val bodySmall: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = montserratFont,
+        fontWeight = FontWeight.Normal
+    ),
+    val bodySuperSmall: TextStyle = TextStyle(
+        fontSize = 14.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = montserratFont,
+        fontWeight = FontWeight.Normal
+    ),
     val bodyMediumBold: TextStyle = TextStyle(
         fontSize = 20.sp,
         textAlign = TextAlign.Start,

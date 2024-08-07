@@ -5,12 +5,23 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.alice.common.navigation.SharedScreen
+import com.alice.common.navigation.screen
 import com.alice.ui.theme.AppTheme
 import com.feature.auth.signIn.components.SignInScreenUI
+import com.feature.auth.signIn.screenmodel.SignInScreenModel
+import com.feature.auth.signIn.screenmodel.SignInSideEffect
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 object SignInScreen : Screen {
     @Composable
     override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
+        val viewModel = getScreenModel<SignInScreenModel>()
+
         Scaffold(
             containerColor = AppTheme.colors.baseBlue
         ) {
@@ -18,6 +29,13 @@ object SignInScreen : Screen {
                 modifier = Modifier.padding(top = it.calculateTopPadding()),
                 bottomSheetModifier = Modifier.padding(bottom = it.calculateBottomPadding())
             )
+        }
+
+        viewModel.collectSideEffect { sideEffect ->
+            when (sideEffect) {
+                SignInSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.Home.screen())
+                SignInSideEffect.NavigateToSignUpScreen -> navigator.push(SharedScreen.SighUp.screen())
+            }
         }
     }
 }
