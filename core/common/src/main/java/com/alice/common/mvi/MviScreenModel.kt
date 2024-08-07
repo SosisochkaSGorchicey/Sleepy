@@ -8,7 +8,9 @@ import org.orbitmvi.orbit.container
 abstract class MviScreenMode<S : Any, SE : Any, E : Any>(
     initialState: S,
 ) : ScreenModel, ContainerHost<S, SE> {
-    override val container = screenModelScope.container<S, SE>(initialState = initialState)
+    final override val container = screenModelScope.container<S, SE>(initialState = initialState)
+
+    val state = container.stateFlow
 
     abstract fun onEvent(event: E)
 }

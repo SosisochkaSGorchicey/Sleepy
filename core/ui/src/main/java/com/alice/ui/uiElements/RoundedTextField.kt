@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import com.alice.ui.theme.AppTheme
@@ -21,7 +22,7 @@ fun RoundedTextField(
     currentText: String,
     placeholderText: String,
     onValueChange: (String) -> Unit,
-    errorText: String = "",
+    errorTextRes: Int? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     visualTransformation: VisualTransformation = VisualTransformation.None,
 ) {
@@ -29,7 +30,7 @@ fun RoundedTextField(
         horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = errorText, //todo
+            text = errorTextRes?.let { stringResource(id = it) } ?: "",
             style = AppTheme.typography.bodySuperSmall,
             color = AppTheme.colors.baseRed
         )
@@ -62,13 +63,13 @@ fun RoundedTextField(
                 textStyle = AppTheme.typography.bodyMedium,
                 placeholder = {
                     Text(
-                        text = placeholderText, //todo
+                        text = placeholderText,
                         style = AppTheme.typography.bodySmall
                     )
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
                 visualTransformation = visualTransformation,
-                isError = errorText.isNotEmpty()
+                isError = errorTextRes != null
             )
         }
     }

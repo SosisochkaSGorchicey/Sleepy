@@ -22,14 +22,22 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.alice.ui.theme.AppTheme
 import com.alice.ui.uiElements.MainButton
 import com.alice.ui.uiElements.RoundedTextField
 import com.core.ui.R
+import com.feature.auth.signIn.screenmodel.SignInEvent
+import com.feature.auth.signIn.screenmodel.SignInState
 
 @Composable
-fun LogInCard(bottomSheetModifier: Modifier) {
+fun LogInCard(
+    bottomSheetModifier: Modifier,
+    state: SignInState,
+    onEvent: (SignInEvent) -> Unit
+) {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
@@ -47,18 +55,23 @@ fun LogInCard(bottomSheetModifier: Modifier) {
         ) {
             LogInHeader()
 
-            RoundedTextField( //todo
+            RoundedTextField(
                 modifier = Modifier.fillMaxWidth(.8f),
-                currentText = "",
-                placeholderText = "email",
-                onValueChange = {}
+                currentText = state.logInData.email.first,
+                placeholderText = stringResource(id = R.string.password_placeholder),
+                onValueChange = { onEvent(SignInEvent.OnEmailChange(newValue = it)) },
+                errorTextRes = state.logInData.email.second,
+                keyboardType = KeyboardType.Email
             )
 
-            RoundedTextField( //todo
+            RoundedTextField(
                 modifier = Modifier.fillMaxWidth(.8f),
-                currentText = "",
-                placeholderText = "password",
-                onValueChange = {}
+                currentText = state.logInData.password.first,
+                placeholderText = stringResource(id = R.string.email_placeholder),
+                onValueChange = { onEvent(SignInEvent.OnPasswordChange(newValue = it)) },
+                errorTextRes = state.logInData.password.second,
+                keyboardType = KeyboardType.Password,
+                visualTransformation = PasswordVisualTransformation(mask = '\u25CF'),
             )
 
             MainButton(

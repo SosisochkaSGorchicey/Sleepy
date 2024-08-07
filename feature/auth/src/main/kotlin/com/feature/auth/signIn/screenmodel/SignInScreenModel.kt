@@ -1,6 +1,7 @@
 package com.feature.auth.signIn.screenmodel
 
 import com.alice.common.mvi.MviScreenMode
+import com.alice.common.mvi.blockingReducer
 
 class SignInScreenModel : MviScreenMode<SignInState, SignInSideEffect, SignInEvent>(
     initialState = SignInState()
@@ -8,10 +9,38 @@ class SignInScreenModel : MviScreenMode<SignInState, SignInSideEffect, SignInEve
     override fun onEvent(event: SignInEvent) {
         when (event) {
             SignInEvent.OnAnonymousClick -> TODO()
-            is SignInEvent.OnEmailChange -> TODO()
-            is SignInEvent.OnPasswordChange -> TODO()
+            is SignInEvent.OnEmailChange -> changeEmail(newValue = event.newValue)
+            is SignInEvent.OnPasswordChange -> changePassword(newValue = event.newValue)
             SignInEvent.OnSignInClick -> TODO()
             SignInEvent.OnSignUpClick -> TODO()
         }
+    }
+
+    private fun changeEmail(
+        newValue: String,
+        isError: Int? = null
+    ) = blockingReducer {
+        state.copy(
+            logInData = state.logInData.copy(
+                email = state.logInData.email.copy(
+                    first = newValue,
+                    second = isError
+                )
+            )
+        )
+    }
+
+    private fun changePassword(
+        newValue: String,
+        isError: Int? = null
+    ) = blockingReducer {
+        state.copy(
+            logInData = state.logInData.copy(
+                password = state.logInData.password.copy(
+                    first = newValue,
+                    second = isError
+                )
+            )
+        )
     }
 }

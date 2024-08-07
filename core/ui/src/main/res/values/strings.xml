@@ -8,4 +8,6 @@
     <string name="anonymous_sign_in">Sign in anonymously</string>
     <string name="sign_in">Sign in</string>
     <string name="no_account_text">New here?</string>
+    <string name="password_placeholder">password</string>
+    <string name="email_placeholder">email</string>
 </resources>
