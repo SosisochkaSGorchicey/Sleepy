@@ -6,8 +6,8 @@ import cafe.adriel.voyager.core.screen.Screen
 
 sealed interface SharedScreen : ScreenProvider {
     data object Splash : SharedScreen
-    data object SighIn : SharedScreen
-    data object SighUp : SharedScreen
+    data object SignIn : SharedScreen
+    data object SignUp : SharedScreen
     data object Home : SharedScreen
     data object Player : SharedScreen
 }

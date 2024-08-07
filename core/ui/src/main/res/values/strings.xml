@@ -4,10 +4,12 @@
 
     # Auth
     <string name="log_in_header">Welcome back</string>
+    <string name="sign_up_header">Nice to meet you</string>
     <string name="separator">or</string>
     <string name="anonymous_sign_in">Sign in anonymously</string>
     <string name="sign_in">Sign in</string>
     <string name="no_account_text">New here?</string>
+    <string name="name_placeholder">your name</string>
     <string name="password_placeholder">password</string>
     <string name="email_placeholder">email</string>
 </resources>

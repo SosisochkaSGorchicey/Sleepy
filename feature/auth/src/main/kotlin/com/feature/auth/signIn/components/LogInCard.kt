@@ -2,6 +2,7 @@ package com.feature.auth.signIn.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -47,6 +48,11 @@ fun LogInCard(
                 .fillMaxWidth()
                 .clip(AppTheme.shapes.topForm)
                 .background(AppTheme.colors.lightPeachy)
+                .border(
+                    width = 4.dp,
+                    color = AppTheme.colors.basePeachy,
+                    shape = AppTheme.shapes.topForm
+                )
                 .verticalScroll(rememberScrollState())
                 .then(bottomSheetModifier)
                 .padding(horizontal = 24.dp, vertical = 32.dp),
@@ -58,7 +64,7 @@ fun LogInCard(
             RoundedTextField(
                 modifier = Modifier.fillMaxWidth(.8f),
                 currentText = state.logInData.email.first,
-                placeholderText = stringResource(id = R.string.password_placeholder),
+                placeholderText = stringResource(id = R.string.email_placeholder),
                 onValueChange = { onEvent(SignInEvent.OnEmailChange(newValue = it)) },
                 errorTextRes = state.logInData.email.second,
                 keyboardType = KeyboardType.Email
@@ -67,7 +73,7 @@ fun LogInCard(
             RoundedTextField(
                 modifier = Modifier.fillMaxWidth(.8f),
                 currentText = state.logInData.password.first,
-                placeholderText = stringResource(id = R.string.email_placeholder),
+                placeholderText = stringResource(id = R.string.password_placeholder),
                 onValueChange = { onEvent(SignInEvent.OnPasswordChange(newValue = it)) },
                 errorTextRes = state.logInData.password.second,
                 keyboardType = KeyboardType.Password,
