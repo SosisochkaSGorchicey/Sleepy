@@ -76,13 +76,15 @@ fun LogInCard(
 
             MainButton(
                 modifier = Modifier.fillMaxWidth(.8f),
-                onClick = {},
+                onClick = { onEvent(SignInEvent.OnSignInClick) },
                 text = stringResource(id = R.string.sign_in),
                 containerColor = AppTheme.colors.baseBlue,
                 borderColor = AppTheme.colors.baseBlueLight
             )
 
-            OtherAuthActionsDisplay()
+            OtherAuthActionsDisplay(
+                onEvent = onEvent
+            )
         }
 
         LogInImage()

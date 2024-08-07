@@ -2,19 +2,31 @@ package com.feature.auth.signIn.screenmodel
 
 import com.alice.common.mvi.MviScreenMode
 import com.alice.common.mvi.blockingReducer
+import com.alice.common.mvi.emitSideEffect
 
 class SignInScreenModel : MviScreenMode<SignInState, SignInSideEffect, SignInEvent>(
     initialState = SignInState()
 ) {
     override fun onEvent(event: SignInEvent) {
         when (event) {
-            SignInEvent.OnAnonymousClick -> TODO()
+            SignInEvent.OnAnonymousClick -> signInAnonymously()
             is SignInEvent.OnEmailChange -> changeEmail(newValue = event.newValue)
             is SignInEvent.OnPasswordChange -> changePassword(newValue = event.newValue)
-            SignInEvent.OnSignInClick -> TODO()
-            SignInEvent.OnSignUpClick -> TODO()
+            SignInEvent.OnSignInClick -> signIn()
+            SignInEvent.OnSignUpClick -> goToSignUp()
         }
     }
+
+    private fun signInAnonymously() {
+        //todo
+    }
+
+    private fun signIn() {
+        //todo
+    }
+
+    private fun goToSignUp() =
+        emitSideEffect(SignInSideEffect.NavigateToSignUpScreen)
 
     private fun changeEmail(
         newValue: String,

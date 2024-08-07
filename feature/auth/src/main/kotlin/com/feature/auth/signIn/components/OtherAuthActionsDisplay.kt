@@ -16,9 +16,12 @@ import androidx.compose.ui.unit.dp
 import com.alice.ui.theme.AppTheme
 import com.alice.ui.uiElements.MainButton
 import com.core.ui.R
+import com.feature.auth.signIn.screenmodel.SignInEvent
 
 @Composable
-fun OtherAuthActionsDisplay() {
+fun OtherAuthActionsDisplay(
+    onEvent: (SignInEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(vertical = 40.dp, horizontal = 10.dp)
@@ -29,12 +32,12 @@ fun OtherAuthActionsDisplay() {
         DividerElement()
 
         MainButton(
-            onClick = {},
+            onClick = { onEvent(SignInEvent.OnAnonymousClick) },
             text = stringResource(id = R.string.anonymous_sign_in)
         )
 
         MainButton(
-            onClick = {},
+            onClick = { onEvent(SignInEvent.OnSignUpClick) },
             text = stringResource(id = R.string.no_account_text),
             containerColor = AppTheme.colors.baseBlue,
             borderColor = AppTheme.colors.baseBlueLight,
