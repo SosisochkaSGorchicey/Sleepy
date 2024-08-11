@@ -13,11 +13,16 @@ fun SignUpScreenUI(
     outerModifier: Modifier = Modifier
 ) {
     Box(
-        modifier = outerModifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize()
     ) {
-        SignUpCard()
+        SignUpBackground()
+        Box(
+            modifier = outerModifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            contentAlignment = Alignment.Center
+        ) {
+            SignUpCard()
+        }
     }
 }
