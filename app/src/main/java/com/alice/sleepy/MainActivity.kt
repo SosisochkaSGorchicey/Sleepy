@@ -2,6 +2,7 @@ package com.alice.sleepy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.media3.common.MediaItem
@@ -41,7 +42,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         //initializePlayer()
 
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(scrim = 0),
+            navigationBarStyle = SystemBarStyle.dark(scrim = 0)
+        )
         setContent {
             AppTheme {
 //                Button(onClick = {

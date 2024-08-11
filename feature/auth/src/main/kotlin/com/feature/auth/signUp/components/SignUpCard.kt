@@ -20,9 +20,14 @@ import com.alice.ui.theme.AppTheme
 import com.alice.ui.uiElements.MainButton
 import com.alice.ui.uiElements.RoundedTextField
 import com.core.ui.R
+import com.feature.auth.signUp.screenmodel.SignUpEvent
+import com.feature.auth.signUp.screenmodel.SignUpState
 
 @Composable
-fun SignUpCard() {
+fun SignUpCard(
+    state: SignUpState,
+    onEvent: (SignUpEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(horizontal = 24.dp, vertical = 32.dp)
@@ -35,11 +40,14 @@ fun SignUpCard() {
     ) {
         Header()
 
-        SignUpTextFields()
+        SignUpTextFields(
+            state = state,
+            onEvent = onEvent
+        )
 
         MainButton(
             onClick = {
-                //todo
+                onEvent(SignUpEvent.OnSignUpClick)
             },
             text = stringResource(id = R.string.sign_up),
             containerColor = AppTheme.colors.baseBlue,
@@ -59,34 +67,43 @@ private fun Header() {
 }
 
 @Composable
-private fun SignUpTextFields() { //todo all
+private fun SignUpTextFields(
+    state: SignUpState,
+    onEvent: (SignUpEvent) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         RoundedTextField(
             modifier = Modifier.fillMaxWidth(),
-            currentText = "",
+            currentText = state.signUpData.name.first,
             placeholderText = stringResource(id = R.string.name_placeholder),
-            onValueChange = { },
-            errorTextRes = null
+            onValueChange = {
+                onEvent(SignUpEvent.OnNameChange(newValue = it))
+            },
+            errorTextRes = state.signUpData.name.second
         )
 
         RoundedTextField(
             modifier = Modifier.fillMaxWidth(),
-            currentText = "",
+            currentText = state.signUpData.email.first,
             placeholderText = stringResource(id = R.string.email_placeholder),
-            onValueChange = { },
-            errorTextRes = null,
+            onValueChange = {
+                onEvent(SignUpEvent.OnEmailChange(newValue = it))
+            },
+            errorTextRes = state.signUpData.email.second,
             keyboardType = KeyboardType.Email
         )
 
         RoundedTextField(
             modifier = Modifier.fillMaxWidth(),
-            currentText = "",
+            currentText = state.signUpData.password.first,
             placeholderText = stringResource(id = R.string.password_placeholder),
-            onValueChange = { },
-            errorTextRes = null,
+            onValueChange = {
+                onEvent(SignUpEvent.OnPasswordChange(newValue = it))
+            },
+            errorTextRes = state.signUpData.password.second,
             keyboardType = KeyboardType.Password,
             visualTransformation = PasswordVisualTransformation(mask = '\u25CF'),
         )

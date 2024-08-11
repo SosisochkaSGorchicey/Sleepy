@@ -15,6 +15,7 @@ import com.alice.common.navigation.screen
 import com.alice.ui.theme.AppTheme
 import com.alice.ui.uiElements.MainTopBar
 import com.feature.auth.signUp.components.SignUpScreenUI
+import com.feature.auth.signUp.screenmodel.SignUpEvent
 import com.feature.auth.signUp.screenmodel.SignUpScreenModel
 import com.feature.auth.signUp.screenmodel.SignUpSideEffect
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -30,11 +31,17 @@ object SignUpScreen : Screen {
             containerColor = AppTheme.colors.baseBlue,
             topBar = {
                 MainTopBar(
-                    onNavigateBackClick = {} //todo
+                    onNavigateBackClick = {
+                        viewModel.onEvent(SignUpEvent.OnBackClick)
+                    }
                 )
             }
         ) {
-            SignUpScreenUI(outerModifier = Modifier.padding(it))
+            SignUpScreenUI(
+                outerModifier = Modifier.padding(it),
+                state = state,
+                onEvent = viewModel::onEvent
+            )
         }
 
         viewModel.collectSideEffect { sideEffect ->
