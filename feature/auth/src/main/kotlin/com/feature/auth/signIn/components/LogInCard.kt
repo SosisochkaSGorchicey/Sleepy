@@ -61,23 +61,9 @@ fun LogInCard(
         ) {
             LogInHeader()
 
-            RoundedTextField(
-                modifier = Modifier.fillMaxWidth(.8f),
-                currentText = state.logInData.email.first,
-                placeholderText = stringResource(id = R.string.email_placeholder),
-                onValueChange = { onEvent(SignInEvent.OnEmailChange(newValue = it)) },
-                errorTextRes = state.logInData.email.second,
-                keyboardType = KeyboardType.Email
-            )
-
-            RoundedTextField(
-                modifier = Modifier.fillMaxWidth(.8f),
-                currentText = state.logInData.password.first,
-                placeholderText = stringResource(id = R.string.password_placeholder),
-                onValueChange = { onEvent(SignInEvent.OnPasswordChange(newValue = it)) },
-                errorTextRes = state.logInData.password.second,
-                keyboardType = KeyboardType.Password,
-                visualTransformation = PasswordVisualTransformation(mask = '\u25CF'),
+            SignInTextFields(
+                state = state,
+                onEvent = onEvent
             )
 
             MainButton(
@@ -122,4 +108,35 @@ private fun LogInHeader() {
         color = AppTheme.colors.baseBlue,
         style = AppTheme.typography.headlineMedium
     )
+}
+
+@Composable
+private fun SignInTextFields(
+    state: SignInState,
+    onEvent: (SignInEvent) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        RoundedTextField(
+            modifier = Modifier.fillMaxWidth(.8f),
+            currentText = state.logInData.email.first,
+            placeholderText = stringResource(id = R.string.email_placeholder),
+            onValueChange = { onEvent(SignInEvent.OnEmailChange(newValue = it)) },
+            errorTextRes = state.logInData.email.second,
+            keyboardType = KeyboardType.Email
+        )
+
+        RoundedTextField(
+            modifier = Modifier.fillMaxWidth(.8f),
+            currentText = state.logInData.password.first,
+            placeholderText = stringResource(id = R.string.password_placeholder),
+            onValueChange = { onEvent(SignInEvent.OnPasswordChange(newValue = it)) },
+            errorTextRes = state.logInData.password.second,
+            keyboardType = KeyboardType.Password,
+            visualTransformation = PasswordVisualTransformation(mask = '\u25CF'),
+        )
+    }
 }

@@ -21,8 +21,6 @@ fun BackgroundUI() {
             .fillMaxSize()
             .background(brush = AppTheme.colors.blueToGrayGradient)
     ) {
-
-
         Image(
             modifier = Modifier
                 .fillMaxHeight(.75f)

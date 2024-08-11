@@ -8,6 +8,7 @@
     <string name="separator">or</string>
     <string name="anonymous_sign_in">Sign in anonymously</string>
     <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
     <string name="no_account_text">New here?</string>
     <string name="name_placeholder">your name</string>
     <string name="password_placeholder">password</string>

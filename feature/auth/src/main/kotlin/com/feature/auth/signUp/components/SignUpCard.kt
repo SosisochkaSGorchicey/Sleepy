@@ -17,6 +17,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.alice.ui.theme.AppTheme
+import com.alice.ui.uiElements.MainButton
 import com.alice.ui.uiElements.RoundedTextField
 import com.core.ui.R
 
@@ -29,11 +30,40 @@ fun SignUpCard() {
             .clip(AppTheme.shapes.mediumCornersDp)
             .background(AppTheme.colors.lightPeachy)
             .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Header()
 
+        SignUpTextFields()
+
+        MainButton(
+            onClick = {
+                //todo
+            },
+            text = stringResource(id = R.string.sign_up),
+            containerColor = AppTheme.colors.baseBlue,
+            borderColor = AppTheme.colors.baseBlueLight
+        )
+    }
+}
+
+@Composable
+private fun Header() {
+    Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = stringResource(id = R.string.sign_up_header),
+        color = AppTheme.colors.baseBlue,
+        style = AppTheme.typography.headlineMedium.copy(textAlign = TextAlign.Center)
+    )
+}
+
+@Composable
+private fun SignUpTextFields() { //todo all
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         RoundedTextField(
             modifier = Modifier.fillMaxWidth(),
             currentText = "",
@@ -47,7 +77,7 @@ fun SignUpCard() {
             currentText = "",
             placeholderText = stringResource(id = R.string.email_placeholder),
             onValueChange = { },
-            errorTextRes = R.string.sign_in, //todo
+            errorTextRes = null,
             keyboardType = KeyboardType.Email
         )
 
@@ -61,14 +91,4 @@ fun SignUpCard() {
             visualTransformation = PasswordVisualTransformation(mask = '\u25CF'),
         )
     }
-}
-
-@Composable
-private fun Header() {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(id = R.string.sign_up_header),
-        color = AppTheme.colors.baseBlue,
-        style = AppTheme.typography.headlineMedium.copy(textAlign = TextAlign.Center)
-    )
 }
