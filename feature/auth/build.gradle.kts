@@ -5,6 +5,5 @@ plugins {
 android.namespace = "com.feature.auth"
 
 dependencies {
-    implementation(projects.core.common)
-    implementation(projects.core.ui) //todo
+
 }

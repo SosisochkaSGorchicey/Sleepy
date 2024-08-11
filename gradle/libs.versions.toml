@@ -76,6 +76,7 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
+#Convention plugins
 convetion-application = { id = "convention.android.application", version = "unspecified" }
 convetion-compose-app = { id = "convention.android.compose", version = "unspecified" }
 convetion-library = { id = "convention.android.library", version = "unspecified" }
