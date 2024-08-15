@@ -4,10 +4,12 @@ import com.core.domain.model.SupabaseResult
 import kotlinx.coroutines.flow.Flow
 
 interface SupabaseAuthRepository {
-    fun signIn(
+    suspend fun signIn(
         email: String,
         password: String
-    ): Flow<SupabaseResult<Unit>>
+    )
+
+    suspend fun trySaveToken()
 
     fun signAnonim(): Flow<SupabaseResult<Unit>>
 

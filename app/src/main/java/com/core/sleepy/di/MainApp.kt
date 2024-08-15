@@ -3,6 +3,7 @@ package com.core.sleepy.di
 import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.core.data.di.dataModule
+import com.core.domain.di.domainModule
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
 import com.feature.initial.di.initialModule
@@ -31,7 +32,8 @@ class MainApp : Application() {
                     playerModule,
                     initialModule,
                     authModule,
-                    dataModule
+                    dataModule,
+                    domainModule
                 )
             )
         }
