@@ -7,6 +7,14 @@ plugins {
 
 android.namespace = "com.core.data"
 
+dependencies {
+    implementation(projects.core.domain)
+    implementation(libs.coroutines.core)
+    implementation(libs.koin.android)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.bundles.supabase)
+}
+
 private val keystorePropertiesFile = file("keys.properties")
 private val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
