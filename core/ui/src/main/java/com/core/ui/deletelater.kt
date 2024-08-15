@@ -1,4 +1,4 @@
-package com.alice.ui
+package com.core.ui
 
 class deletelater { //todo delete later
 }

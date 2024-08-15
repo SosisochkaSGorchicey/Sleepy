@@ -26,9 +26,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.alice.ui.theme.AppTheme
-import com.alice.ui.uiElements.MainButton
-import com.alice.ui.uiElements.RoundedTextField
+import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.MainButton
+import com.core.ui.uiElements.RoundedTextField
 import com.core.ui.R
 import com.feature.auth.signIn.screenmodel.SignInEvent
 import com.feature.auth.signIn.screenmodel.SignInState

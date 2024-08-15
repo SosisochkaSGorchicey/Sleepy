@@ -1,4 +1,4 @@
-package com.alice.sleepy
+package com.core.sleepy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +11,8 @@ import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.navigator.Navigator
-import com.alice.common.navigation.SharedScreen
-import com.alice.ui.theme.AppTheme
+import com.core.common.navigation.SharedScreen
+import com.core.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
 

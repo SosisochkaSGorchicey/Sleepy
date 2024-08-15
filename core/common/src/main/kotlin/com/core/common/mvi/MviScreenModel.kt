@@ -1,4 +1,4 @@
-package com.alice.common.mvi
+package com.core.common.mvi
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope

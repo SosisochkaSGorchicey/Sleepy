@@ -1,8 +1,8 @@
 package com.feature.auth.signUp.screenmodel
 
-import com.alice.common.mvi.MviScreenMode
-import com.alice.common.mvi.blockingReducer
-import com.alice.common.mvi.emitSideEffect
+import com.core.common.mvi.MviScreenMode
+import com.core.common.mvi.blockingReducer
+import com.core.common.mvi.emitSideEffect
 
 class SignUpScreenModel : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEvent>(
     initialState = SignUpState()

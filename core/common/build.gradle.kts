@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.convetion.library)
 }
 
-android.namespace = "com.alice.common"
-
+android.namespace = "com.core.common"
 
 dependencies {
     implementation(libs.bundles.voyager)

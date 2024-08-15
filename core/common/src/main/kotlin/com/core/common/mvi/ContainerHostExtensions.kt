@@ -1,4 +1,4 @@
-package com.alice.common.mvi
+package com.core.common.mvi
 
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost

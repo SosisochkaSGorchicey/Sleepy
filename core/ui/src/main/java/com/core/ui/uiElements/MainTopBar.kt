@@ -1,4 +1,4 @@
-package com.alice.ui.uiElements
+package com.core.ui.uiElements
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
@@ -9,7 +9,7 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import com.alice.ui.theme.AppTheme
+import com.core.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

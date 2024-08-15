@@ -10,9 +10,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.alice.common.navigation.SharedScreen
-import com.alice.common.navigation.screen
-import com.alice.ui.theme.AppTheme
+import com.core.common.navigation.SharedScreen
+import com.core.common.navigation.screen
+import com.core.ui.theme.AppTheme
 import com.feature.auth.signIn.components.SignInScreenUI
 import com.feature.auth.signIn.screenmodel.SignInScreenModel
 import com.feature.auth.signIn.screenmodel.SignInSideEffect

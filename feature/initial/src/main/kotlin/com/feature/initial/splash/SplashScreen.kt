@@ -8,8 +8,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.alice.common.navigation.SharedScreen
-import com.alice.common.navigation.screen
+import com.core.common.navigation.SharedScreen
+import com.core.common.navigation.screen
 import com.feature.initial.splash.content.SplashScreenContent
 import com.feature.initial.splash.screenmodel.SplashScreenModel
 import com.feature.initial.splash.screenmodel.SplashSideEffect

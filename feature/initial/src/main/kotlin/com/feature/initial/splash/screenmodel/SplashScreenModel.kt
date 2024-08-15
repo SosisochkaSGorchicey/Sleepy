@@ -1,6 +1,6 @@
 package com.feature.initial.splash.screenmodel
 
-import com.alice.common.mvi.MviScreenMode
+import com.core.common.mvi.MviScreenMode
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect

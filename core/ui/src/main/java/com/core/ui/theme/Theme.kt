@@ -1,4 +1,4 @@
-package com.alice.ui.theme
+package com.core.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

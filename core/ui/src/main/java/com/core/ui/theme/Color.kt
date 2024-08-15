@@ -1,4 +1,4 @@
-package com.alice.ui.theme
+package com.core.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf

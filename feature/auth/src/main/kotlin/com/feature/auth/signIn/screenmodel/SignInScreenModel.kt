@@ -1,8 +1,8 @@
 package com.feature.auth.signIn.screenmodel
 
-import com.alice.common.mvi.MviScreenMode
-import com.alice.common.mvi.blockingReducer
-import com.alice.common.mvi.emitSideEffect
+import com.core.common.mvi.MviScreenMode
+import com.core.common.mvi.blockingReducer
+import com.core.common.mvi.emitSideEffect
 
 class SignInScreenModel : MviScreenMode<SignInState, SignInSideEffect, SignInEvent>(
     initialState = SignInState()

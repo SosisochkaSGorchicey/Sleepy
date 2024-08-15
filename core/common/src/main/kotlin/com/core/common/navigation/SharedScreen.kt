@@ -1,4 +1,4 @@
-package com.alice.common.navigation
+package com.core.common.navigation
 
 import cafe.adriel.voyager.core.registry.ScreenProvider
 import cafe.adriel.voyager.core.registry.ScreenRegistry
