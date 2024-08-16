@@ -4,12 +4,14 @@ import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.core.data.di.dataModule
 import com.core.domain.di.domainModule
+import com.core.domain.repository.DataStoreRepository
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
 import com.feature.initial.di.initialModule
 import com.feature.initial.di.initialScreenModule
 import com.feature.player.di.playerModule
 import com.feature.player.di.playerScreenModule
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -37,5 +39,7 @@ class MainApp : Application() {
                 )
             )
         }
+
+        val datastore: DataStoreRepository by inject()
     }
 }
