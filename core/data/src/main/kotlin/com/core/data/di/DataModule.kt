@@ -1,7 +1,9 @@
 package com.core.data.di
 
 import com.core.data.BuildConfig
+import com.core.data.repository.DataStoreRepositoryImpl
 import com.core.data.repository.SupabaseAuthRepositoryImpl
+import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -15,6 +17,7 @@ import org.koin.dsl.module
 
 val dataModule = module {
     singleOf(::SupabaseAuthRepositoryImpl) bind SupabaseAuthRepository::class
+    singleOf(::DataStoreRepositoryImpl) bind DataStoreRepository::class
 
     singleOf(::provideSupabaseClient)
     singleOf(::provideSupabaseAuth)

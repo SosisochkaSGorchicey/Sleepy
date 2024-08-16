@@ -1,5 +1,6 @@
 package com.core.data.repository
 
+import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.providers.builtin.Email
@@ -8,7 +9,8 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
 class SupabaseAuthRepositoryImpl(
-    private val auth: Auth
+    private val auth: Auth,
+    private val dataStoreRepository: DataStoreRepository
 ) : SupabaseAuthRepository {
     override suspend fun signIn(email: String, password: String) {
         auth.signInWith(Email) {
@@ -20,7 +22,7 @@ class SupabaseAuthRepositoryImpl(
     override suspend fun trySaveToken() {
         val accessToken = auth.currentAccessTokenOrNull()
         accessToken?.let {
-            //settingsRepository.saveToken(newToken = accessToken) todo
+            dataStoreRepository.saveToken(newToken = accessToken)
         }
     }
 
