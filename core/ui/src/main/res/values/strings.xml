@@ -13,4 +13,19 @@
     <string name="name_placeholder">your name</string>
     <string name="password_placeholder">password</string>
     <string name="email_placeholder">email</string>
+
+    # Auth Errors
+    <string name="error_name_length">Name is too long</string>
+    <string name="error_empty_field">This field should not be empty</string>
+    <string name="error_password_length">The password must be at least 6 characters long</string>
+    <string name="error_email_invalid_format">Email has invalid format</string>
+    <string name="error_password_invalid_format">Password has invalid format</string>
+    <string name="error_already_registered">User already registered</string>
+    <string name="error_invalid_login">Invalid login credentials</string>
+    <string name="error_network_connection">Network connection error. Check your connection</string>
+    <string name="error_timeout">Authentication server request Timeout</string>
+    <string name="error_unauthorized">Unauthorized user</string>
+    <string name="error_unknown">Some error occurred. Check your connection</string>
+    <string name="error_chain_validation">We got an error. Make sure that the device has the correct time and date!</string>
+
 </resources>

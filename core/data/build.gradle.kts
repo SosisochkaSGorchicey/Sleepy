@@ -10,13 +10,13 @@ android.namespace = "com.core.data"
 
 dependencies {
     implementation(projects.core.domain)
+
     implementation(libs.coroutines.core)
     implementation(libs.koin.android)
     implementation(libs.ktor.client.okhttp)
+    implementation(libs.datastore.preferences)
+
     implementation(libs.bundles.supabase)
-    implementation(libs.multiplatform.settings.common)
-    implementation(libs.multiplatform.settings.coroutines)
-    implementation(libs.koin.core)
 }
 
 private val keystorePropertiesFile = file("keys.properties")

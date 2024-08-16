@@ -21,6 +21,7 @@ class SupabaseAuthRepositoryImpl(
 
     override suspend fun trySaveToken() {
         val accessToken = auth.currentAccessTokenOrNull()
+        println("TAG: in trySaveToken accessToken $accessToken")
         accessToken?.let {
             dataStoreRepository.saveToken(newToken = accessToken)
         }

@@ -13,6 +13,8 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.core.common.navigation.SharedScreen
 import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorSnackbar
+import com.core.ui.uiElements.LoadingDisplay
 import com.feature.auth.signIn.components.SignInScreenUI
 import com.feature.auth.signIn.screenmodel.SignInScreenModel
 import com.feature.auth.signIn.screenmodel.SignInSideEffect
@@ -27,13 +29,25 @@ object SignInScreen : Screen {
 
         Scaffold(
             containerColor = AppTheme.colors.baseBlue
-        ) {
+        ) { paddingValues ->
             SignInScreenUI(
-                modifier = Modifier.padding(top = it.calculateTopPadding()),
-                bottomSheetModifier = Modifier.padding(bottom = it.calculateBottomPadding()),
+                modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
+                bottomSheetModifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
                 state = state,
                 onEvent = viewModel::onEvent
             )
+
+            state.errorTextRes?.let {
+                ErrorSnackbar(
+                    modifier = Modifier.padding(paddingValues),
+                    errorTextRes = it
+                )
+            }
+
+            if (state.inLoading)
+                LoadingDisplay(
+                    layoutModifier = Modifier.padding(paddingValues)
+                )
         }
 
         viewModel.collectSideEffect { sideEffect ->
