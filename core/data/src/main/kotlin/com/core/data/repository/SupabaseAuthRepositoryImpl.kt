@@ -1,10 +1,11 @@
 package com.core.data.repository
 
-import com.core.domain.model.SupabaseResult
 import com.core.domain.repository.SupabaseAuthRepository
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.providers.builtin.Email
-import kotlinx.coroutines.flow.Flow
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 class SupabaseAuthRepositoryImpl(
     private val auth: Auth
@@ -23,15 +24,29 @@ class SupabaseAuthRepositoryImpl(
         }
     }
 
-    override fun signAnonim(): Flow<SupabaseResult<Unit>> {
-        TODO("Not yet implemented")
+    override suspend fun signAnonim() {
+        auth.signInAnonymously(data = createUserData(ANONYMOUS_USER_NAME))
     }
 
     override suspend fun signUp(
         userName: String,
         email: String,
         password: String
-    ): Flow<SupabaseResult<Unit>> {
-        TODO("Not yet implemented")
+    ) {
+        auth.signUpWith(Email) {
+            this.email = email
+            this.password = password
+            this.data = createUserData(userName)
+        }
+    }
+
+    private fun createUserData(userName: String): JsonObject =
+        buildJsonObject {
+            put(key = USER_NAME_KEY, value = userName)
+        }
+
+    companion object {
+        private const val USER_NAME_KEY = "user_name"
+        private const val ANONYMOUS_USER_NAME = "Guest"
     }
 }

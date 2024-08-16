@@ -11,11 +11,11 @@ interface SupabaseAuthRepository {
 
     suspend fun trySaveToken()
 
-    fun signAnonim(): Flow<SupabaseResult<Unit>>
+    suspend fun signAnonim()
 
     suspend fun signUp(
         userName: String,
         email: String,
         password: String
-    ): Flow<SupabaseResult<Unit>>
+    )
 }
