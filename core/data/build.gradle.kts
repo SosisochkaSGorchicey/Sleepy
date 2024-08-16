@@ -3,6 +3,7 @@ import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.convetion.library)
+    alias(libs.plugins.kotlin.serizliation)
 }
 
 android.namespace = "com.core.data"
@@ -13,6 +14,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.bundles.supabase)
+    implementation(libs.multiplatform.settings.common)
+    implementation(libs.multiplatform.settings.coroutines)
+    implementation(libs.koin.core)
 }
 
 private val keystorePropertiesFile = file("keys.properties")
