@@ -3,8 +3,20 @@ package com.feature.auth.signUp.screenmodel
 import com.core.common.mvi.MviScreenMode
 import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
+import com.core.common.mvi.reducer
+import com.core.domain.model.SupabaseResult
+import com.core.domain.usecase.SignUpUseCase
+import com.feature.auth.utils.emailIsValid
+import com.feature.auth.utils.nameIsValid
+import com.feature.auth.utils.passwordIsValid
+import com.feature.auth.utils.toTextRes
+import kotlinx.coroutines.delay
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.reduce
 
-class SignUpScreenModel : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEvent>(
+class SignUpScreenModel(
+    private val signUpUseCase: SignUpUseCase
+) : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEvent>(
     initialState = SignUpState()
 ) {
     override fun onEvent(event: SignUpEvent) {
@@ -17,8 +29,53 @@ class SignUpScreenModel : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEve
         }
     }
 
-    private fun signUp() {
-        //todo
+    private fun signUp() = intent {
+        val nameValidationResult = nameIsValid(name = state.signUpData.name.first)
+        val emailValidationResult = emailIsValid(email = state.signUpData.email.first)
+        val passwordValidationResult = passwordIsValid(password = state.signUpData.password.first)
+
+        if (nameValidationResult == null && emailValidationResult == null && passwordValidationResult == null) {
+            signUpUseCase(
+                userName = state.signUpData.name.first,
+                email = state.signUpData.email.first,
+                password = state.signUpData.password.first
+            ).collect { supabaseResult ->
+                supabaseResult.observe()
+            }
+        } else {
+            showSignUpErrors(
+                nameValidationResult = nameValidationResult,
+                emailValidationResult = emailValidationResult,
+                passwordValidationResult = passwordValidationResult
+            )
+        }
+    }
+
+    private fun showSignUpErrors(
+        nameValidationResult: Int?,
+        emailValidationResult: Int?,
+        passwordValidationResult: Int?
+    ) = intent {
+        nameValidationResult?.let {
+            changeName(
+                newValue = state.signUpData.name.first,
+                isError = it
+            )
+        }
+
+        emailValidationResult?.let {
+            changeEmail(
+                newValue = state.signUpData.email.first,
+                isError = it
+            )
+        }
+
+        passwordValidationResult?.let {
+            changePassword(
+                newValue = state.signUpData.password.first,
+                isError = it
+            )
+        }
     }
 
     private fun changeName(
@@ -61,5 +118,33 @@ class SignUpScreenModel : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEve
                 )
             )
         )
+    }
+
+    private fun showError(errorTextRes: Int) = intent {
+        reduce {
+            state.copy(
+                errorTextRes = errorTextRes,
+                inLoading = false
+            )
+        }
+        delay(3000)
+        reduce {
+            state.copy(errorTextRes = null)
+        }
+    }
+
+    private fun activateLoading() = reducer {
+        state.copy(inLoading = true)
+    }
+
+    private fun <T> SupabaseResult<T>.observe() {
+        when (this) {
+            SupabaseResult.Loading -> activateLoading()
+            is SupabaseResult.Error -> showError(errorTextRes = this.errorType.toTextRes())
+            is SupabaseResult.Success -> {
+                reducer { state.copy(inLoading = false) }
+                emitSideEffect(SignUpSideEffect.NavigateToHomeScreen)
+            }
+        }
     }
 }

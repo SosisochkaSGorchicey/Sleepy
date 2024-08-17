@@ -15,3 +15,9 @@ fun passwordIsValid(password: String): Int? = when {
     (password.length < 6) -> R.string.error_password_length
     else -> null
 }
+
+fun nameIsValid(name: String): Int? = when {
+    (name.isEmpty() || name.isBlank()) -> R.string.error_empty_field
+    (name.length > 30) -> R.string.error_name_length
+    else -> null
+}

@@ -13,6 +13,8 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.core.common.navigation.SharedScreen
 import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorSnackbar
+import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.MainTopBar
 import com.feature.auth.signUp.components.SignUpScreenUI
 import com.feature.auth.signUp.screenmodel.SignUpEvent
@@ -36,12 +38,24 @@ object SignUpScreen : Screen {
                     }
                 )
             }
-        ) {
+        ) { paddingValues ->
             SignUpScreenUI(
-                outerModifier = Modifier.padding(it),
+                outerModifier = Modifier.padding(paddingValues),
                 state = state,
                 onEvent = viewModel::onEvent
             )
+
+            state.errorTextRes?.let {
+                ErrorSnackbar(
+                    modifier = Modifier.padding(paddingValues),
+                    errorTextRes = it
+                )
+            }
+
+            if (state.inLoading)
+                LoadingDisplay(
+                    layoutModifier = Modifier.padding(paddingValues)
+                )
         }
 
         viewModel.collectSideEffect { sideEffect ->
