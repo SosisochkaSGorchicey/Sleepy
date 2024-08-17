@@ -1,6 +1,7 @@
 package com.feature.auth.signUp.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,10 +17,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.core.ui.R
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.MainButton
 import com.core.ui.uiElements.RoundedTextField
-import com.core.ui.R
 import com.feature.auth.signUp.screenmodel.SignUpEvent
 import com.feature.auth.signUp.screenmodel.SignUpState
 
@@ -34,6 +35,11 @@ fun SignUpCard(
             .fillMaxSize()
             .clip(AppTheme.shapes.mediumCornersDp)
             .background(AppTheme.colors.lightPeachy)
+            .border(
+                width = 4.dp,
+                color = AppTheme.colors.basePeachy,
+                shape = AppTheme.shapes.mediumCornersDp
+            )
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
