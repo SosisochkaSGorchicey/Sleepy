@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.voyager.transitions)
     implementation(libs.bundles.voyager)
     implementation(libs.bundles.koin)
     implementation(libs.androidx.activity.compose)

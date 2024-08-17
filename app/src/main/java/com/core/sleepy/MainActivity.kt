@@ -11,6 +11,7 @@ import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.SlideTransition
 import com.core.common.navigation.SharedScreen
 import com.core.ui.theme.AppTheme
 
@@ -75,7 +76,9 @@ class MainActivity : ComponentActivity() {
 
 
                 val loadingScreen = rememberScreen(provider = SharedScreen.Splash)
-                Navigator(screen = loadingScreen)
+                Navigator(screen = loadingScreen) {
+                    SlideTransition(navigator = it)
+                }
             }
         }
     }
