@@ -36,9 +36,9 @@ class SignUpScreenModel(
 
         if (nameValidationResult == null && emailValidationResult == null && passwordValidationResult == null) {
             signUpUseCase(
-                userName = state.signUpData.name.first,
-                email = state.signUpData.email.first,
-                password = state.signUpData.password.first
+                userName = state.signUpData.name.first.trim(),
+                email = state.signUpData.email.first.trim(),
+                password = state.signUpData.password.first.trim()
             ).collect { supabaseResult ->
                 supabaseResult.observe()
             }

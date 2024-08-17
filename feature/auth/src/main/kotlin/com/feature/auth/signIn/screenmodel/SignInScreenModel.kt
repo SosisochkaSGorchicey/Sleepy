@@ -42,8 +42,8 @@ class SignInScreenModel(
 
         if (emailValidationResult == null && passwordValidationResult == null) {
             signInUseCase(
-                email = state.logInData.email.first,
-                password = state.logInData.password.first
+                email = state.logInData.email.first.trim(),
+                password = state.logInData.password.first.trim()
             ).collect { supabaseResult ->
                 supabaseResult.observe()
             }
