@@ -46,8 +46,8 @@ fun LoadingDisplay(
         modifier = layoutModifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = " mnopjvnjisf") //todo
-//        Image(
+        Text(text = " loading") //todo
+//
 //            modifier = imageModifier.then(Modifier.rotate(rotation).scale(scale)),
 //            painter = painterResource(Res.drawable.loading),
 //            contentDescription = null,

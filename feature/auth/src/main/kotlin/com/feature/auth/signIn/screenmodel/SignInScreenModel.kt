@@ -7,6 +7,8 @@ import com.core.common.mvi.reducer
 import com.core.domain.model.SupabaseResult
 import com.core.domain.usecase.SignInUseCase
 import com.core.domain.usecase.SignUpAnonymously
+import com.feature.auth.utils.emailIsValid
+import com.feature.auth.utils.passwordIsValid
 import com.feature.auth.utils.toTextRes
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -35,11 +37,40 @@ class SignInScreenModel(
     }
 
     private fun signIn() = intent {
-        signInUseCase(
-            email = state.logInData.email.first,
-            password = state.logInData.password.first
-        ).collect { supabaseResult ->
-            supabaseResult.observe()
+        val emailValidationResult = emailIsValid(email = state.logInData.email.first)
+        val passwordValidationResult = passwordIsValid(password = state.logInData.password.first)
+
+        if (emailValidationResult == null && passwordValidationResult == null) {
+            signInUseCase(
+                email = state.logInData.email.first,
+                password = state.logInData.password.first
+            ).collect { supabaseResult ->
+                supabaseResult.observe()
+            }
+        } else {
+            showSignInErrors(
+                emailValidationResult = emailValidationResult,
+                passwordValidationResult = passwordValidationResult
+            )
+        }
+    }
+
+    private fun showSignInErrors(
+        emailValidationResult: Int?,
+        passwordValidationResult: Int?
+    ) = intent {
+        emailValidationResult?.let {
+            changeEmail(
+                newValue = state.logInData.email.first,
+                isError = it
+            )
+        }
+
+        passwordValidationResult?.let {
+            changePassword(
+                newValue = state.logInData.password.first,
+                isError = it
+            )
         }
     }
 
