@@ -1,5 +1,6 @@
 package com.core.ui.uiElements
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 
@@ -30,15 +33,15 @@ fun ErrorSnackbar(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                modifier = Modifier //todo all
+                modifier = Modifier
                     .padding(20.dp)
                     .fillMaxWidth()
-//                    .clip(AppTheme.shapes.mediumCorners)
-//                    .background(AppTheme.colors.brightPurple)
+                    .clip(AppTheme.shapes.mediumCornersPercent)
+                    .background(AppTheme.colors.lightPeachy)
                     .padding(10.dp),
                 text = stringResource(errorTextRes),
-                color = AppTheme.colors.white,
-                style = AppTheme.typography.bodyMedium
+                color = AppTheme.colors.baseBlue,
+                style = AppTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center)
             )
 
             content()

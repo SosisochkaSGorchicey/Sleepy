@@ -12,7 +12,8 @@ class AppShapes(
         topStartPercent = 10,
         topEndPercent = 60
     ),
-    val mediumCornersDp: RoundedCornerShape = RoundedCornerShape(40.dp)
+    val mediumCornersDp: RoundedCornerShape = RoundedCornerShape(40.dp),
+    val mediumCornersPercent: RoundedCornerShape = RoundedCornerShape(25)
 )
 
 internal val LocalAppShapes = staticCompositionLocalOf { AppShapes() }
