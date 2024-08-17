@@ -6,20 +6,24 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.core.ui.R
+import com.core.ui.theme.AppTheme
 
 @Composable
-fun LoadingDisplay(
-    layoutModifier: Modifier,
-    imageModifier: Modifier = Modifier.fillMaxWidth(.2f),
-) {
+fun LoadingDisplay(layoutModifier: Modifier) {
     val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition")
 
     val rotation by infiniteTransition.animateFloat(
@@ -43,15 +47,20 @@ fun LoadingDisplay(
     )
 
     Box(
-        modifier = layoutModifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppTheme.colors.black.copy(alpha = .5f))
+            .then(layoutModifier),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = " loading") //todo
-//
-//            modifier = imageModifier.then(Modifier.rotate(rotation).scale(scale)),
-//            painter = painterResource(Res.drawable.loading),
-//            contentDescription = null,
-//            contentScale = ContentScale.FillWidth
-//        )
+        Image(
+            modifier = Modifier
+                .fillMaxWidth(.2f)
+                .rotate(rotation)
+                .scale(scale),
+            painter = painterResource(id = R.drawable.flower_dark_face),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth
+        )
     }
 }

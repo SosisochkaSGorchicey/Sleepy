@@ -23,7 +23,7 @@
     <string name="error_already_registered">User already registered</string>
     <string name="error_invalid_login">Invalid login credentials</string>
     <string name="error_network_connection">Network connection error. Check your connection</string>
-    <string name="error_timeout">Authentication server request Timeout</string>
+    <string name="error_timeout">Authentication server request timeout. Check your connection</string>
     <string name="error_unauthorized">Unauthorized user</string>
     <string name="error_unknown">Some error occurred. Check your connection</string>
     <string name="error_chain_validation">We got an error. Make sure that the device has the correct time and date!</string>
