@@ -18,9 +18,11 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
     implementation(projects.core.domain)
+
     implementation(projects.feature.initial)
     implementation(projects.feature.auth)
     implementation(projects.feature.player)
+    implementation(projects.feature.home)
 
     implementation(libs.bundles.media3) //todo delete later
 }
