@@ -64,6 +64,9 @@ class SupabaseAuthRepositoryImpl(
                 emit(LoggedInState.NotLoggedIn)
             }
         } catch (e: Exception) {
+
+            println("TAG: isUserLoggedIn e $e")
+
             refresh()
 
             if (e.isChainError()) {
