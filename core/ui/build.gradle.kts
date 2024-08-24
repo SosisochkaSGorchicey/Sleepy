@@ -4,3 +4,7 @@ plugins {
 }
 
 android.namespace = "com.core.ui"
+
+dependencies {
+    implementation(libs.bundles.voyager)
+}

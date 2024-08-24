@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
@@ -26,6 +28,9 @@ import com.core.ui.theme.AppTheme
 fun CustomScaffoldWithBottomBar(
     content: @Composable () -> Unit
 ) {
+    val navigator = LocalNavigator.currentOrThrow
+    println("TAG: CustomScaffoldWithBottomBar ${navigator.lastItem}")
+
     Scaffold(
         containerColor = AppTheme.colors.transparent
     ) { padding ->
@@ -48,20 +53,35 @@ fun CustomScaffoldWithBottomBar(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(AppTheme.colors.baseBlue)
-                    .padding(vertical = 10.dp)
-                    .padding(bottom = padding.calculateBottomPadding()),
+                    .background(AppTheme.colors.baseBlueLight)
+                    .padding(bottom = padding.calculateBottomPadding())
+                    .padding(vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                repeat(3) {
-                    Image(
-                        modifier = Modifier.size(38.dp),
-                        painter = painterResource(id = R.drawable.flower_dark_face),
-                        contentDescription = null
-                    )
-                }
+                Image(
+                    modifier = Modifier.size(38.dp),
+                    painter = painterResource(id = R.drawable.balance),
+                    contentDescription = null
+                )
+
+                Image(
+                    modifier = Modifier.size(38.dp),
+                    painter = painterResource(id = R.drawable.flower_dark_face_small),
+                    contentDescription = null
+                )
+
+                Image(
+                    modifier = Modifier.size(38.dp),
+                    painter = painterResource(id = R.drawable.bell),
+                    contentDescription = null
+                )
             }
         }
     }
+}
+
+@Composable
+private fun BottomBarItemUI() {
+
 }
