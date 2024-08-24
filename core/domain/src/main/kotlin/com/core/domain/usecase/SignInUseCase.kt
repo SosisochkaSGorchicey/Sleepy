@@ -1,6 +1,6 @@
 package com.core.domain.usecase
 
-import com.core.domain.model.SupabaseResult
+import com.core.domain.model.supabaseAuth.SupabaseResult
 import com.core.domain.repository.SupabaseAuthRepository
 import com.core.domain.utils.supabaseFlowRequest
 import kotlinx.coroutines.flow.Flow

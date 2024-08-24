@@ -1,6 +1,6 @@
 package com.core.domain.utils
 
-import com.core.domain.model.SupabaseResult
+import com.core.domain.model.supabaseAuth.SupabaseResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

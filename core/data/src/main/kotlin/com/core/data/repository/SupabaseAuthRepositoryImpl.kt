@@ -1,9 +1,16 @@
 package com.core.data.repository
 
+import com.core.data.utils.isChainError
+import com.core.data.utils.toSupabaseError
+import com.core.domain.model.supabaseAuth.LoggedInState
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import io.github.jan.supabase.gotrue.Auth
+import io.github.jan.supabase.gotrue.SessionStatus
 import io.github.jan.supabase.gotrue.providers.builtin.Email
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -40,6 +47,58 @@ class SupabaseAuthRepositoryImpl(
             this.email = email
             this.password = password
             this.data = createUserData(userName)
+        }
+    }
+
+    override fun isUserLoggedIn(): Flow<LoggedInState> = flow {  //todo?
+        emit(LoggedInState.Loading)
+        val token = dataStoreRepository.getToken().first()
+
+        try {
+            if (token.isNotEmpty()) {
+                tokenCheck(token = token)
+                //loggedInActions()
+                emit(LoggedInState.LoggedIn)
+            } else {
+                //userDataRepository.getUserName()
+                emit(LoggedInState.NotLoggedIn)
+            }
+        } catch (e: Exception) {
+            refresh()
+
+            if (e.isChainError()) {
+                dataStoreRepository.deleteToken()
+                emit(LoggedInState.NotLoggedIn)
+            } else {
+                auth.sessionStatus.collect {
+                    when (it) {
+                        is SessionStatus.LoadingFromStorage -> emit(LoggedInState.Loading)
+                        is SessionStatus.Authenticated -> {
+                            //loggedInActions()
+                            emit(LoggedInState.LoggedIn)
+                        }
+
+                        is SessionStatus.NotAuthenticated -> {
+                            //userDataRepository.getUserName()
+                            emit(LoggedInState.NotLoggedIn)
+                        }
+
+                        else -> emit(LoggedInState.Error(e.toSupabaseError()))
+                    }
+                }
+            }
+        }
+    }
+
+    private suspend fun tokenCheck(token: String) {
+        auth.retrieveUser(token)
+        auth.refreshCurrentSession()
+        trySaveToken()
+    }
+
+    private suspend fun refresh() {
+        runCatching {
+            auth.startAutoRefreshForCurrentSession()
         }
     }
 

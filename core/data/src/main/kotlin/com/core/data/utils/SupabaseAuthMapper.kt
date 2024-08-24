@@ -1,4 +1,4 @@
-package com.core.domain.utils
+package com.core.data.utils
 
 import com.core.domain.model.supabaseAuth.AuthErrorType
 import com.core.domain.model.supabaseAuth.SupabaseResult

@@ -1,4 +1,4 @@
-package com.core.domain.model
+package com.core.domain.model.supabaseAuth
 
 sealed interface SupabaseResult<out T> {
     data object Loading : SupabaseResult<Unit>
