@@ -45,6 +45,9 @@ internal fun Throwable.toSupabaseError(): SupabaseResult.Error = when (this) {
         message?.contains("Unable to validate email address: invalid format") == true ->
             AuthErrorType.InvalidEmailFormat
 
+        message?.contains("User from sub claim in JWT does not exist") == true ->
+            AuthErrorType.UserTokenDoesNotExist
+
 
         else -> AuthErrorType.Unknown
     }

@@ -67,29 +67,32 @@ class SupabaseAuthRepositoryImpl(
 
             println("TAG: isUserLoggedIn e $e")
 
-            refresh()
+            emit(LoggedInState.Error(e.toSupabaseError()))
 
-            if (e.isChainError()) {
-                dataStoreRepository.deleteToken()
-                emit(LoggedInState.NotLoggedIn)
-            } else {
-                auth.sessionStatus.collect {
-                    when (it) {
-                        is SessionStatus.LoadingFromStorage -> emit(LoggedInState.Loading)
-                        is SessionStatus.Authenticated -> {
-                            //loggedInActions()
-                            emit(LoggedInState.LoggedIn)
-                        }
-
-                        is SessionStatus.NotAuthenticated -> {
-                            //userDataRepository.getUserName()
-                            emit(LoggedInState.NotLoggedIn)
-                        }
-
-                        else -> emit(LoggedInState.Error(e.toSupabaseError()))
-                    }
-                }
-            }
+//            refresh() //todo?
+//
+//            if (e.isChainError()) {
+//                dataStoreRepository.deleteToken()
+//                emit(LoggedInState.NotLoggedIn)
+//            } else {
+//                auth.sessionStatus.collect {
+//                    println("TAG: SessionStatus $it")
+//                    when (it) {
+//                        is SessionStatus.LoadingFromStorage -> emit(LoggedInState.Loading)
+//                        is SessionStatus.Authenticated -> {
+//                            //loggedInActions()
+//                            emit(LoggedInState.LoggedIn)
+//                        }
+//
+//                        is SessionStatus.NotAuthenticated -> {
+//                            //userDataRepository.getUserName()
+//                            emit(LoggedInState.NotLoggedIn)
+//                        }
+//
+//                        else -> emit(LoggedInState.Error(e.toSupabaseError()))
+//                    }
+//                }
+//            }
         }
     }
 

@@ -26,6 +26,7 @@
     <string name="error_timeout">Authentication server request timeout. Check your connection</string>
     <string name="error_unauthorized">Unauthorized user</string>
     <string name="error_unknown">Some error occurred. Check your connection</string>
+    <string name="error">Some error occurred</string>
     <string name="error_chain_validation">We got an error. Make sure that the device has the correct time and date!</string>
 
 </resources>

@@ -10,9 +10,11 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.core.common.navigation.SharedScreen
 import com.core.common.navigation.screen
+import com.core.ui.uiElements.ErrorSnackbar
 import com.feature.initial.splash.content.SplashScreenContent
 import com.feature.initial.splash.screenmodel.SplashScreenModel
 import com.feature.initial.splash.screenmodel.SplashSideEffect
+import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 
@@ -21,11 +23,21 @@ class SplashScreen : Screen {
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
         val viewModel = getScreenModel<SplashScreenModel>()
+        val state = viewModel.collectAsState().value
 
         Scaffold { padding ->
             SplashScreenContent(
                 modifier = Modifier.padding(padding)
             )
+
+            state.errorTextRes?.let {
+                ErrorSnackbar(
+                    modifier = Modifier.padding(padding),
+                    errorTextRes = it
+                ) {
+
+                }
+            }
         }
 
         viewModel.collectSideEffect { sideEffect ->

@@ -14,4 +14,5 @@ fun AuthErrorType.toTextRes(): Int = when (this) {
     AuthErrorType.Unauthorized -> R.string.error_unauthorized
     AuthErrorType.NotFound -> R.string.error_unknown
     AuthErrorType.Unknown -> R.string.error_unknown
+    AuthErrorType.UserTokenDoesNotExist -> R.string.error
 }

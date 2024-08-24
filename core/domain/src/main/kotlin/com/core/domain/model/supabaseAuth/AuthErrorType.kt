@@ -8,6 +8,7 @@ enum class AuthErrorType {
     InvalidLoginCredentials,
     InvalidPasswordFormat,
     InvalidEmailFormat,
+    UserTokenDoesNotExist,
     Unauthorized,
     NotFound,
     Unknown
