@@ -5,6 +5,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.domain.model.supabaseAuth.LoggedInState
 import com.core.domain.repository.SupabaseAuthRepository
 import com.feature.initial.splash.toTextRes
+import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.syntax.simple.intent
 
 class SplashScreenModel(
@@ -15,14 +16,11 @@ class SplashScreenModel(
 
     init {
         decideNavigation()
-//        intent { //todo later
-//            delay(3000)
-//            postSideEffect(SplashSideEffect.NavigateToAuth)
-//        }
     }
 
 
     private fun decideNavigation() = intent {
+        delay(3000) //todo?
         supabaseAuthRepository.isUserLoggedIn().collect {
             when {
                 it is LoggedInState.Error -> {
