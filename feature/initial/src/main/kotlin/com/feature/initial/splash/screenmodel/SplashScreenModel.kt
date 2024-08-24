@@ -26,7 +26,7 @@ class SplashScreenModel(
     }
 
     private fun decideNavigation() = intent {
-        delay(3000) //todo?
+        delay(500) //todo?
         isUserLoggedInUseCase().collect {
             println("TAG: decideNavigation $it")
 
