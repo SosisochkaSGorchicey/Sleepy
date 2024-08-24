@@ -57,7 +57,7 @@ private fun ButtonImage() {
             .padding(horizontal = 6.dp)
             .size(24.dp)
             .rotate(-25f),
-        painter = painterResource(id = R.drawable.flower_dark_face),
+        painter = painterResource(id = R.drawable.flower_dark_face_small),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )
