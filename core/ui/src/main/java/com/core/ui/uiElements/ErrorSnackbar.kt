@@ -29,16 +29,16 @@ fun ErrorSnackbar(
         contentAlignment = Alignment.TopCenter
     ) {
         Column(
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth()
+                .clip(AppTheme.shapes.smallCornersDp)
+                .background(AppTheme.colors.lightPeachy)
+                .padding(10.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .fillMaxWidth()
-                    .clip(AppTheme.shapes.mediumCornersPercent)
-                    .background(AppTheme.colors.lightPeachy)
-                    .padding(10.dp),
                 text = stringResource(errorTextRes),
                 color = AppTheme.colors.baseBlue,
                 style = AppTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center)

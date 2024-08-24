@@ -12,6 +12,7 @@ class AppShapes(
         topStartPercent = 10,
         topEndPercent = 60
     ),
+    val smallCornersDp: RoundedCornerShape = RoundedCornerShape(20.dp),
     val mediumCornersDp: RoundedCornerShape = RoundedCornerShape(40.dp),
     val mediumCornersPercent: RoundedCornerShape = RoundedCornerShape(25)
 )

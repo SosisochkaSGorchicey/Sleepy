@@ -11,7 +11,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 
 class SplashScreenModel(
     private val isUserLoggedInUseCase: IsUserLoggedInUseCase
-) : MviScreenMode<SplashState, SplashSideEffect, Any>(
+) : MviScreenMode<SplashState, SplashSideEffect, SplashEvent>(
     initialState = SplashState()
 ) {
 
@@ -19,6 +19,11 @@ class SplashScreenModel(
         decideNavigation()
     }
 
+    override fun onEvent(event: SplashEvent) {
+        when (event) {
+            SplashEvent.DecideNavigation -> decideNavigation()
+        }
+    }
 
     private fun decideNavigation() = intent {
         delay(3000) //todo?
@@ -38,9 +43,5 @@ class SplashScreenModel(
 
     private fun showError(errorTextRes: Int) = reducer {
         state.copy(errorTextRes = errorTextRes)
-    }
-
-    override fun onEvent(event: Any) {
-
     }
 }

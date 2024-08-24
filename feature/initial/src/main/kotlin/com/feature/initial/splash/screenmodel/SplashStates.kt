@@ -8,6 +8,10 @@ data class SplashState(
     @StringRes val errorTextRes: Int? = null
 )
 
+sealed interface SplashEvent {
+    data object DecideNavigation : SplashEvent
+}
+
 sealed interface SplashSideEffect {
     data object NavigateToAuth : SplashSideEffect
     data object NavigateToHome : SplashSideEffect

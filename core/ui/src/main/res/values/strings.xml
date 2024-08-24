@@ -2,6 +2,9 @@
 <resources>
     <string name="sleepy">sleepy.</string>
 
+    # Splash
+    <string name="try_again_button">Try again</string>
+
     # Auth
     <string name="log_in_header">Welcome back</string>
     <string name="sign_up_header">Nice to meet you</string>
