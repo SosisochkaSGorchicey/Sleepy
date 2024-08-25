@@ -8,7 +8,9 @@ sealed interface SharedScreen : ScreenProvider {
     data object Splash : SharedScreen
     data object SignIn : SharedScreen
     data object SignUp : SharedScreen
-    data object Home : SharedScreen
+    data object HomeRoute : SharedScreen
+    data object NotificationsRoute : SharedScreen
+    data object ContentRoute : SharedScreen
     data object Player : SharedScreen
 }
 

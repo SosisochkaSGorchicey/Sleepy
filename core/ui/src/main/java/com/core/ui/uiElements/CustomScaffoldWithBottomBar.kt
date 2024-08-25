@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.core.common.navigation.SharedScreen
+import com.core.common.navigation.screen
 import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
@@ -32,9 +34,6 @@ import com.core.ui.theme.AppTheme
 fun CustomScaffoldWithBottomBar(
     content: @Composable () -> Unit
 ) {
-    val navigator = LocalNavigator.currentOrThrow
-    println("TAG: CustomScaffoldWithBottomBar ${navigator.lastItem}")
-
     Scaffold(
         containerColor = AppTheme.colors.transparent
     ) { padding ->
@@ -62,7 +61,13 @@ fun CustomScaffoldWithBottomBar(
 }
 
 @Composable
-private fun BottomBar(innerModifier: Modifier) {
+private fun BottomBar(
+    innerModifier: Modifier
+) {
+
+    val navigator = LocalNavigator.currentOrThrow
+    println("TAG: CustomScaffoldWithBottomBar ${navigator.lastItem}")
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,21 +76,31 @@ private fun BottomBar(innerModifier: Modifier) {
             .padding(vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
+    ) {//todo all
         BottomBarItem(
             imageRes = R.drawable.balance,
-            onClick = {}
+            isCurrent = false,
+            //navigator.lastItem == SharedScreen.ContentRoute.screen(),
+            onClick = {
+                //navigator.replaceAll(SharedScreen.ContentRoute.screen())
+            },
         )
 
         BottomBarItem(
             imageRes = R.drawable.flower_dark_face_small,
-            isCurrent = true,
-            onClick = {}
+            isCurrent = navigator.lastItem == SharedScreen.HomeRoute.screen(),
+            onClick = {
+                navigator.replaceAll(SharedScreen.HomeRoute.screen())
+            }
         )
 
         BottomBarItem(
             imageRes = R.drawable.bell,
-            onClick = {}
+            isCurrent = false,
+            //navigator.lastItem == SharedScreen.NotificationsRoute.screen(),
+            onClick = {
+               // navigator.replaceAll(SharedScreen.NotificationsRoute.screen())
+            }
         )
     }
 }
@@ -106,7 +121,9 @@ private fun BottomBarItem(
                 color = if (isCurrent) AppTheme.colors.basePeachy else AppTheme.colors.transparent,
                 shape = AppTheme.shapes.rounded
             )
-            .clickable(onClick = onClick)
+            .clickable {
+                if (!isCurrent) onClick()
+            }
             .padding(8.dp),
         painter = painterResource(id = imageRes),
         contentDescription = null

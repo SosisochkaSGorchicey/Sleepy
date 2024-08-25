@@ -5,7 +5,7 @@ import com.core.common.navigation.SharedScreen
 import com.feature.home.presentation.HomeScreen
 
 val homeScreenModule = screenModule {
-    register<SharedScreen.Home> {
+    register<SharedScreen.HomeRoute> {
         HomeScreen
     }
 }

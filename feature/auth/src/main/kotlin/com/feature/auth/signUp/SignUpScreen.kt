@@ -61,7 +61,7 @@ object SignUpScreen : Screen {
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 SignUpSideEffect.NavigateBack -> navigator.pop()
-                SignUpSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.Home.screen())
+                SignUpSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.HomeRoute.screen())
             }
         }
     }

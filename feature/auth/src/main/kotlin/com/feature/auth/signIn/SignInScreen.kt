@@ -52,7 +52,7 @@ object SignInScreen : Screen {
 
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
-                SignInSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.Home.screen())
+                SignInSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.HomeRoute.screen())
                 SignInSideEffect.NavigateToSignUpScreen -> navigator.push(SharedScreen.SignUp.screen())
             }
         }

@@ -7,4 +7,6 @@ android.namespace = "com.core.ui"
 
 dependencies {
     implementation(libs.bundles.voyager)
+
+    implementation(projects.core.common)
 }
