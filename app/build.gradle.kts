@@ -25,6 +25,7 @@ dependencies {
     implementation(projects.feature.player)
     implementation(projects.feature.home)
     implementation(projects.feature.content)
+    implementation(projects.feature.notification)
 
     implementation(libs.bundles.media3) //todo delete later
 }

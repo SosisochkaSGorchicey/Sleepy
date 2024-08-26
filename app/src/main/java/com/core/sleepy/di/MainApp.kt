@@ -11,6 +11,7 @@ import com.feature.content.di.contentScreenModule
 import com.feature.home.di.homeScreenModule
 import com.feature.initial.di.initialModule
 import com.feature.initial.di.initialScreenModule
+import com.feature.notification.di.notificationScreenModule
 import com.feature.player.di.playerModule
 import com.feature.player.di.playerScreenModule
 import org.koin.android.ext.android.inject
@@ -28,6 +29,7 @@ class MainApp : Application() {
             playerScreenModule()
             homeScreenModule()
             contentScreenModule()
+            notificationScreenModule()
         }
 
         startKoin {
