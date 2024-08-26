@@ -15,7 +15,7 @@ import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorSnackbar
 import com.core.ui.uiElements.LoadingDisplay
-import com.core.ui.uiElements.MainTopBar
+import com.core.ui.uiElements.mainScreenElements.MainTopBar
 import com.feature.auth.signUp.components.SignUpScreenUI
 import com.feature.auth.signUp.screenmodel.SignUpEvent
 import com.feature.auth.signUp.screenmodel.SignUpScreenModel
@@ -61,7 +61,7 @@ object SignUpScreen : Screen {
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 SignUpSideEffect.NavigateBack -> navigator.pop()
-                SignUpSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.HomeRoute.screen())
+                SignUpSideEffect.NavigateToHomeScreen -> navigator.replace(SharedScreen.TabGraphScreen.screen())
             }
         }
     }

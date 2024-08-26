@@ -11,6 +11,7 @@ sealed interface SharedScreen : ScreenProvider {
     data object HomeRoute : SharedScreen
     data object NotificationsRoute : SharedScreen
     data object ContentRoute : SharedScreen
+    data object TabGraphScreen : SharedScreen
     data object Player : SharedScreen
 }
 

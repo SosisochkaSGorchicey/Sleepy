@@ -1,4 +1,4 @@
-package com.core.ui.uiElements
+package com.core.ui.uiElements.mainScreenElements
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft

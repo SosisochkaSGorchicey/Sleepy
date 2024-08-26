@@ -5,6 +5,7 @@ import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.core.data.di.dataModule
 import com.core.domain.di.domainModule
 import com.core.domain.repository.DataStoreRepository
+import com.core.sleepy.tabGraphScreen
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
 import com.feature.content.di.contentScreenModule
@@ -30,6 +31,7 @@ class MainApp : Application() {
             homeScreenModule()
             contentScreenModule()
             notificationScreenModule()
+            tabGraphScreen()
         }
 
         startKoin {

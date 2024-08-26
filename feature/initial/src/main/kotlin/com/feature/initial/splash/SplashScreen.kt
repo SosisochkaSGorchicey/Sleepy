@@ -54,7 +54,7 @@ class SplashScreen : Screen {
                 )
 
                 SplashSideEffect.NavigateToHome -> navigator.replace(
-                    SharedScreen.HomeRoute.screen()
+                    SharedScreen.TabGraphScreen.screen()
                 )
             }
         }
