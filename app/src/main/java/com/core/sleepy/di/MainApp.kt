@@ -7,6 +7,7 @@ import com.core.domain.di.domainModule
 import com.core.domain.repository.DataStoreRepository
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
+import com.feature.content.di.contentScreenModule
 import com.feature.home.di.homeScreenModule
 import com.feature.initial.di.initialModule
 import com.feature.initial.di.initialScreenModule
@@ -26,6 +27,7 @@ class MainApp : Application() {
             authScreenModule()
             playerScreenModule()
             homeScreenModule()
+            contentScreenModule()
         }
 
         startKoin {
