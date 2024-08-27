@@ -15,6 +15,7 @@ import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorSnackbar
 import com.core.ui.uiElements.LoadingDisplay
+import com.core.ui.uiElements.mainScreenElements.ArrowBackIcon
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
 import com.feature.auth.signUp.components.SignUpScreenUI
 import com.feature.auth.signUp.screenmodel.SignUpEvent
@@ -33,8 +34,8 @@ object SignUpScreen : Screen {
             containerColor = AppTheme.colors.baseBlue,
             topBar = {
                 MainTopBar(
-                    onNavigateBackClick = {
-                        viewModel.onEvent(SignUpEvent.OnBackClick)
+                    navigationIcon = {
+                        ArrowBackIcon(onClick = { viewModel.onEvent(SignUpEvent.OnBackClick) })
                     }
                 )
             }
