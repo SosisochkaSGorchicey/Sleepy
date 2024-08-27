@@ -1,11 +1,7 @@
 package com.core.ui.uiElements.mainScreenElements
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
@@ -37,10 +33,7 @@ object ContentTab : Tab {
 
     @Composable
     override fun Content() {
-
-                Navigator(SharedScreen.ContentRoute.screen())
-
-
+        Navigator(SharedScreen.ContentRoute.screen())
     }
 
     override val options: TabOptions
@@ -57,7 +50,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-                Navigator(SharedScreen.HomeRoute.screen())
+        Navigator(SharedScreen.HomeRoute.screen())
     }
 
     override val options: TabOptions
