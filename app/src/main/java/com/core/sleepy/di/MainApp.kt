@@ -9,6 +9,7 @@ import com.core.sleepy.tabGraphScreen
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
 import com.feature.content.di.contentScreenModule
+import com.feature.home.di.homeFeatureModule
 import com.feature.home.di.homeScreenModule
 import com.feature.initial.di.initialModule
 import com.feature.initial.di.initialScreenModule
@@ -43,7 +44,8 @@ class MainApp : Application() {
                     initialModule,
                     authModule,
                     dataModule,
-                    domainModule
+                    domainModule,
+                    homeFeatureModule
                 )
             )
         }

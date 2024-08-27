@@ -1,6 +1,6 @@
 package com.feature.auth.signUp.screenmodel
 
-import com.core.common.mvi.MviScreenMode
+import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
@@ -16,7 +16,7 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 
 class SignUpScreenModel(
     private val signUpUseCase: SignUpUseCase
-) : MviScreenMode<SignUpState, SignUpSideEffect, SignUpEvent>(
+) : MviScreenModel<SignUpState, SignUpSideEffect, SignUpEvent>(
     initialState = SignUpState()
 ) {
     override fun onEvent(event: SignUpEvent) {

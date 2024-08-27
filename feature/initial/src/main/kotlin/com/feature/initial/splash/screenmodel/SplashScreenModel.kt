@@ -1,6 +1,6 @@
 package com.feature.initial.splash.screenmodel
 
-import com.core.common.mvi.MviScreenMode
+import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.supabaseAuth.LoggedInState
@@ -11,7 +11,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 
 class SplashScreenModel(
     private val isUserLoggedInUseCase: IsUserLoggedInUseCase
-) : MviScreenMode<SplashState, SplashSideEffect, SplashEvent>(
+) : MviScreenModel<SplashState, SplashSideEffect, SplashEvent>(
     initialState = SplashState()
 ) {
 
