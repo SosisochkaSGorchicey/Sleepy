@@ -1,7 +1,9 @@
 package com.feature.home.presentation
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -11,6 +13,7 @@ import com.core.ui.uiElements.mainScreenElements.AccountIcon
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
 import com.core.ui.uiElements.mainScreenElements.SettingsIcon
+import com.feature.home.presentation.components.HomeScreenUI
 import com.feature.home.presentation.screenmodel.HomeEvent
 import com.feature.home.presentation.screenmodel.HomeScreenModel
 import com.feature.home.presentation.screenmodel.HomeSideEffect
@@ -40,8 +43,10 @@ object HomeScreen : Screen {
                     }
                 )
             }
-        ) {
-
+        ) { padding ->
+            HomeScreenUI(
+                modifier = Modifier.padding(padding)
+            )
         }
 
         viewModel.collectSideEffect {
