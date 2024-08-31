@@ -9,10 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.feature.home.presentation.screenmodel.HomeState
 
 @Composable
 fun HomeScreenUI(
-    modifier: Modifier
+    modifier: Modifier,
+    state: HomeState
 ) {
     Column(
         modifier = modifier
@@ -21,6 +23,6 @@ fun HomeScreenUI(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        StoriesDisplay()
+        StoriesDisplay(state = state)
     }
 }

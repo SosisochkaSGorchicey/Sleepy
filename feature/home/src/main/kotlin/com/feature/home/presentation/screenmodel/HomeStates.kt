@@ -2,10 +2,12 @@ package com.feature.home.presentation.screenmodel
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
+import com.core.domain.model.supabase.StoryItem
 
 @Immutable
 data class HomeState(
-    @StringRes val errorTextRes: Int? = null
+    @StringRes val errorTextRes: Int? = null,
+    val stories: List<StoryItem> = emptyList()
 )
 
 sealed interface HomeEvent {
@@ -14,6 +16,6 @@ sealed interface HomeEvent {
 }
 
 sealed interface HomeSideEffect {
-    data object NavigateToAccount: HomeSideEffect
-    data object NavigateToSettings: HomeSideEffect
+    data object NavigateToAccount : HomeSideEffect
+    data object NavigateToSettings : HomeSideEffect
 }

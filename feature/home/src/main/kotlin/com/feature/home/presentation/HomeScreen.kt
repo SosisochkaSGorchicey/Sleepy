@@ -9,6 +9,7 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorSnackbar
 import com.core.ui.uiElements.mainScreenElements.AccountIcon
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
@@ -45,8 +46,16 @@ object HomeScreen : Screen {
             }
         ) { padding ->
             HomeScreenUI(
-                modifier = Modifier.padding(padding)
+                modifier = Modifier.padding(padding),
+                state = state
             )
+
+            state.errorTextRes?.let {
+                ErrorSnackbar(
+                    modifier = Modifier.padding(padding),
+                    errorTextRes = it
+                )
+            }
         }
 
         viewModel.collectSideEffect {
