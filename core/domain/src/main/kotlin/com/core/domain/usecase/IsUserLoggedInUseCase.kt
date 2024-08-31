@@ -1,7 +1,7 @@
 package com.core.domain.usecase
 
-import com.core.domain.model.supabaseAuth.AuthErrorType
-import com.core.domain.model.supabaseAuth.LoggedInState
+import com.core.domain.model.supabase.AuthErrorType
+import com.core.domain.model.supabase.LoggedInState
 import com.core.domain.repository.SupabaseAuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

@@ -1,6 +1,6 @@
 package com.core.domain.repository
 
-import com.core.domain.model.supabaseAuth.LoggedInState
+import com.core.domain.model.supabase.LoggedInState
 import kotlinx.coroutines.flow.Flow
 
 interface SupabaseAuthRepository {

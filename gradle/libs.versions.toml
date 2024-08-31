@@ -75,6 +75,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 
 supabase-gotrue = { module = "io.github.jan-tennert.supabase:gotrue-kt", version.ref = "supabase" }
 supabase-postgrest = { module = "io.github.jan-tennert.supabase:postgrest-kt", version.ref = "supabase" }
+supabase-storage = { module = "io.github.jan-tennert.supabase:storage-kt", version.ref = "supabase" }
 
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
@@ -102,5 +103,5 @@ voyager = ["voyager-navigator", "voyager-koin", "voyager-tab-navigator"]
 koin = ["koin-android", "koin-compose"]
 compose = ["androidx-ui", "androidx-material3"]
 media3 = ["media3-exoplayer", "media3-ui", "media3-session", "media3-common"]
-supabase = ["supabase-gotrue", "supabase-postgrest"]
+supabase = ["supabase-gotrue", "supabase-postgrest", "supabase-storage"]
 

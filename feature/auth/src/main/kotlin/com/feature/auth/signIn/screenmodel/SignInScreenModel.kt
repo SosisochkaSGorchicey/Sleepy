@@ -4,7 +4,7 @@ import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
-import com.core.domain.model.supabaseAuth.SupabaseResult
+import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.usecase.SignInUseCase
 import com.core.domain.usecase.SignUpAnonymously
 import com.feature.auth.utils.emailIsValid

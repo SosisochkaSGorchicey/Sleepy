@@ -9,14 +9,17 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.core.data.BuildConfig
 import com.core.data.repository.DataStoreRepositoryImpl
 import com.core.data.repository.SupabaseAuthRepositoryImpl
+import com.core.data.repository.SupabaseDatabaseRepositoryImpl
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
+import com.core.domain.repository.SupabaseDatabaseRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.FlowType
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.postgrest
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.definition.KoinDefinition
 import org.koin.core.module.Module
@@ -29,9 +32,11 @@ val dataModule = module {
 
     singleOf(::SupabaseAuthRepositoryImpl) bind SupabaseAuthRepository::class
     singleOf(::DataStoreRepositoryImpl) bind DataStoreRepository::class
+    singleOf(::SupabaseDatabaseRepositoryImpl) bind SupabaseDatabaseRepository::class
 
     singleOf(::provideSupabaseClient)
     singleOf(::provideSupabaseAuth)
+    singleOf(::provideSupabasePostgrest)
 }
 
 internal fun Module.provideDataStorePref(): KoinDefinition<DataStore<Preferences>> = single {
@@ -63,3 +68,4 @@ private fun provideSupabaseClient(): SupabaseClient {
 }
 
 private fun provideSupabaseAuth(client: SupabaseClient): Auth = client.auth
+private fun provideSupabasePostgrest(client: SupabaseClient): Postgrest = client.postgrest
