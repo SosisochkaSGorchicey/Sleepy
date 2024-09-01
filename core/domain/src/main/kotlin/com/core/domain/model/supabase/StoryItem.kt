@@ -2,5 +2,6 @@ package com.core.domain.model.supabase
 
 data class StoryItem(
     val url: String,
-    val isImage: Boolean
+    val isImage: Boolean,
+    val previewUrl: String
 )

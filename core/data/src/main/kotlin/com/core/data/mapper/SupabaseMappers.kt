@@ -6,5 +6,6 @@ import com.core.domain.model.supabase.StoryItem
 fun StoryItemModel.toDomain(): StoryItem =
     StoryItem(
         url = this.url,
-        isImage = this.isImage
+        isImage = this.isImage,
+        previewUrl = this.previewUrl
     )

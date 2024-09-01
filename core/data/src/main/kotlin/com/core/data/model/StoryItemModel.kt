@@ -7,5 +7,7 @@ import kotlinx.serialization.Serializable
 data class StoryItemModel(
     val url: String,
     @SerialName("is_image")
-    val isImage: Boolean
+    val isImage: Boolean,
+    @SerialName("preview_url")
+    val previewUrl: String
 )
