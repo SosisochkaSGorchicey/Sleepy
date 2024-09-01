@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sleepy">sleepy.</string>
+
+    # Splash
+    <string name="try_again_button">Try again</string>
+
+    # Auth
+    <string name="log_in_header">Welcome back</string>
+    <string name="sign_up_header">Nice to meet you</string>
+    <string name="separator">or</string>
+    <string name="anonymous_sign_in">Sign in anonymously</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="no_account_text">New here?</string>
+    <string name="name_placeholder">your name</string>
+    <string name="password_placeholder">password</string>
+    <string name="email_placeholder">email</string>
+
+    # Auth Errors
+    <string name="error_name_length">Name is too long</string>
+    <string name="error_empty_field">This field should not be empty</string>
+    <string name="error_password_length">The password must be at least 6 characters long</string>
+    <string name="error_email_invalid_format">Email has invalid format</string>
+    <string name="error_password_invalid_format">Password has invalid format</string>
+    <string name="error_already_registered">User already registered</string>
+    <string name="error_invalid_login">Invalid login credentials</string>
+    <string name="error_network_connection">Network connection error. Check your connection</string>
+    <string name="error_timeout">Authentication server request timeout. Check your connection</string>
+    <string name="error_unauthorized">Unauthorized user</string>
+    <string name="error_unknown">Some error occurred. Check your connection</string>
+    <string name="error">Some error occurred</string>
+    <string name="error_chain_validation">We got an error. Make sure that the device has the correct time and date!</string>
+
+</resources>
