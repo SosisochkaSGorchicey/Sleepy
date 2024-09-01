@@ -14,12 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.core.domain.model.supabase.StoryItem
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorDisplay
+import com.core.ui.uiElements.LoadingDisplay
 import com.feature.home.presentation.screenmodel.HomeState
 import com.feature.home.utils.toPadding
 
@@ -54,7 +55,7 @@ private fun StoryPreviewUI(
             .width(80.dp)
             .aspectRatio(0.75f)
             .clip(AppTheme.shapes.smallestCornersDp)
-            .background(Color.White)
+            .background(AppTheme.colors.baseBlueLight)
             .border(
                 width = 3.dp,
                 shape = AppTheme.shapes.smallestCornersDp,
@@ -63,6 +64,12 @@ private fun StoryPreviewUI(
             .clickable { },
         model = storyItem.previewUrl,
         contentDescription = null,
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.Crop,
+        loading = {
+            LoadingDisplay(modifier = Modifier)
+        },
+        error = {
+            ErrorDisplay()
+        }
     )
 }

@@ -23,7 +23,12 @@ import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun LoadingDisplay(layoutModifier: Modifier) {
+fun LoadingDisplay(
+    modifier: Modifier = Modifier
+        .fillMaxSize()
+        .background(AppTheme.colors.black.copy(alpha = .5f)),
+    layoutModifier: Modifier = Modifier
+) {
     val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition")
 
     val rotation by infiniteTransition.animateFloat(
@@ -47,9 +52,7 @@ fun LoadingDisplay(layoutModifier: Modifier) {
     )
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(AppTheme.colors.black.copy(alpha = .5f))
+        modifier = modifier
             .then(layoutModifier),
         contentAlignment = Alignment.Center
     ) {
