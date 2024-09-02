@@ -4,6 +4,6 @@ data class ArticleItem(
     val id: Int,
     val title: String,
     val description: String? = null,
-    val backgroundImageUrl: String,
+    val backgroundImageUrl: String? = null,
     val isFullSize: Boolean = false
 )
