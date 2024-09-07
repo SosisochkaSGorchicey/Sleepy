@@ -17,6 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -64,26 +66,43 @@ private fun ArticleCard(
                 color = AppTheme.colors.baseGray
             )
     ) {
-        ArticleCardImage()
+        ArticleCardImage(
+
+            imageRes = articleItem.backgroundImageUrl
+        )
 
         ArticleCardTextDisplay(articleItem = articleItem)
     }
 }
 
 @Composable
-private fun ArticleCardImage() {
-    SubcomposeAsyncImage(
-        modifier = Modifier.fillMaxSize(),
-        model = "https://orvecjxgikqmjfshqkms.supabase.co/storage/v1/object/public/Stories/content/story2.png?t=2024-09-01T17%3A59%3A50.166Z",
-        //articleItem.backgroundImageUrl,
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        loading = {
-            ShimmerDisplay(background = AppTheme.colors.baseGray)
-        },
-        error = {
-            ErrorDisplay(tintColor = AppTheme.colors.basePeachy)
-        }
+private fun ArticleCardImage(
+    imageRes: String?
+) {
+    imageRes?.let {
+        SubcomposeAsyncImage(
+            modifier = Modifier.fillMaxSize(),
+            model = "https://orvecjxgikqmjfshqkms.supabase.co/storage/v1/object/public/Stories/content/story2.png?t=2024-09-01T17%3A59%3A50.166Z",
+            //articleItem.backgroundImageUrl,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            loading = {
+                ShimmerDisplay(background = AppTheme.colors.baseGray)
+            },
+            error = {
+                ErrorDisplay(tintColor = AppTheme.colors.basePeachy)
+            }
+        )
+    } ?: Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.linearGradient(
+                    listOf(
+                        Color.Green, Color.Blue
+                    )
+                )
+            )
     )
 }
 

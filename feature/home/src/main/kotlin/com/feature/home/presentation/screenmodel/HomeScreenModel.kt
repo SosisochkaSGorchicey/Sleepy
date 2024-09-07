@@ -37,7 +37,6 @@ class HomeScreenModel(
                         id = 0,
                         title = "Title 3",
                         description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
-                        backgroundImageUrl = " mnkjbgh",
                         isFullSize = true
                     ),
                     ArticleItem(
