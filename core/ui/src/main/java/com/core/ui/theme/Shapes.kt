@@ -16,6 +16,10 @@ class AppShapes(
         topStart = 16.dp,
         topEnd = 16.dp
     ),
+    val bottomCorners: RoundedCornerShape = RoundedCornerShape(
+        bottomStart = 16.dp,
+        bottomEnd = 16.dp
+    ),
     val smallestCornersDp: RoundedCornerShape = RoundedCornerShape(10.dp),
     val smallCornersDp: RoundedCornerShape = RoundedCornerShape(20.dp),
     val mediumCornersDp: RoundedCornerShape = RoundedCornerShape(40.dp),

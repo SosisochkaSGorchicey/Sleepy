@@ -46,7 +46,8 @@ object HomeScreen : Screen {
             }
         ) { padding ->
             HomeScreenUI(
-                modifier = Modifier.padding(padding),
+                firstPaddings = Modifier.padding(top = padding.calculateTopPadding()),
+                lastPaddings = Modifier.padding(bottom = padding.calculateBottomPadding()),
                 state = state
             )
 

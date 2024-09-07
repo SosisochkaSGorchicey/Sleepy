@@ -21,6 +21,7 @@ import com.core.ui.theme.AppTheme
 @Composable
 fun MainBottomBar() {
     NavigationBar(
+        modifier = Modifier.clip(AppTheme.shapes.topCorners),
         containerColor = AppTheme.colors.baseBlue,
         contentColor = AppTheme.colors.white
     ) {

@@ -29,7 +29,8 @@ import com.feature.home.presentation.screenmodel.HomeState
 
 
 fun LazyGridScope.articleCardsDisplay(
-    state: HomeState
+    state: HomeState,
+    modifier: Modifier
 ) {
     items(
         items = state.articles,
@@ -37,16 +38,21 @@ fun LazyGridScope.articleCardsDisplay(
             GridItemSpan(if (it.isFullSize) maxLineSpan else 1)
         }
     ) { articleItem ->
-        ArticleCard(articleItem = articleItem)
+        ArticleCard(
+            articleItem = articleItem,
+            modifier = if (articleItem == state.articles.last()) modifier.padding(bottom = 16.dp)
+            else Modifier
+        )
     }
 }
 
 @Composable
 private fun ArticleCard(
-    articleItem: ArticleItem
+    articleItem: ArticleItem,
+    modifier: Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
             .aspectRatio(if (articleItem.isFullSize) 2.5f else 1.5f)

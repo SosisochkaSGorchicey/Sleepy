@@ -25,9 +25,12 @@ import com.feature.home.presentation.screenmodel.HomeState
 import com.feature.home.utils.toPadding
 
 @Composable
-fun StoriesDisplay(state: HomeState) {
+fun StoriesDisplay(
+    state: HomeState,
+    modifier: Modifier
+) {
     LazyRow(
-        modifier = Modifier
+        modifier = modifier
             .padding(top = 16.dp)
             .fillMaxWidth()
             .background(AppTheme.colors.baseBlue.copy(alpha = .5f))

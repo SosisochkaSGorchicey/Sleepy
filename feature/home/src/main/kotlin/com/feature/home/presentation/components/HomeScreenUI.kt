@@ -12,11 +12,12 @@ import com.feature.home.presentation.screenmodel.HomeState
 
 @Composable
 fun HomeScreenUI(
-    modifier: Modifier,
+    firstPaddings: Modifier,
+    lastPaddings: Modifier,
     state: HomeState
 ) {
     LazyVerticalGrid(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
         horizontalArrangement = Arrangement.Center,
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -24,9 +25,15 @@ fun HomeScreenUI(
         item(span = {
             GridItemSpan(maxLineSpan)
         }) {
-            StoriesDisplay(state = state)
+            StoriesDisplay(
+                state = state,
+                modifier = firstPaddings
+            )
         }
 
-        articleCardsDisplay(state = state)
+        articleCardsDisplay(
+            state = state,
+            modifier = lastPaddings
+        )
     }
 }
