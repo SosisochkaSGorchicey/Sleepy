@@ -16,8 +16,7 @@ class SplashScreenModel(
 ) {
 
     init {
-        emitSideEffect(SplashSideEffect.NavigateToHome)
-        //decideNavigation()
+        decideNavigation()
     }
 
     override fun onEvent(event: SplashEvent) {

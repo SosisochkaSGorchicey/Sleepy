@@ -62,35 +62,7 @@ class SupabaseAuthRepositoryImpl(
                 emit(LoggedInState.NotLoggedIn)
             }
         } catch (e: Exception) {
-
-            println("TAG: isUserLoggedIn e $e")
-
             emit(LoggedInState.Error(e.toSupabaseError()))
-
-//            refresh() //todo?
-//
-//            if (e.isChainError()) {
-//                dataStoreRepository.deleteToken()
-//                emit(LoggedInState.NotLoggedIn)
-//            } else {
-//                auth.sessionStatus.collect {
-//                    println("TAG: SessionStatus $it")
-//                    when (it) {
-//                        is SessionStatus.LoadingFromStorage -> emit(LoggedInState.Loading)
-//                        is SessionStatus.Authenticated -> {
-//                            //loggedInActions()
-//                            emit(LoggedInState.LoggedIn)
-//                        }
-//
-//                        is SessionStatus.NotAuthenticated -> {
-//                            //userDataRepository.getUserName()
-//                            emit(LoggedInState.NotLoggedIn)
-//                        }
-//
-//                        else -> emit(LoggedInState.Error(e.toSupabaseError()))
-//                    }
-//                }
-//            }
         }
     }
 
@@ -100,11 +72,11 @@ class SupabaseAuthRepositoryImpl(
         trySaveToken()
     }
 
-    private suspend fun refresh() {
-        runCatching {
-            auth.startAutoRefreshForCurrentSession()
-        }
+    override suspend fun refresh() {
+        auth.startAutoRefreshForCurrentSession()
     }
+
+    override suspend fun getSessionStatus() = auth.sessionStatus
 
     private fun createUserData(userName: String): JsonObject =
         buildJsonObject {

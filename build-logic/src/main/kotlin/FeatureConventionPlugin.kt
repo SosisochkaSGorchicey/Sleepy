@@ -22,6 +22,8 @@ class FeatureConventionPlugin : Plugin<Project> {
 
             add("implementation", libs.orbit.compose)
 
+            add("implementation", libs.compose.shimmer)
+
             add("implementation", libs.kotlinx.serialization.json)
 
             add("implementation", project(":core:common"))

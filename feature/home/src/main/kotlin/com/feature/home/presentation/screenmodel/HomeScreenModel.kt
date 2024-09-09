@@ -2,6 +2,8 @@ package com.feature.home.presentation.screenmodel
 
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
+import com.core.common.mvi.reducer
+import com.core.domain.model.ArticleItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
 import com.feature.home.utils.toTextRes
@@ -16,6 +18,56 @@ class HomeScreenModel(
 
     init {
         initStories()
+        reducer { //todo
+            state.copy(
+                articles = listOf(
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 1",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh"
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 2",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh"
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 3",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        isFullSize = true
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 4",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh"
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 5",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh"
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 6",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh",
+                        isFullSize = true
+                    ),
+                    ArticleItem(
+                        id = 0,
+                        title = "Title 7",
+                        description = ",mk nbgvcd jkcnjdshncijs cdsijncijdshc",
+                        backgroundImageUrl = " mnkjbgh",
+                        isFullSize = true
+                    )
+                )
+            )
+        }
     }
 
     override fun onEvent(event: HomeEvent) {

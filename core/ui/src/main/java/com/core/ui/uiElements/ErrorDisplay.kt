@@ -7,11 +7,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.core.ui.icons.SleepyIcons
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun ErrorDisplay() {
+fun ErrorDisplay(
+    tintColor: Color = AppTheme.colors.milkyWhite
+) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -19,7 +22,7 @@ fun ErrorDisplay() {
         Icon(
             imageVector = SleepyIcons.Error,
             contentDescription = null,
-            tint = AppTheme.colors.milkyWhite
+            tint = tintColor
         )
     }
 }
