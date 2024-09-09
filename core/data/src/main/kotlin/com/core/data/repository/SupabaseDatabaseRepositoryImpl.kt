@@ -1,8 +1,10 @@
 package com.core.data.repository
 
 import com.core.data.mapper.toDomain
+import com.core.data.model.ArticleItemModel
 import com.core.data.model.StoryItemModel
 import com.core.data.utils.supabaseRequest
+import com.core.domain.model.ArticleItem
 import com.core.domain.model.supabase.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
@@ -25,8 +27,22 @@ class SupabaseDatabaseRepositoryImpl(
             .map { it.toDomain() }
     }
 
+    override suspend fun getArticles(): SupabaseResult<List<ArticleItem>> = supabaseRequest {
+        postgrest
+            .from(ARTICLES_TABLE)
+            .select {
+                order(
+                    column = COLUMN_ID,
+                    order = Order.ASCENDING
+                )
+            }
+            .decodeList<ArticleItemModel>()
+            .map { it.toDomain() }
+    }
+
     companion object {
         private const val STORIES_TABLE = "Stories"
+        private const val ARTICLES_TABLE = "Articles"
         private const val COLUMN_ID = "id"
     }
 }

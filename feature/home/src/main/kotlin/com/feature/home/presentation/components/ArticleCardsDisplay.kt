@@ -79,11 +79,10 @@ private fun ArticleCard(
 private fun ArticleCardImage(
     imageRes: String?
 ) {
-    imageRes?.let {
+    imageRes?.let { image ->
         SubcomposeAsyncImage(
             modifier = Modifier.fillMaxSize(),
-            model = "https://orvecjxgikqmjfshqkms.supabase.co/storage/v1/object/public/Stories/content/story2.png?t=2024-09-01T17%3A59%3A50.166Z",
-            //articleItem.backgroundImageUrl,
+            model = image,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             loading = {
@@ -98,7 +97,7 @@ private fun ArticleCardImage(
             .fillMaxSize()
             .background(
                 Brush.linearGradient(
-                    listOf(
+                    listOf( //todo
                         Color.Green, Color.Blue
                     )
                 )
