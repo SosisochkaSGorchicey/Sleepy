@@ -43,12 +43,10 @@ class HomeScreenModel(
         val result = supabaseDatabaseRepository.getArticles()
         when {
             result is SupabaseResult.Error -> reduce {
-                println("TAG: error ${result.errorType}")
                 state.copy(errorTextRes = result.errorType.toTextRes())
             }
 
             result is SupabaseResult.Success -> reduce {
-                println("TAG: Success ${result.data}")
                 state.copy(articles = result.data)
             }
         }
