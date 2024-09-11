@@ -14,9 +14,8 @@ private val DarkerGray = Color(0xFF798191)
 private val BasePeachy = Color(0xFFEECEC9)
 private val LightPeachy = Color(0xFFF1DEDB)
 
-private val BlueToGrayGradient = Brush.linearGradient(
-    listOf(BaseBlue, BaseGray)
-)
+private val BlueToGrayGradient = Brush.linearGradient(listOf(BaseBlue, BaseGray))
+
 
 @Immutable
 data class AppColors(
@@ -31,6 +30,7 @@ data class AppColors(
     val darkerGray: Color = DarkerGray,
     val basePeachy: Color = BasePeachy,
     val lightPeachy: Color = LightPeachy,
+
     val blueToGrayGradient: Brush = BlueToGrayGradient,
 )
 

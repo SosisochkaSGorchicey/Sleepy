@@ -12,4 +12,5 @@ val mainFont = FontFamily(
 val montserratFont = FontFamily(
     Font(resId = R.font.montserrat_regular, weight = FontWeight.Normal),
     Font(resId = R.font.montserrat_medium, weight = FontWeight.Medium),
+    Font(resId = R.font.montserrat_semibold, weight = FontWeight.SemiBold),
 )

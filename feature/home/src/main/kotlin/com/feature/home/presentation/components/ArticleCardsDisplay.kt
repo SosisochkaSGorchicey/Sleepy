@@ -17,16 +17,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.core.domain.model.ArticleItem
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorDisplay
 import com.core.ui.uiElements.ShimmerDisplay
+import com.feature.home.model.ArticleUIModel
 import com.feature.home.presentation.screenmodel.HomeState
 
 
@@ -39,10 +38,10 @@ fun LazyGridScope.articleCardsDisplay(
         span = {
             GridItemSpan(if (it.isFullSize) maxLineSpan else 1)
         }
-    ) { articleItem ->
+    ) { articleUIItem ->
         ArticleCard(
-            articleItem = articleItem,
-            modifier = if (articleItem == state.articles.last()) modifier.padding(bottom = 16.dp)
+            articleUIItem = articleUIItem,
+            modifier = if (articleUIItem == state.articles.last()) modifier.padding(bottom = 16.dp)
             else Modifier
         )
     }
@@ -50,14 +49,14 @@ fun LazyGridScope.articleCardsDisplay(
 
 @Composable
 private fun ArticleCard(
-    articleItem: ArticleItem,
+    articleUIItem: ArticleUIModel,
     modifier: Modifier
 ) {
     Box(
         modifier = modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
-            .aspectRatio(if (articleItem.isFullSize) 2.5f else 1.5f)
+            .aspectRatio(if (articleUIItem.isFullSize) 2.5f else 1.5f)
             .clip(AppTheme.shapes.smallCornersDp)
             .background(AppTheme.colors.milkyWhite)
             .border(
@@ -66,20 +65,17 @@ private fun ArticleCard(
                 color = AppTheme.colors.baseGray
             )
     ) {
-        ArticleCardImage(
+        ArticleCardImage(articleUIItem = articleUIItem)
 
-            imageRes = articleItem.backgroundImageUrl
-        )
-
-        ArticleCardTextDisplay(articleItem = articleItem)
+        ArticleCardTextDisplay(articleUIItem = articleUIItem)
     }
 }
 
 @Composable
 private fun ArticleCardImage(
-    imageRes: String?
+    articleUIItem: ArticleUIModel
 ) {
-    imageRes?.let { image ->
+    articleUIItem.backgroundImageUrl?.let { image ->
         SubcomposeAsyncImage(
             modifier = Modifier.fillMaxSize(),
             model = image,
@@ -95,18 +91,12 @@ private fun ArticleCardImage(
     } ?: Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.linearGradient(
-                    listOf( //todo
-                        Color.Green, Color.Blue
-                    )
-                )
-            )
+            .background(articleUIItem.backgroundBrush)
     )
 }
 
 @Composable
-private fun ArticleCardTextDisplay(articleItem: ArticleItem) {
+private fun ArticleCardTextDisplay(articleUIItem: ArticleUIModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -115,15 +105,17 @@ private fun ArticleCardTextDisplay(articleItem: ArticleItem) {
         horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = articleItem.title,
-            style = AppTheme.typography.bodyMediumBold
+            text = articleUIItem.title,
+            style = AppTheme.typography.bodyMediumBold.copy(fontWeight = FontWeight.SemiBold),
+            color = articleUIItem.titleColor
         )
 
-        articleItem.description?.let {
+        articleUIItem.description?.let {
             Text(
                 text = it,
                 overflow = TextOverflow.Ellipsis,
-                style = AppTheme.typography.bodySmall
+                style = AppTheme.typography.bodySmall,
+                color = articleUIItem.descriptionColor
             )
         }
     }

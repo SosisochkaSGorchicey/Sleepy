@@ -22,7 +22,7 @@ class AppTypography(
     val headlineSmall: TextStyle = TextStyle(
         fontSize = 20.sp,
         textAlign = TextAlign.Start,
-        fontFamily = mainFont
+        fontFamily = mainFont,
     ),
     val bodyMedium: TextStyle = TextStyle(
         fontSize = 20.sp,

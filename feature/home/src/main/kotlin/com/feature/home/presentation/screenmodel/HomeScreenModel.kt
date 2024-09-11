@@ -4,6 +4,7 @@ import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
+import com.feature.home.mapper.toPresentation
 import com.feature.home.utils.toTextRes
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -47,7 +48,7 @@ class HomeScreenModel(
             }
 
             result is SupabaseResult.Success -> reduce {
-                state.copy(articles = result.data)
+                state.copy(articles = result.data.map { it.toPresentation() })
             }
         }
     }

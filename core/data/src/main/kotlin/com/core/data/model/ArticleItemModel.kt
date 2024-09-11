@@ -7,9 +7,11 @@ import kotlinx.serialization.Serializable
 data class ArticleItemModel(
     val id: Int,
     val title: String,
-    val description: String? = null,
+    val description: String?,
     @SerialName("background_image")
-    val backgroundImageUrl: String? = null,
+    val backgroundImageUrl: String?,
     @SerialName("is_full_size")
-    val isFullSize: Boolean = false
+    val isFullSize: Boolean,
+    @SerialName("text_is_light")
+    val textIsLight: Boolean?,
 )

@@ -18,5 +18,6 @@ fun ArticleItemModel.toDomain(): ArticleItem =
         title = this.title,
         description = this.description,
         backgroundImageUrl = this.backgroundImageUrl,
-        isFullSize = this.isFullSize
+        isFullSize = this.isFullSize,
+        textIsLight = this.textIsLight
     )
