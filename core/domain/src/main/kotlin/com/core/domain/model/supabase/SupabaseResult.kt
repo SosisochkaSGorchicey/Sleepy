@@ -1,7 +1,7 @@
 package com.core.domain.model.supabase
 
 sealed interface SupabaseResult<out T> {
-    data object Loading : SupabaseResult<Unit>
+    data object Loading : SupabaseResult<Nothing>
 
     data class Success<out T>(val data: T) : SupabaseResult<T>
 

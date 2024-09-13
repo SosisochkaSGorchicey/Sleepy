@@ -3,18 +3,19 @@ package com.core.data.repository
 import com.core.data.mapper.toDomain
 import com.core.data.model.ArticleItemModel
 import com.core.data.model.StoryItemModel
-import com.core.data.utils.supabaseRequest
+import com.core.data.utils.supabaseRequestFlow
 import com.core.domain.model.ArticleItem
 import com.core.domain.model.supabase.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.query.Order
+import kotlinx.coroutines.flow.Flow
 
 class SupabaseDatabaseRepositoryImpl(
     private val postgrest: Postgrest
 ) : SupabaseDatabaseRepository {
-    override suspend fun getStories(): SupabaseResult<List<StoryItem>> = supabaseRequest {
+    override suspend fun getStories(): Flow<SupabaseResult<List<StoryItem>>> = supabaseRequestFlow {
         postgrest
             .from(STORIES_TABLE)
             .select {
@@ -27,18 +28,19 @@ class SupabaseDatabaseRepositoryImpl(
             .map { it.toDomain() }
     }
 
-    override suspend fun getArticles(): SupabaseResult<List<ArticleItem>> = supabaseRequest {
-        postgrest
-            .from(ARTICLES_TABLE)
-            .select {
-                order(
-                    column = COLUMN_ID,
-                    order = Order.ASCENDING
-                )
-            }
-            .decodeList<ArticleItemModel>()
-            .map { it.toDomain() }
-    }
+    override suspend fun getArticles(): Flow<SupabaseResult<List<ArticleItem>>> =
+        supabaseRequestFlow {
+            postgrest
+                .from(ARTICLES_TABLE)
+                .select {
+                    order(
+                        column = COLUMN_ID,
+                        order = Order.ASCENDING
+                    )
+                }
+                .decodeList<ArticleItemModel>()
+                .map { it.toDomain() }
+        }
 
     companion object {
         private const val STORIES_TABLE = "Stories"

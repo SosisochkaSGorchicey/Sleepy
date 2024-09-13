@@ -13,6 +13,7 @@ import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.core.common.navigation.SharedScreen
+import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {

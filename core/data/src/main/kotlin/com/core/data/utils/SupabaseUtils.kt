@@ -1,15 +1,16 @@
 package com.core.data.utils
 
 import com.core.domain.model.supabase.SupabaseResult
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-fun Throwable.isChainError(): Boolean =
-    this.message?.contains("Chain validation failed") == true
 
-suspend fun <T> supabaseRequest(block: suspend () -> T): SupabaseResult<T> {
-    return try {
+suspend fun <T> supabaseRequestFlow(block: suspend () -> T): Flow<SupabaseResult<T>> = flow {
+    emit(SupabaseResult.Loading)
+    try {
         val result = block()
-        SupabaseResult.Success(result)
+        emit(SupabaseResult.Success(result))
     } catch (e: Throwable) {
-        e.toSupabaseError()
+        emit(e.toSupabaseError())
     }
 }

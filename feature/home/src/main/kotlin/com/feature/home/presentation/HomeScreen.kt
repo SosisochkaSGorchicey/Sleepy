@@ -1,15 +1,20 @@
 package com.feature.home.presentation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.core.ui.R
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorSnackbar
+import com.core.ui.uiElements.LoadingDisplay
+import com.core.ui.uiElements.MainButton
 import com.core.ui.uiElements.mainScreenElements.AccountIcon
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
@@ -55,8 +60,19 @@ object HomeScreen : Screen {
                 ErrorSnackbar(
                     modifier = Modifier.padding(padding),
                     errorTextRes = it
-                )
+                ) {
+                    MainButton(
+                        onClick = { viewModel.onEvent(HomeEvent.RetryDataLoad) },
+                        text = stringResource(id = R.string.try_again_button)
+                    )
+                }
             }
+
+            if (state.inLoading)
+                LoadingDisplay(
+                    modifier = Modifier.fillMaxSize(),
+                    layoutModifier = Modifier.padding(padding)
+                )
         }
 
         viewModel.collectSideEffect {

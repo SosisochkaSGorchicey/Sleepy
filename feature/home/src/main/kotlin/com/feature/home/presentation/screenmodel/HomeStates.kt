@@ -8,13 +8,15 @@ import com.feature.home.model.ArticleUIModel
 @Immutable
 data class HomeState(
     @StringRes val errorTextRes: Int? = null,
-    val stories: List<StoryItem> = emptyList(),
+    val inLoading: Boolean = true,
+    val stories: List<StoryItem> = List(7) { StoryItem() },
     val articles: List<ArticleUIModel> = emptyList(),
 )
 
 sealed interface HomeEvent {
     data object OnAccountClick : HomeEvent
     data object OnSettingsClick : HomeEvent
+    data object RetryDataLoad : HomeEvent
 }
 
 sealed interface HomeSideEffect {
