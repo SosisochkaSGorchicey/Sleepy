@@ -34,26 +34,18 @@ class PlayerActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log("onCreate MainActivity")
-        setContent {
-          //todo theme
-
+        log("onCreate PlayerActivity")
+        setContent { //todo theme
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-
                     Button(onClick = {
-
-                        //val url = "android.resource://$packageName/${R.raw.test}"
                         val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
-
                         play(url)
 
+                       // controller.play()
                     }) {
                         Text(text = "Play")
                     }
-
                 }
-
-
         }
     }
 
@@ -118,7 +110,6 @@ class PlayerActivity : ComponentActivity() {
 
         val media = MediaItem.Builder().setMediaId(url).build()
         controller.setMediaItem(media)
-
         controller.prepare()
         controller.play()
         log("after=${getStateName(controller.playbackState)}")
