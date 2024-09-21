@@ -5,5 +5,5 @@ plugins {
 android.namespace = "com.feature.content"
 
 dependencies {
-
+    implementation(projects.feature.player)
 }
