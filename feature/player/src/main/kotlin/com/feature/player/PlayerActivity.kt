@@ -23,6 +23,7 @@ import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 
+
 class PlayerActivity : ComponentActivity() {
     private lateinit var controllerFuture: ListenableFuture<MediaController>
     private lateinit var controller: MediaController
@@ -36,16 +37,20 @@ class PlayerActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         log("onCreate PlayerActivity")
         setContent { //todo theme
-                Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                    Button(onClick = {
-                        val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
-                        play(url)
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                Button(onClick = {
+                    val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
+                    val mediaItem = MediaItem.Builder().setMediaId(url).build()
 
-                       // controller.play()
-                    }) {
-                        Text(text = "Play")
-                    }
+                    controller.setMediaItem(mediaItem)
+                    play()
+                    controller.prepare()
+
+                    // controller.play()
+                }) {
+                    Text(text = "Play")
                 }
+            }
         }
     }
 
@@ -75,12 +80,12 @@ class PlayerActivity : ComponentActivity() {
 
             override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
                 super.onMediaMetadataChanged(mediaMetadata)
-                log("onMediaMetadataChanged=$mediaMetadata")
+                //log("onMediaMetadataChanged=$mediaMetadata")
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 super.onIsPlayingChanged(isPlaying)
-                log("onIsPlayingChanged=$isPlaying")
+                //log("onIsPlayingChanged=$isPlaying")
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
@@ -104,15 +109,13 @@ class PlayerActivity : ComponentActivity() {
         log("COMMAND_PLAY_PAUSE=${controller.isCommandAvailable(COMMAND_PLAY_PAUSE)}")
     }
 
-    private fun play(url: String) {
-        log("play($url)")
-        log("before=${getStateName(controller.playbackState)}")
+    private fun play() {
+        //log("before=${getStateName(controller.playbackState)}")
 
-        val media = MediaItem.Builder().setMediaId(url).build()
-        controller.setMediaItem(media)
-        controller.prepare()
+
+        // controller.playWhenReady = true
         controller.play()
-        log("after=${getStateName(controller.playbackState)}")
+        //log("after=${getStateName(controller.playbackState)}")
     }
 
     private fun getStateName(i: Int): String? {
@@ -126,6 +129,6 @@ class PlayerActivity : ComponentActivity() {
     }
 
     private fun log(message: String) {
-        Log.e("=====[TestMedia]=====", message)
+        Log.e("TAG", message)
     }
 }

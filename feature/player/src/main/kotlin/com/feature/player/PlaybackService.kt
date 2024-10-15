@@ -3,6 +3,7 @@ package com.feature.player
 import android.content.Intent
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
@@ -18,6 +19,24 @@ class PlaybackService : MediaSessionService(), MediaSession.Callback {
             .Builder(this)
             .setAudioAttributes(AudioAttributes.DEFAULT, true)
             .build()
+
+        player.addListener(
+            object : Player.Listener {
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    if (isPlaying) {
+                        println("TAG: isPlaying")
+                        // Active playback.
+                    } else {
+                        println("TAG: NOT Playing")
+                        // Not playing because playback is paused, ended, suppressed, or the player
+                        // is buffering, stopped or failed. Check player.playWhenReady,
+                        // player.playbackState, player.playbackSuppressionReason and
+                        // player.playerError for details.
+                    }
+                }
+            }
+        )
+
         mediaSession = MediaSession.Builder(this, player).setCallback(this).build()
     }
 
