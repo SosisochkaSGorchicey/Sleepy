@@ -10,7 +10,7 @@ import io.github.jan.supabase.gotrue.exception.AuthRestException
 import io.ktor.client.plugins.HttpRequestTimeoutException
 
 
-internal fun Throwable.toSupabaseError(): SupabaseResult.Error = when (this) {
+fun Throwable.toSupabaseError(): SupabaseResult.Error = when (this) {
     is HttpRequestException -> {
         if (message?.contains("Chain validation failed") == true) AuthErrorType.ChainValidation
         else AuthErrorType.HttpRequest

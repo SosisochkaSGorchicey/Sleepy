@@ -1,9 +1,9 @@
 package com.core.data.repository
 
-import com.core.data.utils.toSupabaseError
 import com.core.domain.model.supabase.LoggedInState
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
+import com.core.domain.utils.toSupabaseError
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.providers.builtin.Email
 import kotlinx.coroutines.flow.Flow

@@ -2,7 +2,7 @@ package com.core.domain.usecase
 
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseAuthRepository
-import com.core.domain.utils.supabaseFlowRequest
+import com.core.domain.utils.supabaseRequestFlow
 import kotlinx.coroutines.flow.Flow
 
 class SignInUseCase(
@@ -11,7 +11,7 @@ class SignInUseCase(
     operator fun invoke(
         email: String,
         password: String
-    ): Flow<SupabaseResult<Unit>> = supabaseFlowRequest {
+    ): Flow<SupabaseResult<Unit>> = supabaseRequestFlow {
         supabaseAuthRepository.signIn(
             email = email,
             password = password

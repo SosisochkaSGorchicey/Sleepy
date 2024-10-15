@@ -3,11 +3,11 @@ package com.core.data.repository
 import com.core.data.mapper.toDomain
 import com.core.data.model.ArticleItemModel
 import com.core.data.model.StoryItemModel
-import com.core.data.utils.supabaseRequestFlow
 import com.core.domain.model.ArticleItem
 import com.core.domain.model.supabase.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
+import com.core.domain.utils.supabaseRequestFlow
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.flow.Flow
