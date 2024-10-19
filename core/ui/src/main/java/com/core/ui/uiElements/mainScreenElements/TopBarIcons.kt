@@ -3,7 +3,6 @@ package com.core.ui.uiElements.mainScreenElements
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon

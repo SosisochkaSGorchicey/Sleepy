@@ -17,7 +17,7 @@ import androidx.media3.common.Timeline
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.core.ui.theme.AppTheme
-import com.feature.player.presentation.detailes.DetailsScreenUI
+import com.feature.player.presentation.detailes.components.DetailsScreenUI
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 

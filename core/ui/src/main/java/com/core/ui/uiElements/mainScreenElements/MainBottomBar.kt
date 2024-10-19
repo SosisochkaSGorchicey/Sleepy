@@ -2,7 +2,6 @@ package com.core.ui.uiElements.mainScreenElements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
+import com.core.ui.modifiers.baseRoundedBorder
 import com.core.ui.theme.AppTheme
 
 @Composable
@@ -47,11 +47,7 @@ fun RowScope.TabNavigationItem(tab: Tab) {
                     .clip(AppTheme.shapes.rounded)
                     .size(44.dp)
                     .background(AppTheme.colors.baseBlueLight)
-                    .border(
-                        width = 3.dp,
-                        color = if (isSelected) AppTheme.colors.basePeachy else AppTheme.colors.transparent,
-                        shape = AppTheme.shapes.rounded
-                    )
+                    .baseRoundedBorder(if (isSelected) AppTheme.colors.basePeachy else AppTheme.colors.transparent)
                     .padding(8.dp),
                 painter = painterResource(id = imageRes),
                 contentDescription = null
