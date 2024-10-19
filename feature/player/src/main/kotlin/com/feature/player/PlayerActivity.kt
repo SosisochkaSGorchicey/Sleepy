@@ -4,15 +4,9 @@ import android.content.ComponentName
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.media3.common.MediaItem
+import androidx.activity.enableEdgeToEdge
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -22,7 +16,8 @@ import androidx.media3.common.Player.COMMAND_SET_MEDIA_ITEM
 import androidx.media3.common.Timeline
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
-import androidx.media3.ui.PlayerView
+import com.core.ui.theme.AppTheme
+import com.feature.player.presentation.detailes.DetailsScreenUI
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 
@@ -38,8 +33,16 @@ class PlayerActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log("onCreate PlayerActivity")
-        setContent { //todo theme
+
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(scrim = 0),
+            navigationBarStyle = SystemBarStyle.dark(scrim = 0)
+        )
+
+        setContent {
+            AppTheme {
+                DetailsScreenUI()
+            }
 
 //            AndroidView(factory = { context ->
 //
@@ -47,24 +50,24 @@ class PlayerActivity : ComponentActivity() {
 //                    player =
 //                }
 //            })
-
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Button(onClick = {
-                    val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
-                    val mediaItem = MediaItem.Builder().setMediaId(url).build()
-
-                    controller.setMediaItem(mediaItem)
-                    play()
-                    controller.prepare()
-
-                    println("TAG: TEST ${controller.availableSessionCommands.commands}")
-
-
-                    // controller.play()
-                }) {
-                    Text(text = "Play")
-                }
-            }
+//
+//            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+//                Button(onClick = {
+//                    val url = "https://download.samplelib.com/mp3/sample-15s.mp3"
+//                    val mediaItem = MediaItem.Builder().setMediaId(url).build()
+//
+//                    controller.setMediaItem(mediaItem)
+//                    play()
+//
+//
+//                    println("TAG: TEST ${controller.availableSessionCommands.commands}")
+//
+//
+//                    // controller.play()
+//                }) {
+//                    Text(text = "Play")
+//                }
+//            }
         }
     }
 
@@ -134,6 +137,7 @@ class PlayerActivity : ComponentActivity() {
 
 
         // controller.playWhenReady = true
+        controller.prepare()
         controller.play()
         //log("after=${getStateName(controller.playbackState)}")
     }

@@ -13,6 +13,7 @@ private val BaseGray = Color(0xFFCACDD3)
 private val DarkerGray = Color(0xFF798191)
 private val BasePeachy = Color(0xFFEECEC9)
 private val LightPeachy = Color(0xFFF1DEDB)
+private val Black = Color(0xFF11141A)
 
 private val BlueToGrayGradient = Brush.linearGradient(listOf(BaseBlue, BaseGray))
 
@@ -21,7 +22,7 @@ private val BlueToGrayGradient = Brush.linearGradient(listOf(BaseBlue, BaseGray)
 data class AppColors(
     val transparent: Color = Color.Transparent,
     val white: Color = Color.White,
-    val black: Color = Color.Black,
+    val black: Color = Black,
     val milkyWhite: Color = MilkyWhite,
     val baseRed: Color = BaseRed,
     val baseBlue: Color = BaseBlue,

@@ -24,6 +24,12 @@ class AppTypography(
         textAlign = TextAlign.Start,
         fontFamily = mainFont,
     ),
+    val bodyLarge: TextStyle = TextStyle(
+        fontSize = 28.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = montserratFont,
+        fontWeight = FontWeight.Medium
+    ),
     val bodyMedium: TextStyle = TextStyle(
         fontSize = 20.sp,
         textAlign = TextAlign.Start,

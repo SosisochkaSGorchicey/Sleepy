@@ -1,7 +1,9 @@
 package com.core.ui.uiElements.mainScreenElements
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
@@ -17,6 +19,22 @@ fun ArrowBackIcon(onClick: () -> Unit) {
         onClick = onClick,
         imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft
     )
+}
+
+@Composable
+fun SimpleBackIcon(onClick: () -> Unit) {
+    IconButton(
+        onClick = onClick,
+        colors = IconButtonDefaults.iconButtonColors(
+            containerColor = AppTheme.colors.transparent,
+            contentColor = AppTheme.colors.milkyWhite
+        )
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+            contentDescription = null
+        )
+    }
 }
 
 @Composable
