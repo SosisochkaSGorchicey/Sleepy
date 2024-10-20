@@ -42,6 +42,8 @@ fun DetailsScreenUI() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MainDetailsUI()
+
+            PlayerButton()
             
             Text(text = "hhh")
         }

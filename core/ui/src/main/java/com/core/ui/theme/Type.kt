@@ -53,7 +53,7 @@ class AppTypography(
         textAlign = TextAlign.Start,
         fontFamily = montserratFont,
         fontWeight = FontWeight.Medium
-    ),
+    )
 )
 
 internal val LocalAppTypography = staticCompositionLocalOf { AppTypography() }
