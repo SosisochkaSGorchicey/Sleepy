@@ -34,6 +34,7 @@ import com.core.ui.theme.AppTheme
 fun MainDetailsUI() {
     Image(
         modifier = Modifier
+            .padding(top = 10.dp)
             .fillMaxWidth(.7f)
             .aspectRatio(1f)
             .clip(AppTheme.shapes.smallCornersDp),
