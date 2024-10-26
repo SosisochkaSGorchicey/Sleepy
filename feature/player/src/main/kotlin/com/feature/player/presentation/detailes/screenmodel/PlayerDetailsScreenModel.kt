@@ -8,7 +8,9 @@ import com.core.domain.repository.SupabaseDatabaseRepository
 import com.feature.player.service.MusicServiceHandler
 import com.feature.player.utils.MediaStateEvents
 import com.feature.player.utils.MusicStates
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import java.util.concurrent.TimeUnit
@@ -29,9 +31,10 @@ class PlayerDetailsScreenModel(
                     is MusicStates.MediaBuffering -> progressCalculation(musicStates.progress)
                     is MusicStates.MediaPlaying -> reduce { state.copy(isMusicPlaying = musicStates.isPlaying) }
                     is MusicStates.MediaProgress -> progressCalculation(musicStates.progress)
-                    is MusicStates.CurrentMediaPlaying -> reduce {
-                        state.copy(currentSelectedMusic = state.musicList[musicStates.mediaItemIndex])
-                    }
+                    is MusicStates.CurrentMediaPlaying -> {}
+//                        reduce {
+//                        state.copy(currentSelectedMusic = state.musicList[musicStates.mediaItemIndex])
+//                    }
 
                     is MusicStates.MediaReady -> reduce {
                         state.copy(
@@ -112,7 +115,9 @@ class PlayerDetailsScreenModel(
 //                )
                 .build()
         }.also {
-            musicServiceHandler.setMediaItemList(it)
+            withContext(Dispatchers.Main) {
+                musicServiceHandler.setMediaItemList(it)
+            }
         }
     }
 

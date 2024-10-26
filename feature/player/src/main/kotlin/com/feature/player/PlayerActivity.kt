@@ -39,9 +39,9 @@ class PlayerActivity : ComponentActivity() {
     private fun startMusicService() {
         if (!isServiceRunning) {
             val intent = Intent(this, PlaybackService::class.java)
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForegroundService(intent)
-            else startService(intent)
+            startService(intent)
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForegroundService(intent)
+//            else startService(intent)
 
             isServiceRunning = true
         }

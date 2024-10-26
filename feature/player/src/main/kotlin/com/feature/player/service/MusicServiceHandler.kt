@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MusicServiceHandler(
     private val exoPlayer: Player,
@@ -43,33 +44,39 @@ class MusicServiceHandler(
         selectedMusicIndex: Int = -1,
         seekPosition: Long = 0,
     ) {
-        when (mediaStateEvents) {
-            MediaStateEvents.Backward -> exoPlayer.seekBack()
-            MediaStateEvents.Forward -> exoPlayer.seekForward()
-            MediaStateEvents.PlayPause -> playPauseMusic()
-            MediaStateEvents.SeekTo -> exoPlayer.seekTo(seekPosition)
-            MediaStateEvents.Stop -> stopProgressUpdate()
-            MediaStateEvents.SelectedMusicChange -> {
-                when (selectedMusicIndex) {
-                    exoPlayer.currentMediaItemIndex -> {
-                        playPauseMusic()
-                    }
+        withContext(Dispatchers.Main) {
+            when (mediaStateEvents) {
+                MediaStateEvents.Backward -> exoPlayer.seekBack()
+                MediaStateEvents.Forward -> exoPlayer.seekForward()
+                MediaStateEvents.PlayPause -> playPauseMusic()
+                MediaStateEvents.SeekTo -> exoPlayer.seekTo(seekPosition)
+                MediaStateEvents.Stop -> stopProgressUpdate()
+                MediaStateEvents.SelectedMusicChange -> {
+                    println("TAG: selectedMusicIndex $selectedMusicIndex")
+                    when (selectedMusicIndex) {
+                        exoPlayer.currentMediaItemIndex -> {
+                            playPauseMusic()
+                        }
 
-                    else -> {
-                        exoPlayer.seekToDefaultPosition(selectedMusicIndex)
-                        _musicStates.value = MusicStates.MediaPlaying(
-                            isPlaying = true
-                        )
-                        exoPlayer.playWhenReady = true
-                        startProgressUpdate()
+                        else -> {
+                            exoPlayer.setMediaItem( //todo
+                                MediaItem.fromUri("https://download.samplelib.com/mp3/sample-15s.mp3")
+                            )
+//                            exoPlayer.seekToDefaultPosition(selectedMusicIndex)
+                            _musicStates.value = MusicStates.MediaPlaying(
+                                isPlaying = true
+                            )
+                            exoPlayer.playWhenReady = true
+                            startProgressUpdate()
+                        }
                     }
                 }
-            }
 
-            is MediaStateEvents.MediaProgress -> {
-                exoPlayer.seekTo(
-                    (exoPlayer.duration * mediaStateEvents.progress).toLong()
-                )
+                is MediaStateEvents.MediaProgress -> {
+                    exoPlayer.seekTo(
+                        (exoPlayer.duration * mediaStateEvents.progress).toLong()
+                    )
+                }
             }
         }
     }

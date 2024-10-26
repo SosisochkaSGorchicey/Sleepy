@@ -19,6 +19,8 @@ class PlaybackService : MediaSessionService(), MediaSession.Callback {
 
     @UnstableApi
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        println("TAG: PlaybackService onStartCommand")
+        println("TAG: PlaybackService intent $intent")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            musicNotificationManager.startMusicNotificationService(
 //                mediaSession = mediaSession,

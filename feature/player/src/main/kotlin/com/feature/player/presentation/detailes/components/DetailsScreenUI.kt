@@ -48,7 +48,7 @@ fun DetailsScreenUI(
             MainDetailsUI()
             PlayerButton(
                 onPlayStop = { onEvent(PlayerDetailsEvent.PlayPause) },
-                onSelect = { onEvent(PlayerDetailsEvent.CurrentAudioChanged(0)) }
+                onSelect = { onEvent(PlayerDetailsEvent.CurrentAudioChanged(1)) }
             )
             TextDescription()
         }
