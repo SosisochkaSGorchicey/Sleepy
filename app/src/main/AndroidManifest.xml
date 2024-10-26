@@ -38,12 +38,11 @@
             android:theme="@style/Theme.Sleepy" />
 
         <service
-            android:name="com.feature.player.PlaybackService"
+            android:name="com.feature.player.service.PlaybackService"
             android:foregroundServiceType="mediaPlayback"
             android:exported="false">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService"/>
-                <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>
         </service>
     </application>

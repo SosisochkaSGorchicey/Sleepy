@@ -4,6 +4,7 @@ import com.core.data.mapper.toDomain
 import com.core.data.model.ArticleItemModel
 import com.core.data.model.StoryItemModel
 import com.core.domain.model.ArticleItem
+import com.core.domain.model.AudioItem
 import com.core.domain.model.supabase.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
@@ -11,6 +12,7 @@ import com.core.domain.utils.supabaseRequestFlow
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class SupabaseDatabaseRepositoryImpl(
     private val postgrest: Postgrest
@@ -41,6 +43,10 @@ class SupabaseDatabaseRepositoryImpl(
                 .decodeList<ArticleItemModel>()
                 .map { it.toDomain() }
         }
+
+    override suspend fun getAudios(): Flow<List<AudioItem>> = flow {
+        listOf(AudioItem(url = "https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"))
+    }
 
     companion object {
         private const val STORIES_TABLE = "Stories"

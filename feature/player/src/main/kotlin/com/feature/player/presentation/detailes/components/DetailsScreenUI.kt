@@ -14,9 +14,14 @@ import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.mainScreenElements.SimpleBackIcon
 import com.core.ui.uiElements.mainScreenElements.SimpleTopBar
+import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsEvent
+import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsState
 
 @Composable
-fun DetailsScreenUI() {
+fun DetailsScreenUI(
+    state: PlayerDetailsState,
+    onEvent: (PlayerDetailsEvent) -> Unit
+) {
     Scaffold(
         containerColor = AppTheme.colors.baseBlueLight,
         contentColor = AppTheme.colors.black,
@@ -41,7 +46,10 @@ fun DetailsScreenUI() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MainDetailsUI()
-            PlayerButton()
+            PlayerButton(
+                onPlayStop = { onEvent(PlayerDetailsEvent.PlayPause) },
+                onSelect = { onEvent(PlayerDetailsEvent.CurrentAudioChanged(0)) }
+            )
             TextDescription()
         }
     }
