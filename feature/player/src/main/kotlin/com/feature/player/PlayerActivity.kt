@@ -1,7 +1,6 @@
 package com.feature.player
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -15,7 +14,6 @@ import com.feature.player.service.PlaybackService
 
 
 class PlayerActivity : ComponentActivity() {
-    private var isServiceRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +34,9 @@ class PlayerActivity : ComponentActivity() {
         }
     }
 
-    private fun startMusicService() {
-        if (!isServiceRunning) {
-            val intent = Intent(this, PlaybackService::class.java)
-            startService(intent)
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForegroundService(intent)
-//            else startService(intent)
-
-            isServiceRunning = true
-        }
+    private fun startMusicService() { //todo bug
+        val intent = Intent(this, PlaybackService::class.java)
+        startService(intent)
     }
+
 }

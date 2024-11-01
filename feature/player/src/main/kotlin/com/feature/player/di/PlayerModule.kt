@@ -18,7 +18,6 @@ import org.koin.dsl.module
 @UnstableApi
 val playerModule = module {
     factoryOf(::PlayerDetailsScreenModel)
-
     singleOf(::MusicServiceHandler)
     singleOf(::MusicNotificationManager)
 

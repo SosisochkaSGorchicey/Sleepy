@@ -32,6 +32,7 @@ class PlaybackService : MediaSessionService(), MediaSession.Callback {
 
 
     override fun onTaskRemoved(rootIntent: Intent?) {
+        println("TAG: SERVICE onTaskRemoved")
         stopSelf()
     }
 
@@ -39,6 +40,7 @@ class PlaybackService : MediaSessionService(), MediaSession.Callback {
         mediaSession
 
     override fun onDestroy() {
+        println("TAG: SERVICE onDestroy")
         super.onDestroy()
         mediaSession.apply {
             release()
