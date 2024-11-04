@@ -6,9 +6,10 @@ import com.core.data.di.dataModule
 import com.core.domain.di.domainModule
 import com.core.domain.repository.DataStoreRepository
 import com.core.sleepy.tabGraphScreen
+import com.feature.audioContent.di.contentFeatureModule
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
-import com.feature.content.di.contentScreenModule
+import com.feature.audioContent.di.contentScreenModule
 import com.feature.home.di.homeFeatureModule
 import com.feature.home.di.homeScreenModule
 import com.feature.initial.di.initialModule
@@ -45,7 +46,8 @@ class MainApp : Application() {
                     authModule,
                     dataModule,
                     domainModule,
-                    homeFeatureModule
+                    homeFeatureModule,
+                    contentFeatureModule
                 )
             )
         }

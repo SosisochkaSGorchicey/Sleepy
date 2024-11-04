@@ -94,7 +94,7 @@ class PlayerDetailsScreenModel(
 
     private fun getMusicData() {
         intent {
-            supabaseDatabaseRepository.getAudios().collect {
+            supabaseDatabaseRepository.audios().collect {
                 reduce { state.copy(musicList = it) }
             }
 

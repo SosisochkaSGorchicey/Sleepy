@@ -71,13 +71,13 @@ class HomeScreenModel(
     }
 
     private fun initArticles() = intent {
-        supabaseDatabaseRepository.getArticles().collect {
+        supabaseDatabaseRepository.articles().collect {
             it.observeResult(successAction = ::articlesDataChange)
         }
     }
 
     private fun initStories() = intent {
-        supabaseDatabaseRepository.getStories().collect {
+        supabaseDatabaseRepository.stories().collect {
             it.observeResult(successAction = ::storiesDataChange)
         }
     }
