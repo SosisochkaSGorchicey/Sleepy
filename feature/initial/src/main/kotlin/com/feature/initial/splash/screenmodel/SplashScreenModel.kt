@@ -16,8 +16,7 @@ class SplashScreenModel(
 ) {
 
     init {
-        //decideNavigation() todo
-        emitSideEffect(SplashSideEffect.NavigateToHome)
+        decideNavigation()
     }
 
     override fun onEvent(event: SplashEvent) {
@@ -27,7 +26,7 @@ class SplashScreenModel(
     }
 
     private fun decideNavigation() = intent {
-        delay(500) //todo?
+        delay(750)
         isUserLoggedInUseCase().collect {
             when {
                 it is LoggedInState.Error -> {
