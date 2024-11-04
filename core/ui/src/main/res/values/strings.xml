@@ -32,6 +32,10 @@
     <string name="error">Some error occurred</string>
     <string name="error_chain_validation">We got an error. Make sure that the device has the correct time and date!</string>
 
+    # Audio Content
+    <string name="audio_content_title_text">Find something to your liking</string>
+    <string name="audio_content_title_description">and mood</string>
+
     # Player Item
     <string name="stop_button">Stop</string>
     <string name="play_button">Play</string>
