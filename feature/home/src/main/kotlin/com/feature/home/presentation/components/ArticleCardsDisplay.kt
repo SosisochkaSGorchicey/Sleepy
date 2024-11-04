@@ -107,7 +107,9 @@ private fun ArticleCardTextDisplay(articleUIItem: ArticleUIModel) {
         Text(
             text = articleUIItem.title,
             style = AppTheme.typography.bodyMediumBold.copy(fontWeight = FontWeight.SemiBold),
-            color = articleUIItem.titleColor
+            color = articleUIItem.titleColor,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 2
         )
 
         articleUIItem.description?.let {
@@ -115,7 +117,8 @@ private fun ArticleCardTextDisplay(articleUIItem: ArticleUIModel) {
                 text = it,
                 overflow = TextOverflow.Ellipsis,
                 style = AppTheme.typography.bodySmall,
-                color = articleUIItem.descriptionColor
+                color = articleUIItem.descriptionColor,
+                maxLines = if (articleUIItem.isFullSize) 4 else 2
             )
         }
     }
