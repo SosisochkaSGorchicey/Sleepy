@@ -9,7 +9,7 @@ import com.core.domain.usecase.SignInUseCase
 import com.core.domain.usecase.SignUpAnonymously
 import com.feature.auth.utils.emailIsValid
 import com.feature.auth.utils.passwordIsValid
-import com.feature.auth.utils.toTextRes
+import com.core.ui.utils.toTextRes
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce

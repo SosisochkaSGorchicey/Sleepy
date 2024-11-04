@@ -1,4 +1,4 @@
-package com.feature.auth.utils
+package com.core.ui.utils
 
 import com.core.domain.model.supabase.AuthErrorType
 import com.core.ui.R
