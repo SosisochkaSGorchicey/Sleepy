@@ -6,5 +6,7 @@ data class AudioSection(
 )
 
 data class AudioDataItem(
-    val imageRes: String
+    val imageRes: String,
+    val isFavourite: Boolean,
+    val name: String
 )

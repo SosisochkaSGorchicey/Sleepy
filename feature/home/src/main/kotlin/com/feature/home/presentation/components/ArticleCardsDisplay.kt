@@ -106,7 +106,7 @@ private fun ArticleCardTextDisplay(articleUIItem: ArticleUIModel) {
     ) {
         Text(
             text = articleUIItem.title,
-            style = AppTheme.typography.bodyMediumBold.copy(fontWeight = FontWeight.SemiBold),
+            style = AppTheme.typography.bodyMediumMedium.copy(fontWeight = FontWeight.SemiBold),
             color = articleUIItem.titleColor,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2

@@ -1,6 +1,5 @@
 package com.feature.player.presentation.detailes.components
 
-import Stop
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -10,12 +9,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
 @Composable
@@ -46,7 +42,7 @@ fun PlayerButton(
             text = "PlayStop",
 //            if (isPlaying.value) stringResource(R.string.stop_button) todo
 //            else stringResource(R.string.play_button),
-            style = AppTheme.typography.bodyMediumBold
+            style = AppTheme.typography.bodyMediumMedium
         )
 
         Icon(

@@ -45,7 +45,7 @@ fun MainButton(
 
         Text(
             text = text,
-            style = AppTheme.typography.bodyMediumBold
+            style = AppTheme.typography.bodyMediumMedium
         )
     }
 }

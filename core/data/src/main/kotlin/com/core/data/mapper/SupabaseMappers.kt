@@ -26,5 +26,7 @@ fun ArticleItemModel.toDomain(): ArticleItem =
 
 fun AudioDataItemModel.toDomain(): AudioDataItem =
     AudioDataItem(
-        imageRes = this.imageUrl
+        imageRes = this.imageUrl,
+        isFavourite = this.favourite,
+        name = this.name
     )
