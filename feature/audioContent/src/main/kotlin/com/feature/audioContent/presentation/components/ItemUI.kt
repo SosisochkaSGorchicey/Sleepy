@@ -30,9 +30,12 @@ import com.core.ui.uiElements.ErrorDisplay
 import com.core.ui.uiElements.ShimmerDisplay
 
 @Composable
-fun ItemUI(item: AudioDataItem) {
+fun ItemUI(
+    item: AudioDataItem,
+    modifier: Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .wrapContentSize()
             .clip(AppTheme.shapes.smallCornersDp)
             .background(AppTheme.colors.baseBlueLight)
@@ -74,7 +77,7 @@ fun ItemUI(item: AudioDataItem) {
                 .padding(horizontal = 14.dp)
                 .padding(bottom = 20.dp)
                 .width(120.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
@@ -82,11 +85,15 @@ fun ItemUI(item: AudioDataItem) {
                 text = item.name,
                 color = AppTheme.colors.white,
                 style = AppTheme.typography.bodySmall,
-                maxLines = 2, //todo сделать все одной высоты
+                maxLines = 2,
+                minLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
 
-            ArrowRightIconButton(onClick = {})
+            ArrowRightIconButton(
+                onClick = {},
+                modifier = Modifier.offset(y = (-4).dp)
+            )
         }
     }
 }

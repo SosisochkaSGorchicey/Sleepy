@@ -13,9 +13,12 @@ import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun ArrowRightIconButton(onClick: () -> Unit) {
+fun ArrowRightIconButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Icon(
-        modifier = Modifier
+        modifier = modifier
             .size(28.dp)
             .clip(AppTheme.shapes.rounded)
             .clickable(onClick = onClick)

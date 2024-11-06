@@ -30,7 +30,8 @@ object AudioContentScreen : Screen {
         ) {
 
             AudioContentScreenUI(
-                modifier = Modifier.padding(it),
+                modifier = Modifier.padding(top = it.calculateTopPadding()),
+                lastItemModifier = Modifier.padding(bottom = it.calculateBottomPadding()),
                 state = state
             )
 //            Box(

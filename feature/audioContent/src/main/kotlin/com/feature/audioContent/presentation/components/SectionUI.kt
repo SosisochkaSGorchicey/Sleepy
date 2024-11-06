@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,9 +15,12 @@ import com.core.domain.model.AudioSection
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun SectionUI(audioSection: AudioSection) {
+fun SectionUI(
+    audioSection: AudioSection,
+    modifier: Modifier
+) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.Start
     ) {
@@ -32,8 +35,11 @@ fun SectionUI(audioSection: AudioSection) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(audioSection.items) { item ->
-                ItemUI(item = item)
+            itemsIndexed(audioSection.items) { index, item ->
+                ItemUI(
+                    item = item,
+                    modifier = index.toSideModifier(list = audioSection.items)
+                )
             }
         }
     }
