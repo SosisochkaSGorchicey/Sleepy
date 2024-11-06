@@ -35,6 +35,7 @@
     # Audio Content
     <string name="audio_content_title_text">Find something to your liking</string>
     <string name="audio_content_title_description">and mood</string>
+    <string name="sleep_sounds_section_title">Sleep sounds</string>
 
     # Player Item
     <string name="stop_button">Stop</string>

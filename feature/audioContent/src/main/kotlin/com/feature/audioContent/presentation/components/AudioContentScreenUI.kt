@@ -21,6 +21,8 @@ fun AudioContentScreenUI(
     ) {
         item { Header() }
 
+        item { SleepSounds() }
+
         itemsIndexed(state.audioContent) { index, audioSection ->
             SectionUI(
                 audioSection = audioSection,

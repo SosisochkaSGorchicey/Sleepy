@@ -19,7 +19,7 @@ fun BackgroundUI() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(brush = AppTheme.colors.blueToGrayGradient)
+            .background(brush = AppTheme.colors.blueToGrayGradientLinear)
     ) {
         Image(
             modifier = Modifier

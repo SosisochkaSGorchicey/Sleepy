@@ -16,7 +16,8 @@ private val BasePeachy = Color(0xFFEECEC9)
 private val LightPeachy = Color(0xFFF1DEDB)
 private val Black = Color(0xFF11141A)
 
-private val BlueToGrayGradient = Brush.linearGradient(listOf(BaseBlue, BaseGray))
+private val BlueToGrayGradientLinear = Brush.linearGradient(listOf(BaseBlue, BaseGray))
+private val BlueToBlueGradientVertical = Brush.verticalGradient(listOf(BaseBlueLight, BaseBlue))
 
 
 @Immutable
@@ -34,7 +35,8 @@ data class AppColors(
     val lightPeachy: Color = LightPeachy,
     val lightRed: Color = LightRed,
 
-    val blueToGrayGradient: Brush = BlueToGrayGradient,
+    val blueToGrayGradientLinear: Brush = BlueToGrayGradientLinear,
+    val blueToBlueGradientVertical: Brush = BlueToBlueGradientVertical,
 )
 
 internal val LocalAppColors = staticCompositionLocalOf { AppColors() }
