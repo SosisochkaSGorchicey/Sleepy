@@ -36,6 +36,8 @@
     <string name="audio_content_title_text">Find something to your liking</string>
     <string name="audio_content_title_description">and mood</string>
     <string name="sleep_sounds_section_title">Sleep sounds</string>
+    <string name="sleep_sounds_title">Customize your sleep sounds</string>
+    <string name="sleep_sounds_text">Choose soothing melodies and nature sounds to relax, fall asleep faster and improve the quality of your rest.</string>
 
     # Player Item
     <string name="stop_button">Stop</string>
