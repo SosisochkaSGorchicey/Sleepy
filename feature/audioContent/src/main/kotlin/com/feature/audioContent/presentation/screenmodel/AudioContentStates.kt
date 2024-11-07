@@ -8,11 +8,11 @@ import com.core.domain.model.AudioSection
 data class AudioContentState(
     val audioContent: List<AudioSection> = emptyList(),
     val inLoading: Boolean = true,
-    @StringRes val errorTextRes: Int?  = null
+    @StringRes val errorTextRes: Int? = null
 )
 
 sealed interface AudioContentEvent {
-
+    data object ReloadData : AudioContentEvent
 }
 
 sealed interface AudioContentSideEffect {

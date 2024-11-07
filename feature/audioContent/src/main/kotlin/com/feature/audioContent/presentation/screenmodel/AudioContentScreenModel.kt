@@ -19,8 +19,7 @@ class AudioContentScreenModel(
 
     override fun onEvent(event: AudioContentEvent) {
         when (event) {
-
-            else -> {}
+            AudioContentEvent.ReloadData -> initContent()
         }
     }
 

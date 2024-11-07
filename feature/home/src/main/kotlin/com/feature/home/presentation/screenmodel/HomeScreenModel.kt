@@ -43,21 +43,12 @@ class HomeScreenModel(
                 )
             }
 
-            SupabaseResult.Loading -> reducer {
-                state.copy(
-                    inLoading = true,
-                    errorTextRes = null
-                )
-            }
+            SupabaseResult.Loading ->
+                reducer { state.copy(inLoading = true, errorTextRes = null) }
 
             is SupabaseResult.Success -> {
                 successAction(this.data)
-                reducer {
-                    state.copy(
-                        inLoading = false,
-                        errorTextRes = null
-                    )
-                }
+                reducer { state.copy(inLoading = false, errorTextRes = null) }
             }
         }
     }
