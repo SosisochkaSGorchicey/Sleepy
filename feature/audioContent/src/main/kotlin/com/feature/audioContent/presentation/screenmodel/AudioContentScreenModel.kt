@@ -1,6 +1,7 @@
 package com.feature.audioContent.presentation.screenmodel
 
 import com.core.common.mvi.MviScreenModel
+import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
@@ -20,6 +21,7 @@ class AudioContentScreenModel(
     override fun onEvent(event: AudioContentEvent) {
         when (event) {
             AudioContentEvent.ReloadData -> initContent()
+            AudioContentEvent.OnItemClick -> emitSideEffect(AudioContentSideEffect.NavigateToDetailScreen)
         }
     }
 

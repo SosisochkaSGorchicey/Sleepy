@@ -13,7 +13,8 @@ import com.feature.audioContent.presentation.screenmodel.AudioContentState
 fun AudioContentScreenUI(
     modifier: Modifier,
     lastItemModifier: Modifier,
-    state: AudioContentState
+    state: AudioContentState,
+    onItemClick: () -> Unit
 ) {
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
@@ -30,7 +31,8 @@ fun AudioContentScreenUI(
                 modifier = index.toBottomModifier(
                     list = state.audioContent,
                     modifier = lastItemModifier
-                )
+                ),
+                onItemClick = onItemClick
             )
         }
     }

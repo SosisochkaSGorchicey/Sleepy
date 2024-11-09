@@ -8,6 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.core.common.navigation.SharedScreen
+import com.core.common.navigation.screen
 import com.core.ui.R
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorSnackbar
@@ -17,11 +21,14 @@ import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.feature.audioContent.presentation.components.AudioContentScreenUI
 import com.feature.audioContent.presentation.screenmodel.AudioContentEvent
 import com.feature.audioContent.presentation.screenmodel.AudioContentScreenModel
+import com.feature.audioContent.presentation.screenmodel.AudioContentSideEffect
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 object AudioContentScreen : Screen {
     @Composable
     override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
         val viewModel = getScreenModel<AudioContentScreenModel>()
         val state = viewModel.collectAsState().value
 
@@ -36,7 +43,8 @@ object AudioContentScreen : Screen {
             AudioContentScreenUI(
                 modifier = Modifier.padding(top = padding.calculateTopPadding()),
                 lastItemModifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
-                state = state
+                state = state,
+                onItemClick = {viewModel.onEvent(AudioContentEvent.OnItemClick)}
             )
 
             state.errorTextRes?.let {
@@ -68,6 +76,13 @@ object AudioContentScreen : Screen {
 //                    Text(text = "Go to player")
 //                }
 //            }
+        }
+
+
+        viewModel.collectSideEffect {
+            when (it) {
+                AudioContentSideEffect.NavigateToDetailScreen -> navigator.push(SharedScreen.PlayerDetailScreen.screen())
+            }
         }
     }
 }

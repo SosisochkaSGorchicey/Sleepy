@@ -21,17 +21,36 @@ class PlayerDetailsScreenModel(
 ) : MviScreenModel<PlayerDetailsState, PlayerDetailsSideEffect, PlayerDetailsEvent>(
     initialState = PlayerDetailsState()
 ) {
+
+
     init {
+
+        println("TAG: !!! this $this")
+        println("TAG: !!! musicServiceHandler $musicServiceHandler")
+
         getMusicData()
+
+
 
         intent {
             musicServiceHandler.musicStates.collectLatest { musicStates: MusicStates ->
+                println("TAG: musicStates $musicStates")
                 when (musicStates) {
-                    MusicStates.Initial -> reduce { state.copy(playerDetailsUIState = PlayerDetailsUIState.InitialHome) }
+                    MusicStates.Initial -> {
+                        setMusicItems()
+                        reduce { state.copy(playerDetailsUIState = PlayerDetailsUIState.InitialHome) }
+                    }
                     is MusicStates.MediaBuffering -> progressCalculation(musicStates.progress)
                     is MusicStates.MediaPlaying -> reduce { state.copy(isMusicPlaying = musicStates.isPlaying) }
                     is MusicStates.MediaProgress -> progressCalculation(musicStates.progress)
-                    is MusicStates.CurrentMediaPlaying -> {}
+                    is MusicStates.CurrentMediaPlaying -> {
+                        state.musicList.getOrNull(musicStates.mediaItemIndex)?.let {
+                            reduce {
+                                state.copy(currentSelectedMusic = it)
+                            }
+                        }
+
+                    }
 //                        reduce {
 //                        state.copy(currentSelectedMusic = state.musicList[musicStates.mediaItemIndex])
 //                    }
@@ -98,7 +117,7 @@ class PlayerDetailsScreenModel(
                 reduce { state.copy(musicList = it) }
             }
 
-            setMusicItems()
+
         }
     }
 
@@ -136,6 +155,7 @@ class PlayerDetailsScreenModel(
     }
 
     override fun onDispose() {
+        println("TAG: !!!!onDispose")
         intent { musicServiceHandler.onMediaStateEvents(MediaStateEvents.Stop) }
         super.onDispose()
     }

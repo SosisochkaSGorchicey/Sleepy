@@ -1,5 +1,6 @@
 package com.core.sleepy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -15,6 +16,7 @@ import cafe.adriel.voyager.transitions.SlideTransition
 import com.core.common.navigation.SharedScreen
 import com.core.common.navigation.screen
 import com.core.ui.theme.AppTheme
+import com.feature.player.service.PlaybackService
 
 class MainActivity : ComponentActivity() {
 
@@ -48,6 +50,8 @@ class MainActivity : ComponentActivity() {
             statusBarStyle = SystemBarStyle.dark(scrim = 0),
             navigationBarStyle = SystemBarStyle.dark(scrim = 0)
         )
+//        start()
+
         setContent {
             AppTheme {
 //                Button(onClick = {
@@ -76,12 +80,18 @@ class MainActivity : ComponentActivity() {
 //                }
 
 
+
                 val loadingScreen = rememberScreen(provider = SharedScreen.Splash)
                 Navigator(screen = loadingScreen) {
                     SlideTransition(navigator = it)
                 }
             }
         }
+    }
+
+    private fun start() {
+        val intent = Intent(this, PlaybackService::class.java)
+        startService(intent)
     }
 
     @UnstableApi

@@ -12,7 +12,7 @@ sealed interface SharedScreen : ScreenProvider {
     data object NotificationsRoute : SharedScreen
     data object ContentRoute : SharedScreen
     data object TabGraphScreen : SharedScreen
-    data object Player : SharedScreen
+    data object PlayerDetailScreen : SharedScreen
 }
 
 fun SharedScreen.screen(): Screen = ScreenRegistry.get(this)

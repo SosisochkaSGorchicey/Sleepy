@@ -13,8 +13,9 @@ data class AudioContentState(
 
 sealed interface AudioContentEvent {
     data object ReloadData : AudioContentEvent
+    data object OnItemClick: AudioContentEvent
 }
 
 sealed interface AudioContentSideEffect {
-
+    data object NavigateToDetailScreen: AudioContentSideEffect
 }

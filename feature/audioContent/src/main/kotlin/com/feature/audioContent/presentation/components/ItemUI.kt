@@ -32,7 +32,8 @@ import com.core.ui.uiElements.ShimmerDisplay
 @Composable
 fun ItemUI(
     item: AudioDataItem,
-    modifier: Modifier
+    modifier: Modifier,
+    onItemClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -91,7 +92,7 @@ fun ItemUI(
             )
 
             ArrowRightIconButton(
-                onClick = {},
+                onClick = onItemClick,
                 modifier = Modifier.offset(y = (-4).dp)
             )
         }

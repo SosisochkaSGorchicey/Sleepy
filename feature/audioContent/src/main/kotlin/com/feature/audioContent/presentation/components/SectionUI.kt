@@ -17,7 +17,8 @@ import com.core.ui.theme.AppTheme
 @Composable
 fun SectionUI(
     audioSection: AudioSection,
-    modifier: Modifier
+    modifier: Modifier,
+    onItemClick: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -38,7 +39,8 @@ fun SectionUI(
             itemsIndexed(audioSection.items) { index, item ->
                 ItemUI(
                     item = item,
-                    modifier = index.toSideModifier(list = audioSection.items)
+                    modifier = index.toSideModifier(list = audioSection.items),
+                    onItemClick = onItemClick
                 )
             }
         }
