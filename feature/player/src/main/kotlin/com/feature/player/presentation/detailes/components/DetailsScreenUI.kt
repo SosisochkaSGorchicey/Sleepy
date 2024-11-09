@@ -38,7 +38,7 @@ fun DetailsScreenUI(
                         onClick = {}
                     )
                 },
-                titleText = "Name of item"
+                titleText = state.currentAudioDataItem.name
             )
         }
     ) {
@@ -51,7 +51,7 @@ fun DetailsScreenUI(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            MainDetailsUI()
+            MainDetailsUI(state = state)
             PlayerButton(
                 onPlayStop = { onEvent(PlayerDetailsEvent.PlayPause) },
                 onSelect = {

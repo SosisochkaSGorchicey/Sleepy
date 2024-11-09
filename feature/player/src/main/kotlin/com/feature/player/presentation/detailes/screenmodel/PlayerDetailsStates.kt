@@ -1,6 +1,7 @@
 package com.feature.player.presentation.detailes.screenmodel
 
 import androidx.compose.runtime.Immutable
+import com.core.domain.model.AudioDataItem
 import com.core.domain.model.AudioItem
 
 @Immutable
@@ -9,7 +10,7 @@ data class PlayerDetailsState(
     val progress: Float = 0f,
     val progressValue: String = "00:00",
     val isMusicPlaying: Boolean = false,
-    val currentSelectedMusic: AudioItem = AudioItem(),
+    val currentAudioDataItem: AudioDataItem = AudioDataItem(),
     val musicItem: AudioItem = AudioItem(),
     val playerDetailsUIState: PlayerDetailsUIState = PlayerDetailsUIState.InitialHome,
 )
@@ -22,7 +23,7 @@ sealed interface PlayerDetailsEvent {
     data class UpdateProgress(val progress: Float) : PlayerDetailsEvent
     data object Backward : PlayerDetailsEvent
     data object Forward : PlayerDetailsEvent
-    data class InitCurrentAudio(val url: String) : PlayerDetailsEvent
+    data class InitCurrentAudio(val audioDataItem: AudioDataItem) : PlayerDetailsEvent
 }
 
 sealed interface PlayerDetailsSideEffect {

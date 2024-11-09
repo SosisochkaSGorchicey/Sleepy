@@ -18,5 +18,5 @@ sealed interface AudioContentEvent {
 }
 
 sealed interface AudioContentSideEffect {
-    data class NavigateToDetailScreen(val url: String) : AudioContentSideEffect
+    data class NavigateToDetailScreen(val audioDataItem: AudioDataItem) : AudioContentSideEffect
 }

@@ -82,7 +82,7 @@ object AudioContentScreen : Screen {
         viewModel.collectSideEffect {
             when (it) {
                 is AudioContentSideEffect.NavigateToDetailScreen -> navigator.push(
-                    SharedScreen.PlayerDetailScreen(url = it.url).screen()
+                    SharedScreen.PlayerDetailScreen(audioDataItem = it.audioDataItem).screen()
                 )
             }
         }

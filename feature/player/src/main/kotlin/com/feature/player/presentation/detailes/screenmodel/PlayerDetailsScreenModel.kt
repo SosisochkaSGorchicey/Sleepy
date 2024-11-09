@@ -4,6 +4,7 @@ import androidx.media3.common.MediaItem
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
+import com.core.domain.model.AudioDataItem
 import com.core.domain.model.AudioItem
 import com.feature.player.service.MusicServiceHandler
 import com.feature.player.utils.MediaStateEvents
@@ -90,14 +91,15 @@ class PlayerDetailsScreenModel(
                 reduce { state.copy(progress = event.progress) }
             }
 
-            is PlayerDetailsEvent.InitCurrentAudio -> getMusicItem(url = event.url)
+            is PlayerDetailsEvent.InitCurrentAudio -> initMusicItem(audioDataItem = event.audioDataItem)
         }
     }
 
-    private fun getMusicItem(url: String) {
+    private fun initMusicItem(audioDataItem: AudioDataItem) {
         reducer {
             state.copy(
-                musicItem = AudioItem(url = url)
+                musicItem = AudioItem(url = audioDataItem.audioUrl),
+                currentAudioDataItem = audioDataItem
             )
         }
     }

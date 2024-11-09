@@ -1,6 +1,5 @@
 package com.feature.player.presentation.detailes.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -24,23 +23,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.core.ui.R
+import coil.compose.SubcomposeAsyncImage
 import com.core.ui.modifiers.baseRoundedBorder
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorDisplay
+import com.core.ui.uiElements.ShimmerDisplay
+import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsState
 
 @Composable
-fun MainDetailsUI() {
-    Image(
+fun MainDetailsUI(state: PlayerDetailsState) {
+    SubcomposeAsyncImage(
         modifier = Modifier
             .padding(top = 10.dp)
             .fillMaxWidth(.7f)
             .aspectRatio(1f)
             .clip(AppTheme.shapes.smallCornersDp),
-        painter = painterResource(R.drawable.test_image), //todo
+        model = state.currentAudioDataItem.imageRes,
         contentDescription = null,
-        contentScale = ContentScale.FillWidth
+        contentScale = ContentScale.FillWidth,
+        loading = {
+            ShimmerDisplay(background = AppTheme.colors.baseGray)
+        },
+        error = {
+            ErrorDisplay(tintColor = AppTheme.colors.basePeachy)
+        }
     )
 
     Row(

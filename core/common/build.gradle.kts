@@ -8,4 +8,6 @@ dependencies {
     implementation(libs.bundles.voyager)
     implementation(libs.orbit.viewmodel)
     implementation(libs.coroutines.core)
+
+    implementation(projects.core.domain)
 }

@@ -22,7 +22,7 @@ class AudioContentScreenModel(
         when (event) {
             AudioContentEvent.ReloadData -> initContent()
             is AudioContentEvent.OnItemClick ->
-                emitSideEffect(AudioContentSideEffect.NavigateToDetailScreen(url = event.audioDataItem.audioUrl))
+                emitSideEffect(AudioContentSideEffect.NavigateToDetailScreen(audioDataItem = event.audioDataItem))
 
 
         }

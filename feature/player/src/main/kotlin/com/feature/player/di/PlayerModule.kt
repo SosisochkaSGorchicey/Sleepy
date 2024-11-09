@@ -43,6 +43,6 @@ val playerModule = module {
 
 val playerScreenModule = screenModule {
     register<SharedScreen.PlayerDetailScreen> {
-        DetailsScreen(it.url)
+        DetailsScreen(it.audioDataItem)
     }
 }
