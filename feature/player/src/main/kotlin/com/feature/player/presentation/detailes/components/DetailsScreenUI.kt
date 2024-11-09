@@ -35,7 +35,7 @@ fun DetailsScreenUI(
             SimpleTopBar(
                 navigationIcon = {
                     SimpleBackIcon(
-                        onClick = {}
+                        onClick = { onEvent(PlayerDetailsEvent.OnBackClick) }
                     )
                 },
                 titleText = state.currentAudioDataItem.name
