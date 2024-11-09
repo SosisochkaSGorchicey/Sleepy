@@ -9,7 +9,6 @@ import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.session.MediaSession
 import cafe.adriel.voyager.core.registry.screenModule
 import com.core.common.navigation.SharedScreen
-import com.feature.player.mediaNotification.MusicNotificationManager
 import com.feature.player.presentation.detailes.DetailsScreen
 import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsScreenModel
 import com.feature.player.service.MusicServiceHandler
@@ -21,7 +20,6 @@ import org.koin.dsl.module
 val playerModule = module {
     factoryOf(::PlayerDetailsScreenModel)
     singleOf(::MusicServiceHandler)
-    singleOf(::MusicNotificationManager)
 
     factory<MediaSession> {
         MediaSession.Builder(get(), get()).build()
@@ -45,6 +43,6 @@ val playerModule = module {
 
 val playerScreenModule = screenModule {
     register<SharedScreen.PlayerDetailScreen> {
-        DetailsScreen
+        DetailsScreen(it.url)
     }
 }

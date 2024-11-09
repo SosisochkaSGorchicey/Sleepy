@@ -13,12 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.core.domain.model.AudioSection
 import com.core.ui.theme.AppTheme
+import com.feature.audioContent.presentation.screenmodel.AudioContentEvent
 
 @Composable
 fun SectionUI(
     audioSection: AudioSection,
     modifier: Modifier,
-    onItemClick: () -> Unit
+    onEvent: (AudioContentEvent) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -40,7 +41,7 @@ fun SectionUI(
                 ItemUI(
                     item = item,
                     modifier = index.toSideModifier(list = audioSection.items),
-                    onItemClick = onItemClick
+                    onItemClick = { onEvent(AudioContentEvent.OnItemClick(audioDataItem = item)) }
                 )
             }
         }

@@ -6,7 +6,7 @@ sealed interface MediaStateEvents {
     data object Backward : MediaStateEvents
     data object Forward : MediaStateEvents
     data object Stop : MediaStateEvents
-    data object SelectedMusicChange : MediaStateEvents
+    data class SelectedMusicChange(val url: String) : MediaStateEvents
     data class MediaProgress(val progress: Float) : MediaStateEvents
 
 }

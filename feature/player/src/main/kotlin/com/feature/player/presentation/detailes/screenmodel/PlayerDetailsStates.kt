@@ -10,7 +10,7 @@ data class PlayerDetailsState(
     val progressValue: String = "00:00",
     val isMusicPlaying: Boolean = false,
     val currentSelectedMusic: AudioItem = AudioItem(),
-    val musicList: List<AudioItem> = emptyList(),
+    val musicItem: AudioItem = AudioItem(),
     val playerDetailsUIState: PlayerDetailsUIState = PlayerDetailsUIState.InitialHome,
 )
 
@@ -22,6 +22,7 @@ sealed interface PlayerDetailsEvent {
     data class UpdateProgress(val progress: Float) : PlayerDetailsEvent
     data object Backward : PlayerDetailsEvent
     data object Forward : PlayerDetailsEvent
+    data class InitCurrentAudio(val url: String) : PlayerDetailsEvent
 }
 
 sealed interface PlayerDetailsSideEffect {

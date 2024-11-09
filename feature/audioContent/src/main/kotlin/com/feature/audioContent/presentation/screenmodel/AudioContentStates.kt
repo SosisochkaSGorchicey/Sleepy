@@ -2,6 +2,7 @@ package com.feature.audioContent.presentation.screenmodel
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
+import com.core.domain.model.AudioDataItem
 import com.core.domain.model.AudioSection
 
 @Immutable
@@ -13,9 +14,9 @@ data class AudioContentState(
 
 sealed interface AudioContentEvent {
     data object ReloadData : AudioContentEvent
-    data object OnItemClick: AudioContentEvent
+    data class OnItemClick(val audioDataItem: AudioDataItem) : AudioContentEvent
 }
 
 sealed interface AudioContentSideEffect {
-    data object NavigateToDetailScreen: AudioContentSideEffect
+    data class NavigateToDetailScreen(val url: String) : AudioContentSideEffect
 }

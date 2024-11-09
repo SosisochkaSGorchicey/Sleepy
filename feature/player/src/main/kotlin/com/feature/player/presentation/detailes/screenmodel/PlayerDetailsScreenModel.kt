@@ -4,7 +4,7 @@ import androidx.media3.common.MediaItem
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
-import com.core.domain.repository.SupabaseDatabaseRepository
+import com.core.domain.model.AudioItem
 import com.feature.player.service.MusicServiceHandler
 import com.feature.player.utils.MediaStateEvents
 import com.feature.player.utils.MusicStates
@@ -16,22 +16,13 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 import java.util.concurrent.TimeUnit
 
 class PlayerDetailsScreenModel(
-    private val musicServiceHandler: MusicServiceHandler,
-    private val supabaseDatabaseRepository: SupabaseDatabaseRepository
+    private val musicServiceHandler: MusicServiceHandler
 ) : MviScreenModel<PlayerDetailsState, PlayerDetailsSideEffect, PlayerDetailsEvent>(
     initialState = PlayerDetailsState()
 ) {
 
 
     init {
-
-        println("TAG: !!! this $this")
-        println("TAG: !!! musicServiceHandler $musicServiceHandler")
-
-        getMusicData()
-
-
-
         intent {
             musicServiceHandler.musicStates.collectLatest { musicStates: MusicStates ->
                 println("TAG: musicStates $musicStates")
@@ -40,20 +31,10 @@ class PlayerDetailsScreenModel(
                         setMusicItems()
                         reduce { state.copy(playerDetailsUIState = PlayerDetailsUIState.InitialHome) }
                     }
+
                     is MusicStates.MediaBuffering -> progressCalculation(musicStates.progress)
                     is MusicStates.MediaPlaying -> reduce { state.copy(isMusicPlaying = musicStates.isPlaying) }
                     is MusicStates.MediaProgress -> progressCalculation(musicStates.progress)
-                    is MusicStates.CurrentMediaPlaying -> {
-                        state.musicList.getOrNull(musicStates.mediaItemIndex)?.let {
-                            reduce {
-                                state.copy(currentSelectedMusic = it)
-                            }
-                        }
-
-                    }
-//                        reduce {
-//                        state.copy(currentSelectedMusic = state.musicList[musicStates.mediaItemIndex])
-//                    }
 
                     is MusicStates.MediaReady -> reduce {
                         state.copy(
@@ -76,7 +57,7 @@ class PlayerDetailsScreenModel(
 
             is PlayerDetailsEvent.CurrentAudioChanged -> intent {
                 musicServiceHandler.onMediaStateEvents(
-                    MediaStateEvents.SelectedMusicChange,
+                    MediaStateEvents.SelectedMusicChange(state.musicItem.url),
                     selectedMusicIndex = event.index
                 )
             }
@@ -108,23 +89,22 @@ class PlayerDetailsScreenModel(
                 )
                 reduce { state.copy(progress = event.progress) }
             }
+
+            is PlayerDetailsEvent.InitCurrentAudio -> getMusicItem(url = event.url)
         }
     }
 
-    private fun getMusicData() {
-        intent {
-            supabaseDatabaseRepository.audios().collect {
-                reduce { state.copy(musicList = it) }
-            }
-
-
+    private fun getMusicItem(url: String) {
+        reducer {
+            state.copy(
+                musicItem = AudioItem(url = url)
+            )
         }
     }
 
     private fun setMusicItems() = intent {
-        state.musicList.map { audioItem ->
-            MediaItem.Builder()
-                .setUri(audioItem.url)
+        MediaItem.Builder()
+            .setUri(state.musicItem.url)
 //                .setMediaMetadata( todo
 //                    MediaMetadata.Builder()
 //                        .setAlbumArtist(audioItem.artist)
@@ -132,12 +112,12 @@ class PlayerDetailsScreenModel(
 //                        .setSubtitle(audioItem.displayName)
 //                        .build()
 //                )
-                .build()
-        }.also {
-            withContext(Dispatchers.Main) {
-                musicServiceHandler.setMediaItemList(it)
+            .build()
+            .also {
+                withContext(Dispatchers.Main) {
+                    musicServiceHandler.setMediaItem(it)
+                }
             }
-        }
     }
 
     private fun progressCalculation(currentProgress: Long) = reducer {
@@ -155,7 +135,6 @@ class PlayerDetailsScreenModel(
     }
 
     override fun onDispose() {
-        println("TAG: !!!!onDispose")
         intent { musicServiceHandler.onMediaStateEvents(MediaStateEvents.Stop) }
         super.onDispose()
     }

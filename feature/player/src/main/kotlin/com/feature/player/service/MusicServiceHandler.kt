@@ -34,11 +34,6 @@ class MusicServiceHandler(
         exoPlayer.prepare()
     }
 
-    fun setMediaItemList(mediaItems: List<MediaItem>) {
-        exoPlayer.setMediaItems(mediaItems)
-        exoPlayer.prepare()
-    }
-
     suspend fun onMediaStateEvents(
         mediaStateEvents: MediaStateEvents,
         selectedMusicIndex: Int = -1,
@@ -51,18 +46,17 @@ class MusicServiceHandler(
                 MediaStateEvents.PlayPause -> playPauseMusic()
                 MediaStateEvents.SeekTo -> exoPlayer.seekTo(seekPosition)
                 MediaStateEvents.Stop -> stopProgressUpdate()
-                MediaStateEvents.SelectedMusicChange -> {
-                    println("TAG: selectedMusicIndex $selectedMusicIndex")
+                is MediaStateEvents.SelectedMusicChange -> {
                     when (selectedMusicIndex) {
                         exoPlayer.currentMediaItemIndex -> {
                             playPauseMusic()
                         }
 
                         else -> {
-                            exoPlayer.setMediaItem( //todo
-                                MediaItem.fromUri("https://download.samplelib.com/mp3/sample-15s.mp3")
+                            exoPlayer.setMediaItem(
+                                MediaItem.fromUri(mediaStateEvents.url)
                             )
-//                            exoPlayer.seekToDefaultPosition(selectedMusicIndex)
+                            exoPlayer.seekToDefaultPosition(selectedMusicIndex)
                             _musicStates.value = MusicStates.MediaPlaying(
                                 isPlaying = true
                             )
@@ -100,9 +94,8 @@ class MusicServiceHandler(
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onIsPlayingChanged(isPlaying: Boolean) {
-        println("TAG: onIsPlayingChanged $isPlaying")
         _musicStates.value = MusicStates.MediaPlaying(isPlaying = isPlaying)
-        _musicStates.value = MusicStates.CurrentMediaPlaying(exoPlayer.currentMediaItemIndex)
+        //_musicStates.value = MusicStates.CurrentMediaPlaying(exoPlayer.currentMediaItemIndex)
         if (isPlaying) {
             GlobalScope.launch(Dispatchers.Main) {
                 startProgressUpdate()

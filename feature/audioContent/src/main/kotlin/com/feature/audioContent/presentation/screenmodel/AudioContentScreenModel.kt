@@ -21,7 +21,10 @@ class AudioContentScreenModel(
     override fun onEvent(event: AudioContentEvent) {
         when (event) {
             AudioContentEvent.ReloadData -> initContent()
-            AudioContentEvent.OnItemClick -> emitSideEffect(AudioContentSideEffect.NavigateToDetailScreen)
+            is AudioContentEvent.OnItemClick ->
+                emitSideEffect(AudioContentSideEffect.NavigateToDetailScreen(url = event.audioDataItem.audioUrl))
+
+
         }
     }
 

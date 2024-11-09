@@ -44,7 +44,7 @@ object AudioContentScreen : Screen {
                 modifier = Modifier.padding(top = padding.calculateTopPadding()),
                 lastItemModifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
                 state = state,
-                onItemClick = {viewModel.onEvent(AudioContentEvent.OnItemClick)}
+                onEvent = viewModel::onEvent
             )
 
             state.errorTextRes?.let {
@@ -81,7 +81,9 @@ object AudioContentScreen : Screen {
 
         viewModel.collectSideEffect {
             when (it) {
-                AudioContentSideEffect.NavigateToDetailScreen -> navigator.push(SharedScreen.PlayerDetailScreen.screen())
+                is AudioContentSideEffect.NavigateToDetailScreen -> navigator.push(
+                    SharedScreen.PlayerDetailScreen(url = it.url).screen()
+                )
             }
         }
     }

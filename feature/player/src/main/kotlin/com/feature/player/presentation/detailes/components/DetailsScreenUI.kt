@@ -55,7 +55,6 @@ fun DetailsScreenUI(
             PlayerButton(
                 onPlayStop = { onEvent(PlayerDetailsEvent.PlayPause) },
                 onSelect = {
-                    println("TAG: state.isMusicPlaying ${state.isMusicPlaying}")
                     if (!state.isMusicPlaying) {
                         val intent = Intent(context, PlaybackService::class.java)
                         context.startService(intent)

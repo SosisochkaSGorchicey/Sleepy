@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.feature.audioContent.presentation.screenmodel.AudioContentEvent
 import com.feature.audioContent.presentation.screenmodel.AudioContentState
 
 @Composable
@@ -14,7 +15,7 @@ fun AudioContentScreenUI(
     modifier: Modifier,
     lastItemModifier: Modifier,
     state: AudioContentState,
-    onItemClick: () -> Unit
+    onEvent: (AudioContentEvent) -> Unit
 ) {
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
@@ -32,7 +33,7 @@ fun AudioContentScreenUI(
                     list = state.audioContent,
                     modifier = lastItemModifier
                 ),
-                onItemClick = onItemClick
+                onEvent = onEvent
             )
         }
     }

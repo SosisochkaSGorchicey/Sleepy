@@ -15,6 +15,8 @@ data class AudioDataItemModel(
     val sectionId: Int,
     @SerialName("image_url")
     val imageUrl: String,
+    @SerialName("mp3_url")
+    val audioUrl: String,
     val favourite: Boolean,
     val name: String
 )
