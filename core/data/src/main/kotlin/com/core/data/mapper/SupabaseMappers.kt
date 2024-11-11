@@ -29,5 +29,6 @@ fun AudioDataItemModel.toDomain(): AudioDataItem =
         imageRes = this.imageUrl,
         audioUrl = this.audioUrl,
         isFavourite = this.favourite,
+        minutesDuration = this.minutes,
         name = this.name
     )

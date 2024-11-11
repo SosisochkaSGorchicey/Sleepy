@@ -42,5 +42,6 @@
     # Player Item
     <string name="stop_button">Stop</string>
     <string name="play_button">Play</string>
+    <string name="timing_display_minutes">%d min</string>
 
 </resources>

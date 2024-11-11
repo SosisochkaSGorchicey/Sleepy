@@ -8,6 +8,7 @@ data class AudioSection(
 data class AudioDataItem(
     val imageRes: String = "",
     val audioUrl: String = "",
+    val minutesDuration: Int = 0,
     val isFavourite: Boolean = false,
     val name: String = ""
 )

@@ -23,8 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
+import com.core.ui.R
 import com.core.ui.modifiers.baseRoundedBorder
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorDisplay
@@ -58,7 +60,12 @@ fun MainDetailsUI(state: PlayerDetailsState) {
         horizontalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterHorizontally)
     ) {
         ActionItem(onClick = {})
-        DescriptionItem(text = "35 min") //todo
+        DescriptionItem(
+            text = stringResource(
+                id = R.string.timing_display_minutes,
+                state.currentAudioDataItem.minutesDuration
+            )
+        )
         DescriptionItem(text = "Relaxing") //todo
     }
 }
