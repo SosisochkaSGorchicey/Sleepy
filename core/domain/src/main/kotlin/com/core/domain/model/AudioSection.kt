@@ -10,5 +10,6 @@ data class AudioDataItem(
     val audioUrl: String = "",
     val minutesDuration: Int = 0,
     val isFavourite: Boolean = false,
-    val name: String = ""
+    val name: String = "",
+    val tag: String = "",
 )

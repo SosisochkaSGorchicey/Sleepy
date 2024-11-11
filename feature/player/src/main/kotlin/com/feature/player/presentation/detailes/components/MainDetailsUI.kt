@@ -66,7 +66,7 @@ fun MainDetailsUI(state: PlayerDetailsState) {
                 state.currentAudioDataItem.minutesDuration
             )
         )
-        DescriptionItem(text = "Relaxing") //todo
+        DescriptionItem(text = state.currentAudioDataItem.tag)
     }
 }
 

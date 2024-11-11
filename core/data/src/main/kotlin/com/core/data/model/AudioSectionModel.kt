@@ -20,5 +20,6 @@ data class AudioDataItemModel(
     @SerialName("audio_duration_minutes")
     val minutes: Int,
     val favourite: Boolean,
-    val name: String
+    val name: String,
+    val tag: String
 )

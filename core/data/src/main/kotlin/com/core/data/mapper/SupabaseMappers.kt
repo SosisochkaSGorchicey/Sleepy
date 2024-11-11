@@ -30,5 +30,6 @@ fun AudioDataItemModel.toDomain(): AudioDataItem =
         audioUrl = this.audioUrl,
         isFavourite = this.favourite,
         minutesDuration = this.minutes,
-        name = this.name
+        name = this.name,
+        tag = this.tag
     )
