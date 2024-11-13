@@ -1,7 +1,11 @@
 package com.feature.player.service
 
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.datasource.FileDataSource
+import androidx.media3.datasource.HttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import com.feature.player.utils.MediaStateEvents
 import com.feature.player.utils.MusicStates
@@ -31,6 +35,16 @@ class MusicServiceHandler(
         }
     }
 
+    @androidx.annotation.OptIn(UnstableApi::class)
+    override fun onPlayerError(error: PlaybackException) {
+        val cause = error.cause
+        when (cause) {
+            is FileDataSource.FileDataSourceException -> exoPlayer.prepare()
+            is HttpDataSource.HttpDataSourceException -> println("TAG: UnknownHostException")
+        }
+        println("TAG: cause $cause")
+    }
+
     fun setMediaItem(mediaItem: MediaItem) {
         runCatching {
             exoPlayer.setMediaItem(mediaItem)
@@ -52,30 +66,25 @@ class MusicServiceHandler(
                 MediaStateEvents.SeekTo -> exoPlayer.seekTo(seekPosition)
                 MediaStateEvents.Stop -> stopProgressUpdate()
                 is MediaStateEvents.SelectedMusicChange -> { //todo catch network error
-                   // try {
 
 
-                        when (selectedMusicIndex) {
-                            exoPlayer.currentMediaItemIndex -> {
-                                playPauseMusic()
-                            }
-
-                            else -> {
-                                println("TAG: exoPlayer.applicationLooper ${exoPlayer.applicationLooper.isCurrentThread}")
-                                exoPlayer.setMediaItem(
-                                    MediaItem.fromUri(mediaStateEvents.url)
-                                )
-                                exoPlayer.seekToDefaultPosition(selectedMusicIndex)
-                                _musicStates.value = MusicStates.MediaPlaying(
-                                    isPlaying = true
-                                )
-                                exoPlayer.playWhenReady = true
-                                startProgressUpdate()
-                            }
+                    when (selectedMusicIndex) {
+                        exoPlayer.currentMediaItemIndex -> {
+                            playPauseMusic()
                         }
-//                    } catch (e: Throwable) {
-//                        println("TAG: in catch e $e")
-//                    }
+
+                        else -> {
+                            exoPlayer.setMediaItem(
+                                MediaItem.fromUri(mediaStateEvents.url)
+                            )
+                            exoPlayer.seekToDefaultPosition(selectedMusicIndex)
+                            _musicStates.value = MusicStates.MediaPlaying(
+                                isPlaying = true
+                            )
+                            exoPlayer.playWhenReady = true
+                            startProgressUpdate()
+                        }
+                    }
                 }
 
                 is MediaStateEvents.MediaProgress -> {

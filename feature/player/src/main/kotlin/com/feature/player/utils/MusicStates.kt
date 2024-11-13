@@ -1,6 +1,7 @@
 package com.feature.player.utils
 
 sealed interface MusicStates {
+    data object ConnectionError : MusicStates
     data object Initial : MusicStates
     data class MediaBuffering(val progress: Long) : MusicStates
     data class MediaReady(val duration: Long) : MusicStates

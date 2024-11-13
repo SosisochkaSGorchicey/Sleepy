@@ -49,6 +49,7 @@ class PlayerDetailsScreenModel(
                 is MusicStates.MediaPlaying -> changePlaying(isPlaying = musicStates.isPlaying)
                 is MusicStates.MediaProgress -> progressCalculation(musicStates.progress)
                 is MusicStates.MediaReady -> setMediaReady(duration = musicStates.duration)
+                MusicStates.ConnectionError -> {}//todo
             }
         }
     }
