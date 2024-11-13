@@ -7,6 +7,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import cafe.adriel.voyager.transitions.SlideTransition
 import com.core.common.navigation.SharedScreen
 import com.core.common.navigation.screen
 import com.core.ui.R
@@ -34,7 +35,9 @@ object ContentTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(SharedScreen.ContentRoute.screen())
+        Navigator(SharedScreen.ContentRoute.screen()) {
+            SlideTransition(navigator = it)
+        }
     }
 
     override val options: TabOptions
@@ -51,7 +54,9 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(SharedScreen.HomeRoute.screen())
+        Navigator(SharedScreen.HomeRoute.screen()) {
+            SlideTransition(navigator = it)
+        }
     }
 
     override val options: TabOptions
@@ -68,7 +73,9 @@ object NotificationTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(SharedScreen.NotificationsRoute.screen())
+        Navigator(SharedScreen.NotificationsRoute.screen()) {
+            SlideTransition(navigator = it)
+        }
     }
 
     override val options: TabOptions
