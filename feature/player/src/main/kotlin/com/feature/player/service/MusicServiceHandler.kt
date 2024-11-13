@@ -95,7 +95,6 @@ class MusicServiceHandler(
     @OptIn(DelicateCoroutinesApi::class)
     override fun onIsPlayingChanged(isPlaying: Boolean) {
         _musicStates.value = MusicStates.MediaPlaying(isPlaying = isPlaying)
-        //_musicStates.value = MusicStates.CurrentMediaPlaying(exoPlayer.currentMediaItemIndex)
         if (isPlaying) {
             GlobalScope.launch(Dispatchers.Main) {
                 startProgressUpdate()

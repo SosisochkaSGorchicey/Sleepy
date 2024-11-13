@@ -8,7 +8,6 @@ import com.core.domain.model.AudioItem
 data class PlayerDetailsState(
     val duration: Long = 0L,
     val progress: Float = 0f,
-    val progressValue: String = "00:00",
     val isMusicPlaying: Boolean = false,
     val currentAudioDataItem: AudioDataItem = AudioDataItem(),
     val musicItem: AudioItem = AudioItem(),
@@ -21,8 +20,6 @@ sealed interface PlayerDetailsEvent {
     data class CurrentAudioChanged(val index: Int) : PlayerDetailsEvent
     data class SeekTo(val position: Float) : PlayerDetailsEvent
     data class UpdateProgress(val progress: Float) : PlayerDetailsEvent
-    data object Backward : PlayerDetailsEvent
-    data object Forward : PlayerDetailsEvent
     data class InitCurrentAudio(val audioDataItem: AudioDataItem) : PlayerDetailsEvent
 }
 
