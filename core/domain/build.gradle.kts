@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.convetion.library)
+    alias(libs.plugins.kotlin.serizliation)
 }
 
 android.namespace = "com.core.domain"

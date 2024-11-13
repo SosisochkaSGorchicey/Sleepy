@@ -23,7 +23,10 @@ class PlayerDetailsScreenModel(
 ) {
 
     init {
+
         musicStatesObserve()
+
+
     }
 
     override fun onEvent(event: PlayerDetailsEvent) {

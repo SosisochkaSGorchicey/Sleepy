@@ -14,7 +14,6 @@ class PlaybackService : MediaSessionService(), MediaSession.Callback {
         return super.onStartCommand(intent, flags, startId)
     }
 
-
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
         stopSelf()

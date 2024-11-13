@@ -26,12 +26,16 @@ class MusicServiceHandler(
     private var job: Job? = null
 
     init {
-        exoPlayer.addListener(this)
+        runCatching {
+            exoPlayer.addListener(this)
+        }
     }
 
     fun setMediaItem(mediaItem: MediaItem) {
-        exoPlayer.setMediaItem(mediaItem)
-        exoPlayer.prepare()
+        runCatching {
+            exoPlayer.setMediaItem(mediaItem)
+            exoPlayer.prepare()
+        }
     }
 
     suspend fun onMediaStateEvents(
@@ -40,30 +44,38 @@ class MusicServiceHandler(
         seekPosition: Long = 0,
     ) {
         withContext(Dispatchers.Main) {
+            println("TAG: onMediaStateEvents $mediaStateEvents")
             when (mediaStateEvents) {
                 MediaStateEvents.Backward -> exoPlayer.seekBack()
                 MediaStateEvents.Forward -> exoPlayer.seekForward()
                 MediaStateEvents.PlayPause -> playPauseMusic()
                 MediaStateEvents.SeekTo -> exoPlayer.seekTo(seekPosition)
                 MediaStateEvents.Stop -> stopProgressUpdate()
-                is MediaStateEvents.SelectedMusicChange -> {
-                    when (selectedMusicIndex) {
-                        exoPlayer.currentMediaItemIndex -> {
-                            playPauseMusic()
-                        }
+                is MediaStateEvents.SelectedMusicChange -> { //todo catch network error
+                   // try {
 
-                        else -> {
-                            exoPlayer.setMediaItem(
-                                MediaItem.fromUri(mediaStateEvents.url)
-                            )
-                            exoPlayer.seekToDefaultPosition(selectedMusicIndex)
-                            _musicStates.value = MusicStates.MediaPlaying(
-                                isPlaying = true
-                            )
-                            exoPlayer.playWhenReady = true
-                            startProgressUpdate()
+
+                        when (selectedMusicIndex) {
+                            exoPlayer.currentMediaItemIndex -> {
+                                playPauseMusic()
+                            }
+
+                            else -> {
+                                println("TAG: exoPlayer.applicationLooper ${exoPlayer.applicationLooper.isCurrentThread}")
+                                exoPlayer.setMediaItem(
+                                    MediaItem.fromUri(mediaStateEvents.url)
+                                )
+                                exoPlayer.seekToDefaultPosition(selectedMusicIndex)
+                                _musicStates.value = MusicStates.MediaPlaying(
+                                    isPlaying = true
+                                )
+                                exoPlayer.playWhenReady = true
+                                startProgressUpdate()
+                            }
                         }
-                    }
+//                    } catch (e: Throwable) {
+//                        println("TAG: in catch e $e")
+//                    }
                 }
 
                 is MediaStateEvents.MediaProgress -> {
@@ -76,7 +88,9 @@ class MusicServiceHandler(
     }
 
     override fun onPlaybackStateChanged(playbackState: Int) {
+        println("TAG: playbackState $playbackState")
         when (playbackState) {
+
             ExoPlayer.STATE_BUFFERING -> _musicStates.value =
                 MusicStates.MediaBuffering(exoPlayer.currentPosition)
 
@@ -87,6 +101,7 @@ class MusicServiceHandler(
             }
 
             Player.STATE_IDLE -> {
+                exoPlayer.prepare()
                 // no-op
             }
         }

@@ -37,12 +37,19 @@ val playerModule = module {
             .setAudioAttributes(get(), true)
             .setHandleAudioBecomingNoisy(true)
             .setTrackSelector(DefaultTrackSelector(get()))
+            .setPauseAtEndOfMediaItems(true)
             .build()
     }
 }
 
 val playerScreenModule = screenModule {
     register<SharedScreen.PlayerDetailScreen> {
-        DetailsScreen(it.audioDataItem)
+        DetailsScreen(
+            imageRes = it.audioDataItem.imageRes,
+            audioUrl = it.audioDataItem.audioUrl,
+            name = it.audioDataItem.name,
+            tag = it.audioDataItem.tag,
+            minutesDuration = it.audioDataItem.minutesDuration
+        )
     }
 }

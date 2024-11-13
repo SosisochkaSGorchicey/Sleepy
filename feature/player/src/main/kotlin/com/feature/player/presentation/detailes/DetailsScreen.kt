@@ -15,7 +15,13 @@ import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 
-class DetailsScreen(private val audioDataItem: AudioDataItem) : Screen {
+class DetailsScreen(
+    private val imageRes: String,
+    private val audioUrl: String,
+    private val name: String,
+    private val tag: String,
+    private val minutesDuration: Int,
+) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
@@ -23,7 +29,17 @@ class DetailsScreen(private val audioDataItem: AudioDataItem) : Screen {
         val state = viewModel.collectAsState().value
 
         LaunchedEffect(key1 = Unit) {
-            viewModel.onEvent(PlayerDetailsEvent.InitCurrentAudio(audioDataItem = audioDataItem))
+            viewModel.onEvent(
+                PlayerDetailsEvent.InitCurrentAudio(
+                    audioDataItem = AudioDataItem(
+                        imageRes = imageRes,
+                        audioUrl = audioUrl,
+                        minutesDuration = minutesDuration,
+                        name = name,
+                        tag = tag
+                    )
+                )
+            )
         }
 
         DetailsScreenUI(
