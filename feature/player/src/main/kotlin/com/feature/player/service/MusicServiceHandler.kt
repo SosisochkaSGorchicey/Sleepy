@@ -39,7 +39,7 @@ class MusicServiceHandler(
     override fun onPlayerError(error: PlaybackException) {
         val cause = error.cause
         when (cause) {
-            is FileDataSource.FileDataSourceException ->  {}//exoPlayer.prepare()
+            is FileDataSource.FileDataSourceException -> {}//exoPlayer.prepare()
             is HttpDataSource.HttpDataSourceException ->
                 _musicStates.value = MusicStates.ConnectionError
         }
@@ -100,20 +100,14 @@ class MusicServiceHandler(
     override fun onPlaybackStateChanged(playbackState: Int) {
         println("TAG: playbackState $playbackState")
         when (playbackState) {
-
             ExoPlayer.STATE_BUFFERING -> _musicStates.value =
                 MusicStates.MediaBuffering(exoPlayer.currentPosition)
 
             ExoPlayer.STATE_READY -> _musicStates.value = MusicStates.MediaReady(exoPlayer.duration)
 
-            Player.STATE_ENDED -> {
-                // no-op
-            }
+            Player.STATE_ENDED -> exoPlayer.seekToDefaultPosition()
 
-            Player.STATE_IDLE -> {
-//                exoPlayer.prepare()
-                // no-op
-            }
+            Player.STATE_IDLE -> Unit
         }
     }
 
