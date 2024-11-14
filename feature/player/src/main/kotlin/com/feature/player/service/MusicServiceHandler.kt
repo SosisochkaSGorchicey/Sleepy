@@ -39,16 +39,16 @@ class MusicServiceHandler(
     override fun onPlayerError(error: PlaybackException) {
         val cause = error.cause
         when (cause) {
-            is FileDataSource.FileDataSourceException -> exoPlayer.prepare()
-            is HttpDataSource.HttpDataSourceException -> println("TAG: UnknownHostException")
+            is FileDataSource.FileDataSourceException ->  {}//exoPlayer.prepare()
+            is HttpDataSource.HttpDataSourceException ->
+                _musicStates.value = MusicStates.ConnectionError
         }
-        println("TAG: cause $cause")
     }
 
     fun setMediaItem(mediaItem: MediaItem) {
         runCatching {
             exoPlayer.setMediaItem(mediaItem)
-            exoPlayer.prepare()
+//            exoPlayer.prepare()
         }
     }
 
@@ -67,6 +67,7 @@ class MusicServiceHandler(
                 MediaStateEvents.Stop -> stopProgressUpdate()
                 is MediaStateEvents.SelectedMusicChange -> { //todo catch network error
 
+                    exoPlayer.prepare()
 
                     when (selectedMusicIndex) {
                         exoPlayer.currentMediaItemIndex -> {
@@ -110,7 +111,7 @@ class MusicServiceHandler(
             }
 
             Player.STATE_IDLE -> {
-                exoPlayer.prepare()
+//                exoPlayer.prepare()
                 // no-op
             }
         }
@@ -133,6 +134,7 @@ class MusicServiceHandler(
             exoPlayer.pause()
             stopProgressUpdate()
         } else {
+            exoPlayer.prepare()
             exoPlayer.play()
             _musicStates.value = MusicStates.MediaPlaying(
                 isPlaying = true

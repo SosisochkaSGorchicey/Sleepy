@@ -23,10 +23,7 @@ class PlayerDetailsScreenModel(
 ) {
 
     init {
-
         musicStatesObserve()
-
-
     }
 
     override fun onEvent(event: PlayerDetailsEvent) {
@@ -45,17 +42,30 @@ class PlayerDetailsScreenModel(
             println("TAG: musicStates $musicStates")
             when (musicStates) {
                 MusicStates.Initial -> initialMusicActions()
-                is MusicStates.MediaBuffering -> progressCalculation(musicStates.progress)
+                is MusicStates.MediaBuffering -> {
+                    reduce { state.copy(isLoading = true) }
+                    progressCalculation(musicStates.progress)
+                }
+
                 is MusicStates.MediaPlaying -> changePlaying(isPlaying = musicStates.isPlaying)
                 is MusicStates.MediaProgress -> progressCalculation(musicStates.progress)
                 is MusicStates.MediaReady -> setMediaReady(duration = musicStates.duration)
-                MusicStates.ConnectionError -> {}//todo
+                MusicStates.ConnectionError -> errorShow()
             }
         }
     }
 
+    private fun errorShow() = reducer {
+        state.copy(
+            isLoading = false,
+            isConnectionError = true
+        )
+    }
+
     private fun setMediaReady(duration: Long) = reducer {
         state.copy(
+            isLoading = false,
+            isConnectionError = false,
             duration = duration,
             playerDetailsUIState = PlayerDetailsUIState.HomeReady
         )
@@ -70,14 +80,17 @@ class PlayerDetailsScreenModel(
     }
 
     private fun currentAudioChangedAction(index: Int) = intent {
+        reduce { state.copy(isLoading = true) }
         musicServiceHandler.onMediaStateEvents(
             mediaStateEvents = MediaStateEvents.SelectedMusicChange(state.musicItem.url),
             selectedMusicIndex = index
         )
     }
 
-    private fun playPauseAction() =
-        intent { musicServiceHandler.onMediaStateEvents(MediaStateEvents.PlayPause) }
+    private fun playPauseAction() = intent {
+        if (state.isMusicPlaying && state.progress == 0f) reduce { state.copy(isLoading = true) }
+        musicServiceHandler.onMediaStateEvents(MediaStateEvents.PlayPause)
+    }
 
     private fun seekToAction(position: Float) = intent {
         musicServiceHandler.onMediaStateEvents(
@@ -90,7 +103,12 @@ class PlayerDetailsScreenModel(
         musicServiceHandler.onMediaStateEvents(
             mediaStateEvents = MediaStateEvents.MediaProgress(progress)
         )
-        reduce { state.copy(progress = progress) }
+        reduce {
+            state.copy(
+                progress = progress,
+                isLoading = false
+            )
+        }
     }
 
     private fun initMusicItem(audioDataItem: AudioDataItem) {

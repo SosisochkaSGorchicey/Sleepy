@@ -13,7 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.core.ui.R
 import com.core.ui.theme.AppTheme
+import com.core.ui.uiElements.ErrorSnackbar
+import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.mainScreenElements.SimpleBackIcon
 import com.core.ui.uiElements.mainScreenElements.SimpleTopBar
 import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsEvent
@@ -41,10 +44,10 @@ fun DetailsScreenUI(
                 titleText = state.currentAudioDataItem.name
             )
         }
-    ) {
+    ) { paddingValues ->
         Column(
             modifier = Modifier
-                .padding(it)
+                .padding(paddingValues)
                 .padding(top = 10.dp)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
@@ -65,5 +68,14 @@ fun DetailsScreenUI(
             )
             TextDescription()
         }
+
+        if (state.isLoading) LoadingDisplay(
+            layoutModifier = Modifier.padding(paddingValues)
+        )
+
+        if (state.isConnectionError) ErrorSnackbar(
+            modifier = Modifier.padding(paddingValues),
+            errorTextRes = R.string.error_unknown
+        )
     }
 }

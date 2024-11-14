@@ -12,6 +12,8 @@ data class PlayerDetailsState(
     val currentAudioDataItem: AudioDataItem = AudioDataItem(),
     val musicItem: AudioItem = AudioItem(),
     val playerDetailsUIState: PlayerDetailsUIState = PlayerDetailsUIState.InitialHome,
+    val isLoading: Boolean = false,
+    val isConnectionError: Boolean = false,
 )
 
 sealed interface PlayerDetailsEvent {
