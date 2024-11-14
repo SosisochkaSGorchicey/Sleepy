@@ -11,15 +11,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.core.ui.R
+import com.core.ui.icons.MyIconPack
+import com.core.ui.icons.myiconpack.Stop
 import com.core.ui.theme.AppTheme
 
 @Composable
 fun PlayerButton(
     onPlayStop: () -> Unit,
-    onSelect: () -> Unit
+    onSelect: () -> Unit,
+    isPlaying: Boolean
 ) {
-    val isSelected = rememberSaveable{ //todo
+    val isSelected = rememberSaveable { //todo
         mutableStateOf(false)
     }
 
@@ -39,16 +44,14 @@ fun PlayerButton(
         shape = AppTheme.shapes.mediumCornersPercent
     ) {
         Text(
-            text = "PlayStop",
-//            if (isPlaying.value) stringResource(R.string.stop_button) todo
-//            else stringResource(R.string.play_button),
+            text = if (isPlaying) stringResource(R.string.stop_button)
+            else stringResource(R.string.play_button),
             style = AppTheme.typography.bodyMediumMedium
         )
 
         Icon(
             modifier = Modifier.size(28.dp),
-            imageVector = Icons.Default.PlayArrow,
-            //if (isPlaying.value) Stop else Icons.Default.PlayArrow, todo
+            imageVector = if (isPlaying) MyIconPack.Stop else Icons.Default.PlayArrow,
             contentDescription = null
         )
     }

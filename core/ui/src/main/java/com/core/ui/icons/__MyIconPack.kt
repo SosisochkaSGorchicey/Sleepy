@@ -3,6 +3,7 @@ package com.core.ui.icons
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.core.ui.icons.myiconpack.Error
 import com.core.ui.icons.myiconpack.Flame
+import com.core.ui.icons.myiconpack.Stop
 import kotlin.collections.List as ____KtList
 
 public object MyIconPack
@@ -14,6 +15,6 @@ public val MyIconPack.AllIcons: ____KtList<ImageVector>
     if (__AllIcons != null) {
       return __AllIcons!!
     }
-    __AllIcons= listOf(Error, Flame)
+    __AllIcons= listOf(Stop, Error, Flame)
     return __AllIcons!!
   }
