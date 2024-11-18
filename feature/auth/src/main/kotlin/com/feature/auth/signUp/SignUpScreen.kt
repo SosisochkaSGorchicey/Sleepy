@@ -34,6 +34,7 @@ object SignUpScreen : Screen {
             containerColor = AppTheme.colors.baseBlue,
             topBar = {
                 MainTopBar(
+                    containerColor = AppTheme.colors.transparent,
                     navigationIcon = {
                         ArrowBackIcon(onClick = { viewModel.onEvent(SignUpEvent.OnBackClick) })
                     }

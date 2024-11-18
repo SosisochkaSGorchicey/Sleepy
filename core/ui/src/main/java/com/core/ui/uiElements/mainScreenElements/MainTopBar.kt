@@ -8,6 +8,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import com.core.ui.theme.AppTheme
 
@@ -16,7 +17,8 @@ import com.core.ui.theme.AppTheme
 fun MainTopBar(
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
-    titleText: String = ""
+    titleText: String = "",
+    containerColor: Color = AppTheme.colors.baseBlue
 ) {
     CenterAlignedTopAppBar(
         modifier = Modifier.clip(AppTheme.shapes.bottomCorners),
@@ -27,7 +29,7 @@ fun MainTopBar(
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = AppTheme.colors.baseBlue,
+            containerColor = containerColor,
             navigationIconContentColor = AppTheme.colors.baseBlue,
             titleContentColor = AppTheme.colors.milkyWhite
         ),
