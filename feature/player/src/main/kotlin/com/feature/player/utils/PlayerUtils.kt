@@ -1,6 +1,7 @@
 package com.feature.player.utils
 
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import com.core.domain.model.AudioItem
 
 fun Long.toProgressCalculate(duration: Long): Float =
@@ -9,11 +10,11 @@ fun Long.toProgressCalculate(duration: Long): Float =
 fun AudioItem.toMediaItem(): MediaItem =
     MediaItem.Builder()
         .setUri(this.url)
-//                .setMediaMetadata( todo
-//                    MediaMetadata.Builder()
+        .setMediaMetadata( //todo
+            MediaMetadata.Builder()
 //                        .setAlbumArtist(audioItem.artist)
-//                        .setDisplayTitle(audioItem.title)
-//                        .setSubtitle(audioItem.displayName)
-//                        .build()
-//                )
+//                .setDisplayTitle("Titleee")
+                //.setSubtitle(audioItem.displayName)
+                .build()
+        )
         .build()

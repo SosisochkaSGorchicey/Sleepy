@@ -54,7 +54,11 @@ fun DetailsScreenUI(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            MainDetailsUI(state = state)
+            MainDetailsUI(
+                state = state,
+                onProgressCallback = { onEvent(PlayerDetailsEvent.SeekTo(it)) }
+            )
+
             PlayerButton(
                 onPlayStop = { onEvent(PlayerDetailsEvent.PlayPause) },
                 onSelect = {
@@ -67,6 +71,7 @@ fun DetailsScreenUI(
                 },
                 isPlaying = state.isMusicPlaying
             )
+
             TextDescription()
         }
 

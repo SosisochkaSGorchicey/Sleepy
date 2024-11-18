@@ -15,6 +15,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -34,7 +36,10 @@ import com.core.ui.uiElements.ShimmerDisplay
 import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsState
 
 @Composable
-fun MainDetailsUI(state: PlayerDetailsState) {
+fun MainDetailsUI(
+    state: PlayerDetailsState,
+    onProgressCallback: (Float) -> Unit
+) {
     SubcomposeAsyncImage(
         modifier = Modifier
             .padding(top = 10.dp)
@@ -68,6 +73,20 @@ fun MainDetailsUI(state: PlayerDetailsState) {
         )
         DescriptionItem(text = state.currentAudioDataItem.tag)
     }
+
+    Slider(
+        modifier = Modifier.fillMaxWidth(.8f),
+        value = state.progress,
+        valueRange = 0f..100f,
+        onValueChange = {
+            onProgressCallback(it)
+        },
+        colors = SliderDefaults.colors(
+            thumbColor = AppTheme.colors.baseBlue,
+            inactiveTrackColor = AppTheme.colors.milkyWhite,
+            activeTrackColor = AppTheme.colors.baseBlue
+        )
+    )
 }
 
 @Composable
