@@ -1,20 +1,22 @@
 package com.feature.notification.presentation
 
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
-import com.core.ui.uiElements.mainScreenElements.MainBottomBar
+import cafe.adriel.voyager.koin.getScreenModel
+import com.feature.notification.presentation.components.NotificationScreenUI
+import com.feature.notification.presentation.screenmodel.NotificationScreenModel
+import org.orbitmvi.orbit.compose.collectAsState
 
 object NotificationScreen : Screen {
     @Composable
     override fun Content() {
-        Scaffold(
-            bottomBar = {
-                MainBottomBar()
-            }
-        ) {
-            Text(text = "NotificationScreen")
-        }
+        val viewModel = getScreenModel<NotificationScreenModel>()
+        val state = viewModel.collectAsState().value
+
+        NotificationScreenUI(
+            state = state,
+            onEvent = viewModel::onEvent
+        )
+
     }
 }

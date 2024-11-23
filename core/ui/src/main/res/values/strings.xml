@@ -44,4 +44,8 @@
     <string name="play_button">Play</string>
     <string name="timing_display_minutes">%d min</string>
 
+    # Notifications screen
+    <string name="notif_onboarding_card_title">Let\'s create your sleep schedule</string>
+    <string name="button_lets_go">Let\'s go!</string>
+
 </resources>

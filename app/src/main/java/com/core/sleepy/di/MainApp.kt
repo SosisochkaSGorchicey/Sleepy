@@ -14,6 +14,7 @@ import com.feature.home.di.homeFeatureModule
 import com.feature.home.di.homeScreenModule
 import com.feature.initial.di.initialModule
 import com.feature.initial.di.initialScreenModule
+import com.feature.notification.di.notificationFeatureModule
 import com.feature.notification.di.notificationScreenModule
 import com.feature.player.di.playerModule
 import com.feature.player.di.playerScreenModule
@@ -47,7 +48,8 @@ class MainApp : Application() {
                     dataModule,
                     domainModule,
                     homeFeatureModule,
-                    contentFeatureModule
+                    contentFeatureModule,
+                    notificationFeatureModule
                 )
             )
         }
