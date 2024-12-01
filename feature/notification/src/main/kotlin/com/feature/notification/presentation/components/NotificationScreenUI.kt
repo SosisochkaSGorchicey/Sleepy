@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
+import com.core.ui.uiElements.mainScreenElements.MainTopBar
+import com.core.ui.uiElements.mainScreenElements.MoreIcon
+import com.core.ui.uiElements.mainScreenElements.SimpleTopBar
 import com.feature.notification.presentation.screenmodel.NotificationEvent
 import com.feature.notification.presentation.screenmodel.NotificationScreenState
 import com.feature.notification.presentation.screenmodel.NotificationState
@@ -24,7 +27,15 @@ fun NotificationScreenUI(
         bottomBar = {
             MainBottomBar()
         },
-        containerColor = AppTheme.colors.baseGray,
+        topBar = {
+            MainTopBar(
+                containerColor = AppTheme.colors.transparent,
+                actions = {
+                    MoreIcon(onClick = {})
+                }
+            )
+        },
+        containerColor = AppTheme.colors.superLightPeachy,
         contentColor = AppTheme.colors.baseBlue
     ) { padding ->
         NotificationLayout(

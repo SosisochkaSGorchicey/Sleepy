@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.rounded.Face
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -11,6 +12,15 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.core.ui.theme.AppTheme
+
+
+@Composable
+fun MoreIcon(onClick: () -> Unit) {
+    IconButtonBase(
+        onClick = onClick,
+        imageVector = Icons.Rounded.MoreVert
+    )
+}
 
 @Composable
 fun ArrowBackIcon(onClick: () -> Unit) {
