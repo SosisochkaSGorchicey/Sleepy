@@ -17,6 +17,5 @@ object NotificationScreen : Screen {
             state = state,
             onEvent = viewModel::onEvent
         )
-
     }
 }
