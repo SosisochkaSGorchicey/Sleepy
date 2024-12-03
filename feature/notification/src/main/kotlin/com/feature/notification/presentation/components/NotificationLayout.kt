@@ -33,7 +33,8 @@ fun NotificationLayout(
         ) {
             state.notificationItems.forEach { notificationItem ->
                 NotificationItemDisplay(
-                    notificationItem = notificationItem
+                    notificationItem = notificationItem,
+                    onItemClick = {}
                 )
             }
         }
