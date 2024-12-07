@@ -65,6 +65,12 @@ class AppTypography(
         textAlign = TextAlign.Start,
         fontFamily = montserratFont,
         fontWeight = FontWeight.SemiBold
+    ),
+    val bodyLargeBold: TextStyle = TextStyle(
+        fontSize = 30.sp,
+        textAlign = TextAlign.Start,
+        fontFamily = montserratFont,
+        fontWeight = FontWeight.SemiBold
     )
 )
 
