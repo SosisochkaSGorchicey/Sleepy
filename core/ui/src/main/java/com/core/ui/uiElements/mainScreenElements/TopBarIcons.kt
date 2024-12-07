@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.core.ui.theme.AppTheme
 
@@ -31,12 +32,15 @@ fun ArrowBackIcon(onClick: () -> Unit) {
 }
 
 @Composable
-fun SimpleBackIcon(onClick: () -> Unit) {
+fun SimpleBackIcon(
+    onClick: () -> Unit,
+    contentColor: Color = AppTheme.colors.milkyWhite
+) {
     IconButton(
         onClick = onClick,
         colors = IconButtonDefaults.iconButtonColors(
             containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.milkyWhite
+            contentColor = contentColor
         )
     ) {
         Icon(
