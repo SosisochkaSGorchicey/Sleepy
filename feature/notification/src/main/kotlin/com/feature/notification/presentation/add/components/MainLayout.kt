@@ -9,6 +9,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.core.ui.R
+import com.feature.notification.presentation.commonItems.WeekDisplay
 
 @Composable
 fun MainLayout(
@@ -22,5 +24,12 @@ fun MainLayout(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Title()
+
+        SectionTitle(textRes = R.string.section_title_day)
+
+        WeekDisplay(
+            selectedWeekItem = null,
+            onClick = {}
+        )
     }
 }

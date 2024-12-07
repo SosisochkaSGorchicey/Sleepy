@@ -1,4 +1,4 @@
-package com.feature.notification.presentation.main.components
+package com.feature.notification.presentation.commonItems
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,26 +17,23 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 import com.feature.notification.model.WeekItem
-import com.feature.notification.presentation.main.screenmodel.NotificationEvent
-import com.feature.notification.presentation.main.screenmodel.NotificationState
 
 @Composable
 fun WeekDisplay(
-    state: NotificationState,
-    onEvent: (NotificationEvent) -> Unit
+    selectedWeekItem: WeekItem?,
+    onClick: (WeekItem) -> Unit,
+    modifier: Modifier = Modifier.fillMaxWidth()
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.dp),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         WeekItem.entries.forEach { weekItem ->
             WeekItemDisplay(
                 weekItem = weekItem,
-                isSelected = state.selectedWeekItem == weekItem,
-                onClick = { onEvent(NotificationEvent.OnWeekItemClick(weekItem = weekItem)) }
+                isSelected = selectedWeekItem == weekItem,
+                onClick = { onClick(weekItem) }
             )
         }
     }
