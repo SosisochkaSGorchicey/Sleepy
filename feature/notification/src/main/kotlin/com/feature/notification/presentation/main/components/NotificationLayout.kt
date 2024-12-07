@@ -1,4 +1,4 @@
-package com.feature.notification.presentation.components
+package com.feature.notification.presentation.main.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,8 +8,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.feature.notification.presentation.screenmodel.NotificationEvent
-import com.feature.notification.presentation.screenmodel.NotificationState
+import com.feature.notification.presentation.main.screenmodel.NotificationEvent
+import com.feature.notification.presentation.main.screenmodel.NotificationState
 
 @Composable
 fun NotificationLayout(

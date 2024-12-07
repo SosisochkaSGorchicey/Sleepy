@@ -1,4 +1,4 @@
-package com.feature.notification.presentation.screenmodel
+package com.feature.notification.presentation.main.screenmodel
 
 import androidx.compose.runtime.Immutable
 import com.feature.notification.model.NotificationItem
@@ -35,10 +35,11 @@ sealed interface NotificationScreenState {
 }
 
 sealed interface NotificationEvent {
+    data object OnAddButtonClick : NotificationEvent
     data object OnOnboardingCardClick : NotificationEvent
     data class OnWeekItemClick(val weekItem: WeekItem) : NotificationEvent
 }
 
 sealed interface NotificationSideEffect {
-
+    data object NavigateToAddScreen : NotificationSideEffect
 }

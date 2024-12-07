@@ -1,4 +1,4 @@
-package com.feature.notification.presentation.components
+package com.feature.notification.presentation.main.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
@@ -15,10 +15,9 @@ import com.core.ui.uiElements.mainScreenElements.FloatingButton
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
 import com.core.ui.uiElements.mainScreenElements.MoreIcon
-import com.core.ui.uiElements.mainScreenElements.SimpleTopBar
-import com.feature.notification.presentation.screenmodel.NotificationEvent
-import com.feature.notification.presentation.screenmodel.NotificationScreenState
-import com.feature.notification.presentation.screenmodel.NotificationState
+import com.feature.notification.presentation.main.screenmodel.NotificationEvent
+import com.feature.notification.presentation.main.screenmodel.NotificationScreenState
+import com.feature.notification.presentation.main.screenmodel.NotificationState
 
 @Composable
 fun NotificationScreenUI(
@@ -42,7 +41,7 @@ fun NotificationScreenUI(
                 visible = !state.showOnboardingCard,
                 enter = fadeIn(animationSpec = spring(stiffness = Spring.StiffnessLow))
             ) {
-                FloatingButton(onClick = {})
+                FloatingButton(onClick = { onEvent(NotificationEvent.OnAddButtonClick) })
             }
         },
         containerColor = AppTheme.colors.superLightPeachy,

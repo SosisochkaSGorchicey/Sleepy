@@ -1,6 +1,7 @@
-package com.feature.notification.presentation.screenmodel
+package com.feature.notification.presentation.main.screenmodel
 
 import com.core.common.mvi.MviScreenModel
+import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.repository.DataStoreRepository
 import com.feature.notification.model.WeekItem
@@ -21,6 +22,7 @@ class NotificationScreenModel(
         when (event) {
             NotificationEvent.OnOnboardingCardClick -> onboardingCardDisappear()
             is NotificationEvent.OnWeekItemClick -> changeSelectedWeekItem(selectedWeekItem = event.weekItem)
+            NotificationEvent.OnAddButtonClick -> emitSideEffect(NotificationSideEffect.NavigateToAddScreen)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.feature.notification.presentation.components
+package com.feature.notification.presentation.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,8 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 import com.feature.notification.model.WeekItem
-import com.feature.notification.presentation.screenmodel.NotificationEvent
-import com.feature.notification.presentation.screenmodel.NotificationState
+import com.feature.notification.presentation.main.screenmodel.NotificationEvent
+import com.feature.notification.presentation.main.screenmodel.NotificationState
 
 @Composable
 fun WeekDisplay(
