@@ -41,7 +41,8 @@ fun DetailsScreenUI(
                         onClick = { onEvent(PlayerDetailsEvent.OnBackClick) }
                     )
                 },
-                titleText = state.currentAudioDataItem.name
+                titleText = state.currentAudioDataItem.name,
+                modifier = Modifier.padding(top = 20.dp)
             )
         }
     ) { paddingValues ->
