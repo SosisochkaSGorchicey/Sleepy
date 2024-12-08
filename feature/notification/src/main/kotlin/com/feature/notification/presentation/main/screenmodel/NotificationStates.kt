@@ -8,7 +8,7 @@ import com.feature.notification.model.WeekItem
 data class NotificationState(
     val screenState: NotificationScreenState = NotificationScreenState.Loading,
     val showOnboardingCard: Boolean = true,
-    val selectedWeekItem: WeekItem? = null,
+    val selectedWeekItems: List<WeekItem>? = null,
     val notificationItems: List<NotificationItem> = listOf(
         NotificationItem(
             timeDisplay = "20:00",

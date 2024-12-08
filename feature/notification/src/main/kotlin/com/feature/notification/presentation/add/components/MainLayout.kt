@@ -37,8 +37,8 @@ fun MainLayout(
         SectionTitle(textRes = R.string.section_title_day)
 
         WeekDisplay(
-            selectedWeekItem = null,
-            onClick = {}
+            selectedWeekItems = state.chosenWeekItems,
+            onClick = { onEvent(AddNotificationEvent.OnWeekItemClick(it)) }
         )
     }
 }

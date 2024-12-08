@@ -27,7 +27,7 @@ fun NotificationLayout(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 10.dp),
-            selectedWeekItem = state.selectedWeekItem,
+            selectedWeekItems = state.selectedWeekItems,
             onClick = { onEvent(NotificationEvent.OnWeekItemClick(weekItem = it)) }
         )
 

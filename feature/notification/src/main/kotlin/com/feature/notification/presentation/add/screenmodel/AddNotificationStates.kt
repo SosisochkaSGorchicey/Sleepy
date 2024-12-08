@@ -6,7 +6,7 @@ import com.feature.notification.model.WeekItem
 @Immutable
 data class AddNotificationState(
     val createNotification: Boolean = true,
-    val chosenWeekDays: List<WeekItem> = emptyList(),
+    val chosenWeekItems: List<WeekItem> = emptyList(),
 )
 
 sealed interface AddNotificationEvent {

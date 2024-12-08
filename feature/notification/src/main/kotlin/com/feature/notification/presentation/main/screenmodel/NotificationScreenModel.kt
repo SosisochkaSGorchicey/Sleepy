@@ -27,7 +27,7 @@ class NotificationScreenModel(
     }
 
     private fun changeSelectedWeekItem(selectedWeekItem: WeekItem) =
-        reducer { state.copy(selectedWeekItem = selectedWeekItem) }
+        reducer { state.copy(selectedWeekItems = listOf(selectedWeekItem)) }
 
     private fun onboardingCardDisappear() =
         reducer { state.copy(showOnboardingCard = false) }

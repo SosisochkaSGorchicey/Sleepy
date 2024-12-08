@@ -20,7 +20,7 @@ import com.feature.notification.model.WeekItem
 
 @Composable
 fun WeekDisplay(
-    selectedWeekItem: WeekItem?,
+    selectedWeekItems: List<WeekItem>?,
     onClick: (WeekItem) -> Unit,
     modifier: Modifier = Modifier.fillMaxWidth()
 ) {
@@ -32,7 +32,7 @@ fun WeekDisplay(
         WeekItem.entries.forEach { weekItem ->
             WeekItemDisplay(
                 weekItem = weekItem,
-                isSelected = selectedWeekItem == weekItem,
+                isSelected = selectedWeekItems?.contains(weekItem) ?: false,
                 onClick = { onClick(weekItem) }
             )
         }
