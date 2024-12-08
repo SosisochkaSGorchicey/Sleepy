@@ -10,11 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.core.ui.R
+import com.feature.notification.presentation.add.screenmodel.AddNotificationEvent
+import com.feature.notification.presentation.add.screenmodel.AddNotificationState
 import com.feature.notification.presentation.commonItems.WeekDisplay
 
 @Composable
 fun MainLayout(
-    modifier: Modifier
+    modifier: Modifier,
+    state: AddNotificationState,
+    onEvent: (AddNotificationEvent) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -24,6 +28,11 @@ fun MainLayout(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Title()
+
+        NotificationSwitchDisplay(
+            checked = state.createNotification,
+            onCheckedChange = { onEvent(AddNotificationEvent.OnSwitchClick(it)) }
+        )
 
         SectionTitle(textRes = R.string.section_title_day)
 

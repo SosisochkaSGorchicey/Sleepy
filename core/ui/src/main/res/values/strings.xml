@@ -50,6 +50,7 @@
 
     # Add notification screen
     <string name="add_notification_title">Set a notification</string>
+    <string name="notification_state_description">Create a push notification</string>
     <string name="section_title_day">Select days</string>
 
 </resources>

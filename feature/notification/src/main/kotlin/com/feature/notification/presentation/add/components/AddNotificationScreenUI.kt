@@ -34,7 +34,11 @@ fun AddNotificationScreenUI(
         Box(modifier = Modifier.fillMaxSize()) {
             BackgroundImage()
 
-            MainLayout(modifier = Modifier.padding(padding))
+            MainLayout(
+                modifier = Modifier.padding(padding),
+                state = state,
+                onEvent = onEvent
+            )
         }
     }
 }
