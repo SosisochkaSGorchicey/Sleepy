@@ -34,7 +34,10 @@ fun MainLayout(
             onCheckedChange = { onEvent(AddNotificationEvent.OnSwitchClick(it)) }
         )
 
-        SectionTitle(textRes = R.string.section_title_day)
+        SectionTitleWithHint(
+            textRes = R.string.section_title_day,
+            onClick = {}
+        )
 
         WeekDisplay(
             selectedWeekItems = state.chosenWeekItems,
