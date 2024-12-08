@@ -2,6 +2,7 @@ package com.feature.notification.di
 
 import cafe.adriel.voyager.core.registry.screenModule
 import com.core.common.navigation.SharedScreen
+import com.feature.notification.presentation.add.screenmodel.AddNotificationScreenModel
 import com.feature.notification.presentation.main.NotificationScreen
 import com.feature.notification.presentation.main.screenmodel.NotificationScreenModel
 import org.koin.core.module.dsl.factoryOf
@@ -15,4 +16,5 @@ val notificationScreenModule = screenModule {
 
 val notificationFeatureModule = module {
     factoryOf(::NotificationScreenModel)
+    factoryOf(::AddNotificationScreenModel)
 }

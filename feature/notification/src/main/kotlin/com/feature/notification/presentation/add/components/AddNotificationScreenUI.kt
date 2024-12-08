@@ -9,9 +9,14 @@ import androidx.compose.ui.Modifier
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.mainScreenElements.SimpleBackIcon
 import com.core.ui.uiElements.mainScreenElements.SimpleTopBar
+import com.feature.notification.presentation.add.screenmodel.AddNotificationEvent
+import com.feature.notification.presentation.add.screenmodel.AddNotificationState
 
 @Composable
-fun AddNotificationScreenUI() {
+fun AddNotificationScreenUI(
+    state: AddNotificationState,
+    onEvent: (AddNotificationEvent) -> Unit
+) {
     Scaffold(
         topBar = {
             SimpleTopBar(
