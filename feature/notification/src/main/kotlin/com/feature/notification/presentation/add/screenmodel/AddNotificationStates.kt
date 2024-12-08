@@ -9,8 +9,10 @@ data class AddNotificationState(
 )
 
 sealed interface AddNotificationEvent {
+    data object OnBackButtonClick : AddNotificationEvent
     data class OnWeekItemClick(val clickedWeekItem: WeekItem) : AddNotificationEvent
 }
 
 sealed interface AddNotificationSideEffect {
+    data object NavigateBack : AddNotificationSideEffect
 }

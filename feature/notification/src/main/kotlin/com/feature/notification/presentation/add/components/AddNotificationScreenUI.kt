@@ -23,7 +23,7 @@ fun AddNotificationScreenUI(
                 navigationIcon = {
                     SimpleBackIcon(
                         contentColor = AppTheme.colors.baseBlue,
-                        onClick = { } //todo
+                        onClick = { onEvent(AddNotificationEvent.OnBackButtonClick) }
                     )
                 }
             )
