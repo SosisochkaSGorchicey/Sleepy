@@ -36,7 +36,9 @@ fun MainLayout(
 
         SectionTitleWithHint(
             textRes = R.string.section_title_day,
-            onClick = {}
+            onClick = { onEvent(AddNotificationEvent.OnDaysHintClick) },
+            hintTextRes = R.string.section_hint_day,
+            visible = state.daysHintIsVisible
         )
 
         WeekDisplay(
