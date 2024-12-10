@@ -45,5 +45,12 @@ fun MainLayout(
             selectedWeekItems = state.chosenWeekItems,
             onClick = { onEvent(AddNotificationEvent.OnWeekItemClick(it)) }
         )
+
+        SectionTitle(
+            modifier = Modifier.padding(top = 20.dp),
+            textRes = R.string.section_title_time
+        )
+
+        TimeSelector()
     }
 }

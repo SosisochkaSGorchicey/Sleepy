@@ -22,8 +22,12 @@ import androidx.compose.ui.unit.dp
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun SectionTitle(@StringRes textRes: Int) {
+fun SectionTitle(
+    @StringRes textRes: Int,
+    modifier: Modifier = Modifier
+) {
     Text(
+        modifier = modifier,
         text = stringResource(textRes),
         style = AppTheme.typography.bodyMediumBold
     )
