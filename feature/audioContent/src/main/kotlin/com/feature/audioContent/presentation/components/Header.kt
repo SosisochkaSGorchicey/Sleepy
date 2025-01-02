@@ -14,9 +14,9 @@ import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun Header() {
+fun Header(modifier: Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp)
             .background(AppTheme.colors.basePeachy)

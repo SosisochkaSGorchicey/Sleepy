@@ -39,9 +39,8 @@ object AudioContentScreen : Screen {
             containerColor = AppTheme.colors.lightPeachy,
             contentColor = AppTheme.colors.baseBlue
         ) { padding ->
-
             AudioContentScreenUI(
-                modifier = Modifier.padding(top = padding.calculateTopPadding()),
+                firstItemModifier = Modifier.padding(top = padding.calculateTopPadding()),
                 lastItemModifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
                 state = state,
                 onEvent = viewModel::onEvent
@@ -64,20 +63,7 @@ object AudioContentScreen : Screen {
                     modifier = Modifier.fillMaxSize(),
                     layoutModifier = Modifier.padding(padding)
                 )
-//            Box(
-//                modifier = Modifier
-//                    .padding(it)
-//                    .fillMaxSize(),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                Button(onClick = {
-//                    context.startActivity(Intent(context, PlayerActivity::class.java))
-//                }) {
-//                    Text(text = "Go to player")
-//                }
-//            }
         }
-
 
         viewModel.collectSideEffect {
             when (it) {

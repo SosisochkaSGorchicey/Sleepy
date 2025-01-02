@@ -12,16 +12,16 @@ import com.feature.audioContent.presentation.screenmodel.AudioContentState
 
 @Composable
 fun AudioContentScreenUI(
-    modifier: Modifier,
+    firstItemModifier: Modifier,
     lastItemModifier: Modifier,
     state: AudioContentState,
     onEvent: (AudioContentEvent) -> Unit
 ) {
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        item { Header() }
+        item { Header(modifier = firstItemModifier) }
 
         if (!state.inLoading && state.errorTextRes == null)
             item { SleepSounds() }
