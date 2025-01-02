@@ -32,6 +32,7 @@ data class AppColors(
     val baseRed: Color = BaseRed,
     val baseBlue: Color = BaseBlue,
     val baseBlueLight: Color = BaseBlueLight,
+    val baseBlueLighter: Color = BaseBlueLighter,
     val baseGray: Color = BaseGray,
     val darkerGray: Color = DarkerGray,
     val basePeachy: Color = BasePeachy,

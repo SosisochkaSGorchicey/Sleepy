@@ -5,6 +5,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.feature.notification.model.WeekItem
 import kotlinx.coroutines.delay
+import kotlinx.datetime.LocalTime
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
@@ -18,8 +19,12 @@ class AddNotificationScreenModel
             AddNotificationEvent.OnBackButtonClick -> emitSideEffect(AddNotificationSideEffect.NavigateBack)
             is AddNotificationEvent.OnSwitchClick -> switchStateChange(newValue = event.value)
             AddNotificationEvent.OnDaysHintClick -> daysHintVisibilityChange()
+            is AddNotificationEvent.OnTimeSelect -> timeSelected(localTime = event.localTime)
         }
     }
+
+    private fun timeSelected(localTime: LocalTime) =
+        reducer { state.copy(selectedTime = localTime) }
 
     private fun daysHintVisibilityChange() = intent {
         if (state.daysHintIsVisible) {

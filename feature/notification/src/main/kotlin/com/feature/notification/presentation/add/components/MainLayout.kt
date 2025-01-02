@@ -51,6 +51,8 @@ fun MainLayout(
             textRes = R.string.section_title_time
         )
 
-        TimeSelector()
+        TimeSelector(
+            onTimeSelected = { onEvent(AddNotificationEvent.OnTimeSelect(it)) }
+        )
     }
 }
