@@ -1,7 +1,7 @@
 package com.feature.notification.presentation.add.components
 
 import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +41,11 @@ fun SectionTitleWithHint(
     @StringRes hintTextRes: Int,
     visible: Boolean
 ) {
+    val animatedColor by animateColorAsState(
+        if (visible) AppTheme.colors.baseBlueLight else AppTheme.colors.transparent,
+        label = "animatedColor"
+    )
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -57,30 +63,16 @@ fun SectionTitleWithHint(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
         ) {
-            AnimatedVisibility(
+            Text(
                 modifier = Modifier.weight(1f),
-                visible = visible
-            ) {
-                Text(
-                    text = stringResource(hintTextRes),
-                    style = AppTheme.typography.bodySuperSmall,
-                    color = AppTheme.colors.baseBlueLight,
-                    textAlign = TextAlign.End,
-                    minLines = 2,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-
-            AnimatedVisibility(visible = !visible) {
-                Text(
-                    text = "",
-                    style = AppTheme.typography.bodySuperSmall,
-                    color = AppTheme.colors.transparent,
-                    textAlign = TextAlign.End,
-                    minLines = 2,
-                )
-            }
+                text = stringResource(hintTextRes),
+                style = AppTheme.typography.bodySuperSmall,
+                color = animatedColor,
+                textAlign = TextAlign.End,
+                minLines = 2,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
 
             Icon(
                 modifier = Modifier
