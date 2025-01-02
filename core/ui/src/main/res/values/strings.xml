@@ -57,5 +57,6 @@
     <string name="section_title_description">Description</string>
     <string name="placeholder_add_notification">Enter text…</string>
     <string name="section_hint_day">You can choose one day or several days in a row</string>
+    <string name="save_button">Save</string>
 
 </resources>

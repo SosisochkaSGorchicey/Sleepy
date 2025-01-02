@@ -2,6 +2,7 @@ package com.feature.notification.presentation.add.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.core.ui.R
+import com.core.ui.uiElements.MainButton
 import com.core.ui.uiElements.MainTextField
 import com.feature.notification.presentation.add.screenmodel.AddNotificationEvent
 import com.feature.notification.presentation.add.screenmodel.AddNotificationState
@@ -18,18 +20,18 @@ import com.feature.notification.presentation.commonItems.WeekDisplay
 
 @Composable
 fun MainLayout(
-    modifier: Modifier,
+    padding: PaddingValues,
     state: AddNotificationState,
     onEvent: (AddNotificationEvent) -> Unit
 ) {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Title()
+        Title(modifier = Modifier.padding(top = padding.calculateTopPadding()))
 
         NotificationSwitchDisplay(
             checked = state.createNotification,
@@ -73,6 +75,15 @@ fun MainLayout(
             onValueChange = { onEvent(AddNotificationEvent.OnDescriptionChange(it)) },
             singleLine = false,
             lines = 3
+        )
+
+        MainButton(
+            modifier = Modifier
+                .padding(bottom = padding.calculateBottomPadding())
+                .padding(vertical = 20.dp)
+                .fillMaxWidth(),
+            onClick = {},
+            text = stringResource(id = R.string.save_button)
         )
     }
 }

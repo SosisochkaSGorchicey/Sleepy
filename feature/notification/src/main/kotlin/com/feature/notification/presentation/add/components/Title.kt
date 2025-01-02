@@ -13,8 +13,9 @@ import com.core.ui.R
 import com.core.ui.theme.AppTheme
 
 @Composable
-fun Title() {
+fun Title(modifier: Modifier) {
     Box(
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
         Text(
