@@ -1,6 +1,7 @@
 package com.feature.notification.presentation.add.screenmodel
 
 import com.core.common.mvi.MviScreenModel
+import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.feature.notification.model.WeekItem
@@ -20,8 +21,16 @@ class AddNotificationScreenModel
             is AddNotificationEvent.OnSwitchClick -> switchStateChange(newValue = event.value)
             AddNotificationEvent.OnDaysHintClick -> daysHintVisibilityChange()
             is AddNotificationEvent.OnTimeSelect -> timeSelected(localTime = event.localTime)
+            is AddNotificationEvent.OnDescriptionChange -> changeDescription(newValue = event.newValue)
+            is AddNotificationEvent.OnTitleChange -> changeTitle(newValue = event.newValue)
         }
     }
+
+    private fun changeDescription(newValue: String) =
+        blockingReducer { state.copy(descriptionText = newValue) }
+
+    private fun changeTitle(newValue: String) =
+        blockingReducer { state.copy(titleText = newValue) }
 
     private fun timeSelected(localTime: LocalTime) =
         reducer { state.copy(selectedTime = localTime) }

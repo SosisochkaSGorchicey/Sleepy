@@ -53,6 +53,9 @@
     <string name="notification_state_description">Create a push notification</string>
     <string name="section_title_day">Select days</string>
     <string name="section_title_time">Select time</string>
+    <string name="section_title_title">Title</string>
+    <string name="section_title_description">Description</string>
+    <string name="placeholder_add_notification">Enter text…</string>
     <string name="section_hint_day">You can choose one day or several days in a row</string>
 
 </resources>

@@ -8,8 +8,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.core.ui.R
+import com.core.ui.uiElements.MainTextField
 import com.feature.notification.presentation.add.screenmodel.AddNotificationEvent
 import com.feature.notification.presentation.add.screenmodel.AddNotificationState
 import com.feature.notification.presentation.commonItems.WeekDisplay
@@ -53,6 +55,24 @@ fun MainLayout(
 
         TimeSelector(
             onTimeSelected = { onEvent(AddNotificationEvent.OnTimeSelect(it)) }
+        )
+
+        SectionTitle(textRes = R.string.section_title_title)
+
+        MainTextField(
+            currentText = state.titleText,
+            placeholderText = stringResource(id = R.string.placeholder_add_notification),
+            onValueChange = { onEvent(AddNotificationEvent.OnTitleChange(it)) }
+        )
+
+        SectionTitle(textRes = R.string.section_title_title)
+
+        MainTextField(
+            currentText = state.descriptionText,
+            placeholderText = stringResource(id = R.string.placeholder_add_notification),
+            onValueChange = { onEvent(AddNotificationEvent.OnDescriptionChange(it)) },
+            singleLine = false,
+            lines = 3
         )
     }
 }
