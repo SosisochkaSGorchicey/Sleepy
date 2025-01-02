@@ -4,14 +4,17 @@ import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
+import com.core.domain.model.localDB.ScheduleItem
+import com.core.domain.repository.LocalDatabaseRepository
 import com.feature.notification.model.WeekItem
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalTime
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-class AddNotificationScreenModel
-    : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
+class AddNotificationScreenModel(
+    private val localDatabaseRepository: LocalDatabaseRepository
+) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
     initialState = AddNotificationState()
 ) {
     override fun onEvent(event: AddNotificationEvent) {
@@ -23,6 +26,22 @@ class AddNotificationScreenModel
             is AddNotificationEvent.OnTimeSelect -> timeSelected(localTime = event.localTime)
             is AddNotificationEvent.OnDescriptionChange -> changeDescription(newValue = event.newValue)
             is AddNotificationEvent.OnTitleChange -> changeTitle(newValue = event.newValue)
+            AddNotificationEvent.OnSaveClick -> saveItem()
+        }
+    }
+
+    private fun saveItem() = intent {
+        //todo checks
+        state.chosenWeekItems.forEach { weekItem ->
+            localDatabaseRepository.saveScheduleItem(
+                scheduleItem = ScheduleItem(
+                    createPush = state.createNotification,
+                    weekDayId = weekItem.id,
+                    millisecondOfDay = state.selectedTime?.toMillisecondOfDay() ?: 0,
+                    titleText = state.titleText,
+                    descriptionText = state.descriptionText
+                )
+            )
         }
     }
 

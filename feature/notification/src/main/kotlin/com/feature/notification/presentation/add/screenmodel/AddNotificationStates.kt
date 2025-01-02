@@ -9,7 +9,7 @@ data class AddNotificationState(
     val createNotification: Boolean = true,
     val daysHintIsVisible: Boolean = false,
     val chosenWeekItems: List<WeekItem> = emptyList(),
-    val selectedTime: LocalTime? = null,
+    val selectedTime: LocalTime? = null, //todo not null! чекнуть что в UI по дефолту
     val titleText: String = "",
     val descriptionText: String = "",
 )
@@ -17,6 +17,7 @@ data class AddNotificationState(
 sealed interface AddNotificationEvent {
     data object OnBackButtonClick : AddNotificationEvent
     data object OnDaysHintClick : AddNotificationEvent
+    data object OnSaveClick : AddNotificationEvent
     data class OnSwitchClick(val value: Boolean) : AddNotificationEvent
     data class OnWeekItemClick(val clickedWeekItem: WeekItem) : AddNotificationEvent
     data class OnTimeSelect(val localTime: LocalTime) : AddNotificationEvent

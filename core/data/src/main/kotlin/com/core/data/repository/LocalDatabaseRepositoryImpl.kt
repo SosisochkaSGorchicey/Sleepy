@@ -1,5 +1,6 @@
 package com.core.data.repository
 
+import com.core.data.mapper.toData
 import com.core.data.mapper.toDomain
 import com.core.database.dao.ScheduleDao
 import com.core.domain.model.localDB.ScheduleItem
@@ -13,4 +14,8 @@ class LocalDatabaseRepositoryImpl(
     override fun itemsByWeekDayId(weekDayId: Int): Flow<List<ScheduleItem>> =
         scheduleDao.itemsByWeekDayId(weekDayId = weekDayId)
             .map { it.toDomain() }
+
+    override suspend fun saveScheduleItem(scheduleItem: ScheduleItem) {
+        scheduleDao.upsertScheduleItem(scheduleItemModel = scheduleItem.toData())
+    }
 }

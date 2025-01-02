@@ -82,7 +82,7 @@ fun MainLayout(
                 .padding(bottom = padding.calculateBottomPadding())
                 .padding(vertical = 20.dp)
                 .fillMaxWidth(),
-            onClick = {},
+            onClick = { onEvent(AddNotificationEvent.OnSaveClick) },
             text = stringResource(id = R.string.save_button)
         )
     }

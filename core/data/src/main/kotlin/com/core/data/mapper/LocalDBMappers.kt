@@ -14,3 +14,12 @@ fun List<ScheduleItemModel>.toDomain(): List<ScheduleItem> =
             descriptionText = item.descriptionText
         )
     }
+
+fun ScheduleItem.toData(): ScheduleItemModel =
+    ScheduleItemModel(
+        createPush = this.createPush,
+        weekDayId = this.weekDayId,
+        millisecondOfDay = this.millisecondOfDay,
+        titleText = this.titleText,
+        descriptionText = this.descriptionText
+    )

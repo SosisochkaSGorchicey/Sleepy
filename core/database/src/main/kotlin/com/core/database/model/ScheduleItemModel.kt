@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "schedule_table")
 data class ScheduleItemModel(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
     val createPush: Boolean,
     val weekDayId: Int,
     val millisecondOfDay: Int,
