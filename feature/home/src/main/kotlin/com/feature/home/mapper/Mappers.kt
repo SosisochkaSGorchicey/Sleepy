@@ -2,7 +2,7 @@ package com.feature.home.mapper
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import com.core.domain.model.ArticleItem
+import com.core.domain.model.supabase.db.ArticleItem
 import com.feature.home.model.ArticleUIModel
 
 private val White = Color(0xFFFFFFFF)

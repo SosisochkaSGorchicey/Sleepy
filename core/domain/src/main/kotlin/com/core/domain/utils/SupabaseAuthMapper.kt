@@ -1,6 +1,6 @@
 package com.core.domain.utils
 
-import com.core.domain.model.supabase.AuthErrorType
+import com.core.domain.model.supabase.auth.AuthErrorType
 import com.core.domain.model.supabase.SupabaseResult
 import io.github.jan.supabase.exceptions.BadRequestRestException
 import io.github.jan.supabase.exceptions.HttpRequestException

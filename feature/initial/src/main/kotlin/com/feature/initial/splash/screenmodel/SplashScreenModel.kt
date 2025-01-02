@@ -3,7 +3,7 @@ package com.feature.initial.splash.screenmodel
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
-import com.core.domain.model.supabase.LoggedInState
+import com.core.domain.model.supabase.auth.LoggedInState
 import com.core.domain.usecase.IsUserLoggedInUseCase
 import com.feature.initial.splash.toTextRes
 import kotlinx.coroutines.delay

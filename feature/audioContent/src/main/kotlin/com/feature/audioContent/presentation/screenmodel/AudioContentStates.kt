@@ -2,8 +2,8 @@ package com.feature.audioContent.presentation.screenmodel
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import com.core.domain.model.AudioDataItem
-import com.core.domain.model.AudioSection
+import com.core.domain.model.supabase.db.AudioDataItem
+import com.core.domain.model.supabase.db.AudioSection
 
 @Immutable
 data class AudioContentState(

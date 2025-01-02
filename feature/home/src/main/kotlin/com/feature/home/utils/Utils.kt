@@ -3,7 +3,7 @@ package com.feature.home.utils
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.core.domain.model.supabase.AuthErrorType
+import com.core.domain.model.supabase.auth.AuthErrorType
 import com.core.ui.R
 
 

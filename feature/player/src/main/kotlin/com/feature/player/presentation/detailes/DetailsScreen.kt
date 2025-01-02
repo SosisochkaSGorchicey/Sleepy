@@ -6,7 +6,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.core.domain.model.AudioDataItem
+import com.core.domain.model.supabase.db.AudioDataItem
 import com.feature.player.presentation.detailes.components.DetailsScreenUI
 import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsEvent
 import com.feature.player.presentation.detailes.screenmodel.PlayerDetailsScreenModel

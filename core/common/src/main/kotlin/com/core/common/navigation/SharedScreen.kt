@@ -3,7 +3,7 @@ package com.core.common.navigation
 import cafe.adriel.voyager.core.registry.ScreenProvider
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.core.screen.Screen
-import com.core.domain.model.AudioDataItem
+import com.core.domain.model.supabase.db.AudioDataItem
 
 sealed interface SharedScreen : ScreenProvider {
     data object Splash : SharedScreen

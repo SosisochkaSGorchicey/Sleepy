@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val databaseModule = module {
     provideDatabase()
-    single { get<Database>().dbDao }
+    single { get<Database>().scheduleDao }
 }
 
 internal fun Module.provideDatabase(): KoinDefinition<Database> = single {

@@ -1,4 +1,4 @@
-package com.core.domain.model
+package com.core.domain.model.supabase.db
 
 data class ArticleItem(
     val id: Int,

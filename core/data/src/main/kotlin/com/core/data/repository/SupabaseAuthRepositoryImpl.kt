@@ -1,6 +1,6 @@
 package com.core.data.repository
 
-import com.core.domain.model.supabase.LoggedInState
+import com.core.domain.model.supabase.auth.LoggedInState
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import com.core.domain.utils.toSupabaseError

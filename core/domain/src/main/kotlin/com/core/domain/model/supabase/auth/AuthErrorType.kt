@@ -1,4 +1,4 @@
-package com.core.domain.model.supabase
+package com.core.domain.model.supabase.auth
 
 enum class AuthErrorType {
     Timeout,

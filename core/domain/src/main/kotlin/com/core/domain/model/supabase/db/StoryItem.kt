@@ -1,4 +1,4 @@
-package com.core.domain.model.supabase
+package com.core.domain.model.supabase.db
 
 data class StoryItem(
     val url: String = "",

@@ -3,8 +3,8 @@ package com.feature.player.presentation.detailes.screenmodel
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
-import com.core.domain.model.AudioDataItem
-import com.core.domain.model.AudioItem
+import com.core.domain.model.supabase.db.AudioDataItem
+import com.core.domain.model.supabase.db.AudioItem
 import com.feature.player.service.MusicServiceHandler
 import com.feature.player.utils.MediaStateEvents
 import com.feature.player.utils.MusicStates

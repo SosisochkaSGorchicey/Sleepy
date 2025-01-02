@@ -2,7 +2,7 @@ package com.feature.player.utils
 
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
-import com.core.domain.model.AudioItem
+import com.core.domain.model.supabase.db.AudioItem
 
 fun Long.toProgressCalculate(duration: Long): Float =
     if (this > 0) (this.toFloat() / duration.toFloat()) * 100f else 0f

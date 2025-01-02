@@ -1,8 +1,8 @@
 package com.core.domain.repository
 
-import com.core.domain.model.ArticleItem
-import com.core.domain.model.AudioSection
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.ArticleItem
+import com.core.domain.model.supabase.db.AudioSection
+import com.core.domain.model.supabase.db.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import kotlinx.coroutines.flow.Flow
 

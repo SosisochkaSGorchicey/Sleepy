@@ -1,6 +1,6 @@
 package com.core.domain.repository
 
-import com.core.domain.model.supabase.LoggedInState
+import com.core.domain.model.supabase.auth.LoggedInState
 import io.github.jan.supabase.gotrue.SessionStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow

@@ -10,6 +10,7 @@ android.namespace = "com.core.data"
 
 dependencies {
     implementation(projects.core.domain)
+    implementation(projects.core.database)
 
     implementation(libs.coroutines.core)
     implementation(libs.koin.android)

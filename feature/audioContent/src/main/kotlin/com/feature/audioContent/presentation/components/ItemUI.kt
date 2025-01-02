@@ -21,7 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.core.domain.model.AudioDataItem
+import com.core.domain.model.supabase.db.AudioDataItem
 import com.core.ui.icons.MyIconPack
 import com.core.ui.icons.myiconpack.Flame
 import com.core.ui.theme.AppTheme

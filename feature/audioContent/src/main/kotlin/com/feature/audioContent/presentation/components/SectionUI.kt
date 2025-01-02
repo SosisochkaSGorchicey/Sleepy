@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.core.domain.model.AudioSection
+import com.core.domain.model.supabase.db.AudioSection
 import com.core.ui.theme.AppTheme
 import com.feature.audioContent.presentation.screenmodel.AudioContentEvent
 

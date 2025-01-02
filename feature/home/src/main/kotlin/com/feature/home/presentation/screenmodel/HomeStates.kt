@@ -2,7 +2,7 @@ package com.feature.home.presentation.screenmodel
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.StoryItem
 import com.feature.home.model.ArticleUIModel
 
 @Immutable

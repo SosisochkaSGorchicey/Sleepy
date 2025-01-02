@@ -3,9 +3,9 @@ package com.core.data.mapper
 import com.core.data.model.ArticleItemModel
 import com.core.data.model.AudioDataItemModel
 import com.core.data.model.StoryItemModel
-import com.core.domain.model.ArticleItem
-import com.core.domain.model.AudioDataItem
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.ArticleItem
+import com.core.domain.model.supabase.db.AudioDataItem
+import com.core.domain.model.supabase.db.StoryItem
 
 fun StoryItemModel.toDomain(): StoryItem =
     StoryItem(

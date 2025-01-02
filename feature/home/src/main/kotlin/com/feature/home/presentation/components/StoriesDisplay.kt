@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.StoryItem
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorDisplay
 import com.core.ui.uiElements.LoadingDisplay

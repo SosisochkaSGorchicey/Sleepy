@@ -3,6 +3,7 @@ package com.core.sleepy.di
 import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.core.data.di.dataModule
+import com.core.database.di.databaseModule
 import com.core.domain.di.domainModule
 import com.core.domain.repository.DataStoreRepository
 import com.core.sleepy.tabGraphScreen
@@ -49,11 +50,10 @@ class MainApp : Application() {
                     domainModule,
                     homeFeatureModule,
                     contentFeatureModule,
-                    notificationFeatureModule
+                    notificationFeatureModule,
+                    databaseModule
                 )
             )
         }
-
-        val datastore: DataStoreRepository by inject()
     }
 }

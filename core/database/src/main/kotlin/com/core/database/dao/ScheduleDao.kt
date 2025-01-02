@@ -1,0 +1,12 @@
+package com.core.database.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import com.core.database.model.ScheduleItemModel
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface ScheduleDao {
+    @Query("SELECT * FROM schedule_table WHERE weekDayId = :weekDayId")
+    fun itemsByWeekDayId(weekDayId: Int): Flow<List<ScheduleItemModel>>
+}

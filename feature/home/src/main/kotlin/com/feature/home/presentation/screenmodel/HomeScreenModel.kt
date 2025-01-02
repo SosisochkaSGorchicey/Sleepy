@@ -3,8 +3,8 @@ package com.feature.home.presentation.screenmodel
 import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
-import com.core.domain.model.ArticleItem
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.ArticleItem
+import com.core.domain.model.supabase.db.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
 import com.feature.home.mapper.toPresentation

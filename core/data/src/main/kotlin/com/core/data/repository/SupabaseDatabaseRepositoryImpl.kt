@@ -5,10 +5,10 @@ import com.core.data.model.ArticleItemModel
 import com.core.data.model.AudioDataItemModel
 import com.core.data.model.AudioSectionModel
 import com.core.data.model.StoryItemModel
-import com.core.domain.model.ArticleItem
-import com.core.domain.model.AudioItem
-import com.core.domain.model.AudioSection
-import com.core.domain.model.supabase.StoryItem
+import com.core.domain.model.supabase.db.ArticleItem
+import com.core.domain.model.supabase.db.AudioItem
+import com.core.domain.model.supabase.db.AudioSection
+import com.core.domain.model.supabase.db.StoryItem
 import com.core.domain.model.supabase.SupabaseResult
 import com.core.domain.repository.SupabaseDatabaseRepository
 import com.core.domain.utils.supabaseRequestFlow

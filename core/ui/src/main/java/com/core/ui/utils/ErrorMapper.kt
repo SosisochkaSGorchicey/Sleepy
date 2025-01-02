@@ -1,6 +1,6 @@
 package com.core.ui.utils
 
-import com.core.domain.model.supabase.AuthErrorType
+import com.core.domain.model.supabase.auth.AuthErrorType
 import com.core.ui.R
 
 fun AuthErrorType.toTextRes(): Int = when (this) {

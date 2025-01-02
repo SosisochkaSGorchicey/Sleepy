@@ -1,5 +1,7 @@
 package com.core.domain.model.supabase
 
+import com.core.domain.model.supabase.auth.AuthErrorType
+
 sealed interface SupabaseResult<out T> {
     data object Loading : SupabaseResult<Nothing>
 
