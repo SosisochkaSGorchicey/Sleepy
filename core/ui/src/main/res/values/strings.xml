@@ -47,6 +47,10 @@
     # Notifications screen
     <string name="notif_onboarding_card_title">Let\'s create your sleep schedule</string>
     <string name="button_lets_go">Let\'s go!</string>
+    <string name="drop_down_item_clear_day">Clear chosen day</string>
+    <string name="warning_item_clear_day">Are you sure you want to delete all items for current day?</string>
+    <string name="drop_down_item_clear_all">Delete all items</string>
+    <string name="warning_item_clear_all">Are you sure you want to delete all items?</string>
 
     # Add notification screen
     <string name="add_notification_title">Set a notification</string>

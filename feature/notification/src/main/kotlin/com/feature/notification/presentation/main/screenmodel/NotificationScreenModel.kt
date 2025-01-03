@@ -31,8 +31,19 @@ class NotificationScreenModel(
             NotificationEvent.OnOnboardingCardClick -> onboardingCardDisappear()
             is NotificationEvent.OnWeekItemClick -> changeSelectedWeekItem(selectedWeekItem = event.weekItem)
             NotificationEvent.OnAddButtonClick -> emitSideEffect(NotificationSideEffect.NavigateToAddScreen)
+            NotificationEvent.OnClearCurrentDayClick -> TODO()
+            NotificationEvent.OnCloseDropDownMenu -> closeDropDownMenu()
+            NotificationEvent.OnDeleteAllClick -> TODO()
+            NotificationEvent.OnDropDownMenuClick -> changeDropDownMenu()
+            is NotificationEvent.OnOpenAlertDialog -> TODO()
         }
     }
+
+    private fun changeDropDownMenu() =
+        reducer { state.copy(dropDownIsExtended = !state.dropDownIsExtended) }
+
+    private fun closeDropDownMenu() =
+        reducer { state.copy(dropDownIsExtended = false) }
 
     private fun setDefaultDay() {
         val currentDayOfWeek = Clock.System.now()

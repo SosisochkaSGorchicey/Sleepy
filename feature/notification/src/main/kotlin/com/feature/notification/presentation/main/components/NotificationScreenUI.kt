@@ -14,7 +14,6 @@ import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.mainScreenElements.FloatingButton
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
-import com.core.ui.uiElements.mainScreenElements.MoreIcon
 import com.feature.notification.presentation.main.screenmodel.NotificationEvent
 import com.feature.notification.presentation.main.screenmodel.NotificationScreenState
 import com.feature.notification.presentation.main.screenmodel.NotificationState
@@ -32,7 +31,10 @@ fun NotificationScreenUI(
             MainTopBar(
                 containerColor = AppTheme.colors.transparent,
                 actions = {
-                    MoreIcon(onClick = {})
+                    DropDownIconButton(
+                        expanded = state.dropDownIsExtended,
+                        onEvent = onEvent
+                    )
                 }
             )
         },
