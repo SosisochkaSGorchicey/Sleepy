@@ -1,5 +1,6 @@
 package com.feature.notification.presentation.add.screenmodel
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.feature.notification.model.WeekItem
 import kotlinx.datetime.LocalTime
@@ -9,10 +10,15 @@ data class AddNotificationState(
     val createNotification: Boolean = true,
     val daysHintIsVisible: Boolean = false,
     val chosenWeekItems: List<WeekItem> = emptyList(),
-    val selectedTime: LocalTime? = null, //todo not null! чекнуть что в UI по дефолту
+    val selectedTime: LocalTime = LocalTime(0, 0),
     val titleText: String = "",
     val descriptionText: String = "",
-)
+    @StringRes val errorTextRes: Int? = null
+) {
+    fun daysAreChosen(): Boolean = chosenWeekItems.isNotEmpty()
+
+    fun textsAreValid(): Boolean = titleText.isNotBlank() && descriptionText.isNotBlank()
+}
 
 sealed interface AddNotificationEvent {
     data object OnBackButtonClick : AddNotificationEvent

@@ -6,6 +6,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.repository.LocalDatabaseRepository
+import com.core.ui.R
 import com.feature.notification.model.WeekItem
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalTime
@@ -31,18 +32,31 @@ class AddNotificationScreenModel(
     }
 
     private fun saveItem() = intent {
-        //todo checks
-        state.chosenWeekItems.forEach { weekItem ->
-            localDatabaseRepository.saveScheduleItem(
-                scheduleItem = ScheduleItem(
-                    createPush = state.createNotification,
-                    weekDayId = weekItem.id,
-                    millisecondOfDay = state.selectedTime?.toMillisecondOfDay() ?: 0,
-                    titleText = state.titleText,
-                    descriptionText = state.descriptionText
-                )
-            )
+        when {
+            !state.daysAreChosen() -> showError(R.string.error_no_days_selected)
+            !state.textsAreValid() -> showError(R.string.error_empty_text_fields)
+            else -> {
+                state.chosenWeekItems.forEach { weekItem ->
+                    localDatabaseRepository.saveScheduleItem(
+                        scheduleItem = ScheduleItem(
+                            createPush = state.createNotification,
+                            weekDayId = weekItem.id,
+                            millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                            titleText = state.titleText,
+                            descriptionText = state.descriptionText
+                        )
+                    )
+                }
+
+                emitSideEffect(AddNotificationSideEffect.NavigateBack)
+            }
         }
+    }
+
+    private fun showError(errorTextRes: Int) = intent {
+        reduce { state.copy(errorTextRes = errorTextRes) }
+        delay(3000)
+        reduce { state.copy(errorTextRes = null) }
     }
 
     private fun changeDescription(newValue: String) =
