@@ -33,3 +33,6 @@ enum class WeekItem(
         shortName = "S"
     )
 }
+
+fun Int.getWeekDayById(): WeekItem? =
+    WeekItem.entries.find { it.id == this }

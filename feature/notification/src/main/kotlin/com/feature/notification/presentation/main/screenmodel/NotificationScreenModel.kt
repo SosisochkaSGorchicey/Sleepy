@@ -6,6 +6,11 @@ import com.core.common.mvi.reducer
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.LocalDatabaseRepository
 import com.feature.notification.model.WeekItem
+import com.feature.notification.model.getWeekDayById
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.isoDayNumber
+import kotlinx.datetime.toLocalDateTime
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
@@ -18,6 +23,7 @@ class NotificationScreenModel(
 
     init {
         decideScreenState()
+        setDefaultDay()
     }
 
     override fun onEvent(event: NotificationEvent) {
@@ -28,15 +34,27 @@ class NotificationScreenModel(
         }
     }
 
+    private fun setDefaultDay() {
+        val currentDayOfWeek = Clock.System.now()
+            .toLocalDateTime(TimeZone.currentSystemDefault())
+            .dayOfWeek.isoDayNumber
+
+        (currentDayOfWeek - 1).getWeekDayById()?.let { weekItem ->
+            reducer { state.copy(selectedWeekItems = listOf(weekItem)) }
+            getItemsForWeek(idOfWeekItem = weekItem.id)
+        }
+    }
+
     private fun changeSelectedWeekItem(selectedWeekItem: WeekItem) {
         reducer { state.copy(selectedWeekItems = listOf(selectedWeekItem)) }
+        getItemsForWeek(idOfWeekItem = selectedWeekItem.id)
+    }
 
-        intent {
-            localDatabaseRepository.itemsByWeekDayId(weekDayId = selectedWeekItem.id)
-                .collect {
-                    reduce { state.copy(notificationItems = it) }
-                }
-        }
+    private fun getItemsForWeek(idOfWeekItem: Int) = intent {
+        localDatabaseRepository.itemsByWeekDayId(weekDayId = idOfWeekItem)
+            .collect {
+                reduce { state.copy(notificationItems = it) }
+            }
     }
 
     private fun onboardingCardDisappear() =
