@@ -18,12 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.core.domain.model.localDB.ScheduleItem
 import com.core.ui.theme.AppTheme
-import com.feature.notification.model.NotificationItem
+import com.core.ui.utils.millisecondsToTime
 
 @Composable
 fun NotificationItemDisplay(
-    notificationItem: NotificationItem,
+    notificationItem: ScheduleItem,
     onItemClick: () -> Unit
 ) {
     Row(
@@ -36,7 +37,7 @@ fun NotificationItemDisplay(
     ) {
         Text(
             modifier = Modifier.weight(1f),
-            text = notificationItem.timeDisplay,
+            text = notificationItem.millisecondOfDay.millisecondsToTime(),
             color = AppTheme.colors.black,
             style = AppTheme.typography.bodySmallBold
         )
@@ -59,7 +60,7 @@ fun NotificationItemDisplay(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Text(
-                text = notificationItem.title,
+                text = notificationItem.titleText,
                 color = AppTheme.colors.white,
                 style = AppTheme.typography.bodyMediumMedium,
                 maxLines = 1,
@@ -67,7 +68,7 @@ fun NotificationItemDisplay(
             )
 
             Text(
-                text = notificationItem.note,
+                text = notificationItem.descriptionText,
                 color = AppTheme.colors.white,
                 style = AppTheme.typography.bodySmall,
                 maxLines = 2,

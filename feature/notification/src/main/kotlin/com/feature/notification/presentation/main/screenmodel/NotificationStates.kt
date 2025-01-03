@@ -1,7 +1,7 @@
 package com.feature.notification.presentation.main.screenmodel
 
 import androidx.compose.runtime.Immutable
-import com.feature.notification.model.NotificationItem
+import com.core.domain.model.localDB.ScheduleItem
 import com.feature.notification.model.WeekItem
 
 @Immutable
@@ -9,23 +9,7 @@ data class NotificationState(
     val screenState: NotificationScreenState = NotificationScreenState.Loading,
     val showOnboardingCard: Boolean = true,
     val selectedWeekItems: List<WeekItem>? = null,
-    val notificationItems: List<NotificationItem> = listOf(
-        NotificationItem(
-            timeDisplay = "20:00",
-            title = "Clear space",
-            note = "Clean bedroom to be ready to go to sleep in a clean room"
-        ),
-        NotificationItem(
-            timeDisplay = "20:20",
-            title = "No phone",
-            note = "Stop using phone from this time"
-        ),
-        NotificationItem(
-            timeDisplay = "22:20",
-            title = "Sleep",
-            note = "Go to bed"
-        )
-    )
+    val notificationItems: List<ScheduleItem> = emptyList()
 )
 
 sealed interface NotificationScreenState {

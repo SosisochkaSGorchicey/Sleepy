@@ -12,4 +12,6 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.domain)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1") //todo
 }

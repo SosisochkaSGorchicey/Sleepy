@@ -18,13 +18,6 @@ class NotificationScreenModel(
 
     init {
         decideScreenState()
-
-        intent { //todo
-            localDatabaseRepository.itemsByWeekDayId(weekDayId = 0)
-                .collect {
-                    println("TAG: itemsByWeekDayId collect $it")
-                }
-        }
     }
 
     override fun onEvent(event: NotificationEvent) {
@@ -36,8 +29,14 @@ class NotificationScreenModel(
     }
 
     private fun changeSelectedWeekItem(selectedWeekItem: WeekItem) {
-        //todo
         reducer { state.copy(selectedWeekItems = listOf(selectedWeekItem)) }
+
+        intent {
+            localDatabaseRepository.itemsByWeekDayId(weekDayId = selectedWeekItem.id)
+                .collect {
+                    reduce { state.copy(notificationItems = it) }
+                }
+        }
     }
 
     private fun onboardingCardDisappear() =
