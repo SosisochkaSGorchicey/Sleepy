@@ -37,6 +37,13 @@ class NotificationScreenModel(
             NotificationEvent.OnDropDownMenuClick -> changeDropDownMenu()
             is NotificationEvent.OnOpenAlertDialog -> changeAlertDialog(alertDialog = event.alertDialog)
             NotificationEvent.CloseAlertDialog -> changeAlertDialog()
+            is NotificationEvent.OnItemSwipeToDelete -> deleteItemById(id = event.itemId)
+        }
+    }
+
+    private fun deleteItemById(id: Int?) {
+        id?.let {
+            intent { localDatabaseRepository.deleteById(id = it) }
         }
     }
 

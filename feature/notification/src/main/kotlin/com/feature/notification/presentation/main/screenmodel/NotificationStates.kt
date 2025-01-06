@@ -16,6 +16,7 @@ data class NotificationState(
 )
 
 sealed interface NotificationEvent {
+    data class OnItemSwipeToDelete(val itemId: Int?) : NotificationEvent
     data object CloseAlertDialog : NotificationEvent
     data class OnOpenAlertDialog(val alertDialog: AlertDialog) : NotificationEvent
     data object OnDeleteAllClick : NotificationEvent

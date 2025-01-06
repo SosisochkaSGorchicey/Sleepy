@@ -8,4 +8,5 @@ interface LocalDatabaseRepository {
     suspend fun saveScheduleItem(scheduleItem: ScheduleItem)
     suspend fun deleteAll()
     suspend fun deleteForWeekDay(weekDayId: Int)
+    suspend fun deleteById(id: Int)
 }

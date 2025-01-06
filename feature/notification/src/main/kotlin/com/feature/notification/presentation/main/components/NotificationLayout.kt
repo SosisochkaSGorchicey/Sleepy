@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,15 +31,17 @@ fun NotificationLayout(
             onClick = { onEvent(NotificationEvent.OnWeekItemClick(weekItem = it)) }
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState()),
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            state.notificationItems.forEach { notificationItem ->
-                NotificationItemDisplay(
+            items(
+                items = state.notificationItems,
+                key = { it.id ?: it.hashCode() }
+            ) { notificationItem ->
+                NotificationItemSwipeContainer(
                     notificationItem = notificationItem,
-                    onItemClick = {}
+                    onItemClick = {}, //todo
+                    onItemDelete = { onEvent(NotificationEvent.OnItemSwipeToDelete(itemId = notificationItem.id)) }
                 )
             }
         }

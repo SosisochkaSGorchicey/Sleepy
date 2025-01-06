@@ -26,4 +26,8 @@ class LocalDatabaseRepositoryImpl(
     override suspend fun deleteForWeekDay(weekDayId: Int) {
         scheduleDao.deleteAllWithThisWeekId(weekDayId = weekDayId)
     }
+
+    override suspend fun deleteById(id: Int) {
+        scheduleDao.deleteById(id = id)
+    }
 }

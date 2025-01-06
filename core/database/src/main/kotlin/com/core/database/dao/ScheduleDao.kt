@@ -26,4 +26,10 @@ interface ScheduleDao {
                 "WHERE weekDayId = :weekDayId"
     )
     fun deleteAllWithThisWeekId(weekDayId: Int)
+
+    @Query(
+        "DELETE FROM schedule_table " +
+                "WHERE id = :id"
+    )
+    fun deleteById(id: Int)
 }
