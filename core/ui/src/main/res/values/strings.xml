@@ -51,6 +51,9 @@
     <string name="warning_item_clear_day">Are you sure you want to delete all items for current day?</string>
     <string name="drop_down_item_clear_all">Delete all items</string>
     <string name="warning_item_clear_all">Are you sure you want to delete all items?</string>
+    <string name="warning_default_title">This action is irreversible</string>
+    <string name="warning_default_confirm">Confirm</string>
+    <string name="warning_default_dismiss">Dismiss</string>
 
     # Add notification screen
     <string name="add_notification_title">Set a notification</string>

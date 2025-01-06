@@ -8,11 +8,22 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ScheduleDao {
-    @Query("SELECT * FROM schedule_table " +
-            "WHERE weekDayId = :weekDayId " +
-            "ORDER BY millisecondOfDay")
+    @Query(
+        "SELECT * FROM schedule_table " +
+                "WHERE weekDayId = :weekDayId " +
+                "ORDER BY millisecondOfDay"
+    )
     fun itemsByWeekDayId(weekDayId: Int): Flow<List<ScheduleItemModel>>
 
     @Upsert
     fun upsertScheduleItem(scheduleItemModel: ScheduleItemModel)
+
+    @Query("DELETE FROM schedule_table")
+    fun deleteAll()
+
+    @Query(
+        "DELETE FROM schedule_table " +
+                "WHERE weekDayId = :weekDayId"
+    )
+    fun deleteAllWithThisWeekId(weekDayId: Int)
 }

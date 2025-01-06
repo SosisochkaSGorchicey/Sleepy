@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.mainScreenElements.FloatingButton
+import com.core.ui.uiElements.mainScreenElements.MainAlertDialog
 import com.core.ui.uiElements.mainScreenElements.MainBottomBar
 import com.core.ui.uiElements.mainScreenElements.MainTopBar
 import com.feature.notification.presentation.main.screenmodel.NotificationEvent
@@ -72,7 +74,15 @@ fun NotificationScreenUI(
                 }
             }
 
-            NotificationScreenState.Usual -> {}
+            NotificationScreenState.Usual -> {} //todo?
+        }
+
+        state.currentAlertDialog?.let {
+            MainAlertDialog(
+                onDismissRequest = { onEvent(NotificationEvent.CloseAlertDialog) },
+                onConfirmation = { onEvent(it.notificationEvent) },
+                dialogText = stringResource(id = it.warningTextRes)
+            )
         }
     }
 }

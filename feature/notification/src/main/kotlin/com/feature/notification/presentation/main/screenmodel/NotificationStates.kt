@@ -11,22 +11,13 @@ data class NotificationState(
     val showOnboardingCard: Boolean = true,
     val selectedWeekItems: List<WeekItem>? = null,
     val notificationItems: List<ScheduleItem> = emptyList(),
-    val dropDownIsExtended: Boolean = false
+    val dropDownIsExtended: Boolean = false,
+    val currentAlertDialog: AlertDialog? = null
 )
 
-sealed interface NotificationScreenState {
-    data object Loading : NotificationScreenState
-    data object Onboarding : NotificationScreenState
-    data object Usual : NotificationScreenState
-}
-
 sealed interface NotificationEvent {
-    data class OnOpenAlertDialog(
-        @StringRes val warningTextRes: Int,
-        val notificationEvent: NotificationEvent
-
-    ) : NotificationEvent
-
+    data object CloseAlertDialog : NotificationEvent
+    data class OnOpenAlertDialog(val alertDialog: AlertDialog) : NotificationEvent
     data object OnDeleteAllClick : NotificationEvent
     data object OnClearCurrentDayClick : NotificationEvent
     data object OnAddButtonClick : NotificationEvent
@@ -39,3 +30,14 @@ sealed interface NotificationEvent {
 sealed interface NotificationSideEffect {
     data object NavigateToAddScreen : NotificationSideEffect
 }
+
+sealed interface NotificationScreenState {
+    data object Loading : NotificationScreenState
+    data object Onboarding : NotificationScreenState
+    data object Usual : NotificationScreenState
+}
+
+data class AlertDialog(
+    @StringRes val warningTextRes: Int,
+    val notificationEvent: NotificationEvent
+)

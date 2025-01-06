@@ -18,4 +18,12 @@ class LocalDatabaseRepositoryImpl(
     override suspend fun saveScheduleItem(scheduleItem: ScheduleItem) {
         scheduleDao.upsertScheduleItem(scheduleItemModel = scheduleItem.toData())
     }
+
+    override suspend fun deleteAll() {
+        scheduleDao.deleteAll()
+    }
+
+    override suspend fun deleteForWeekDay(weekDayId: Int) {
+        scheduleDao.deleteAllWithThisWeekId(weekDayId = weekDayId)
+    }
 }

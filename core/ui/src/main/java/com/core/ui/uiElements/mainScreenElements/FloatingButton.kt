@@ -12,7 +12,7 @@ fun FloatingButton(onClick: () -> Unit) {
     FloatingActionButton(
         onClick = onClick,
         shape = AppTheme.shapes.rounded,
-        containerColor = AppTheme.colors.baseBlue,
+        containerColor = AppTheme.colors.baseBlueLight,
         contentColor = AppTheme.colors.white
     ) {
         Icon(

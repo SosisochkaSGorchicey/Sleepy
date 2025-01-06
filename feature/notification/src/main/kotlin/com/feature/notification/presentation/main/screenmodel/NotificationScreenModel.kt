@@ -31,13 +31,35 @@ class NotificationScreenModel(
             NotificationEvent.OnOnboardingCardClick -> onboardingCardDisappear()
             is NotificationEvent.OnWeekItemClick -> changeSelectedWeekItem(selectedWeekItem = event.weekItem)
             NotificationEvent.OnAddButtonClick -> emitSideEffect(NotificationSideEffect.NavigateToAddScreen)
-            NotificationEvent.OnClearCurrentDayClick -> TODO()
+            NotificationEvent.OnClearCurrentDayClick -> clearCurrentDay()
             NotificationEvent.OnCloseDropDownMenu -> closeDropDownMenu()
-            NotificationEvent.OnDeleteAllClick -> TODO()
+            NotificationEvent.OnDeleteAllClick -> deleteAll()
             NotificationEvent.OnDropDownMenuClick -> changeDropDownMenu()
-            is NotificationEvent.OnOpenAlertDialog -> TODO()
+            is NotificationEvent.OnOpenAlertDialog -> changeAlertDialog(alertDialog = event.alertDialog)
+            NotificationEvent.CloseAlertDialog -> changeAlertDialog()
         }
     }
+
+    private fun clearCurrentDay() = intent {
+        state.selectedWeekItems?.let { list ->
+            if (list.firstOrNull() != null) {
+                intent { localDatabaseRepository.deleteForWeekDay(weekDayId = list.first().id) }
+                changeAlertDialog()
+            }
+        }
+    }
+
+    private fun deleteAll() {
+        intent { localDatabaseRepository.deleteAll() }
+        changeAlertDialog()
+    }
+
+    private fun changeAlertDialog(alertDialog: AlertDialog? = null) =
+        reducer {
+            closeDropDownMenu()
+            state.copy(currentAlertDialog = alertDialog)
+        }
+
 
     private fun changeDropDownMenu() =
         reducer { state.copy(dropDownIsExtended = !state.dropDownIsExtended) }
