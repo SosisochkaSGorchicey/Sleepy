@@ -44,6 +44,7 @@ class NotificationScreenModel(
     private fun deleteItemById(id: Int?) {
         id?.let {
             intent { localDatabaseRepository.deleteById(id = it) }
+            changeAlertDialog()
         }
     }
 

@@ -16,6 +16,7 @@ import androidx.compose.material3.SwipeToDismissBoxState
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +28,8 @@ import com.core.ui.theme.AppTheme
 fun NotificationItemSwipeContainer(
     notificationItem: ScheduleItem,
     onItemClick: () -> Unit,
-    onItemDelete: () -> Unit
+    onItemDelete: () -> Unit,
+    dismiss: Boolean = false
 ) {
     val dismissState = rememberSwipeToDismissBoxState(
         confirmValueChange = {
@@ -37,10 +39,19 @@ fun NotificationItemSwipeContainer(
                     return@rememberSwipeToDismissBoxState true
                 }
 
-                else -> return@rememberSwipeToDismissBoxState false
+                else -> {
+                    println("TAG: in else")
+                    return@rememberSwipeToDismissBoxState false
+                }
             }
         }
     )
+
+    LaunchedEffect(key1 = dismiss) {
+        if (dismiss) {
+            dismissState.dismiss(SwipeToDismissBoxValue.Settled)
+        }
+    }
 
     SwipeToDismissBox(
         state = dismissState,

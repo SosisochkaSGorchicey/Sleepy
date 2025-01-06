@@ -9,7 +9,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.core.ui.R
 import com.feature.notification.presentation.commonItems.WeekDisplay
+import com.feature.notification.presentation.main.screenmodel.AlertDialog
 import com.feature.notification.presentation.main.screenmodel.NotificationEvent
 import com.feature.notification.presentation.main.screenmodel.NotificationState
 
@@ -41,7 +43,17 @@ fun NotificationLayout(
                 NotificationItemSwipeContainer(
                     notificationItem = notificationItem,
                     onItemClick = {}, //todo
-                    onItemDelete = { onEvent(NotificationEvent.OnItemSwipeToDelete(itemId = notificationItem.id)) }
+                    onItemDelete = {
+                        onEvent(
+                            NotificationEvent.OnOpenAlertDialog(
+                                alertDialog = AlertDialog(
+                                    warningTextRes = R.string.warning_item_delete,
+                                    notificationEvent = NotificationEvent.OnItemSwipeToDelete(itemId = notificationItem.id)
+                                )
+                            )
+                        )
+                    },
+                    dismiss = state.currentAlertDialog != null
                 )
             }
         }
