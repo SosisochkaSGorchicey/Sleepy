@@ -5,6 +5,6 @@ plugins {
 android.namespace = "com.feature.audioContent"
 
 dependencies {
-    implementation(projects.feature.player) //todo
+    implementation(projects.feature.player)
     implementation(libs.coil.compose)
 }

@@ -9,9 +9,8 @@ dependencies {
     implementation(libs.bundles.voyager)
     implementation(libs.voyager.transitions)
     implementation(libs.compose.shimmer)
+    implementation(libs.kotlinx.datetime)
 
     implementation(projects.core.common)
     implementation(projects.core.domain)
-
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1") //todo
 }

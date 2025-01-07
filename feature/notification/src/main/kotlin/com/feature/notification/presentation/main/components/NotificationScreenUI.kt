@@ -1,15 +1,12 @@
 package com.feature.notification.presentation.main.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.core.ui.animations.fadeIn
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.LoadingDisplay
 import com.core.ui.uiElements.mainScreenElements.FloatingButton
@@ -41,10 +38,10 @@ fun NotificationScreenUI(
             )
         },
         floatingActionButton = {
-            AnimatedVisibility( //todo вынести?
+            AnimatedVisibility(
                 visible = state.showOnboardingCard,
                 //visible = !state.showOnboardingCard, todo
-                enter = fadeIn(animationSpec = spring(stiffness = Spring.StiffnessLow))
+                enter = fadeIn
             ) {
                 FloatingButton(onClick = { onEvent(NotificationEvent.OnAddButtonClick) })
             }

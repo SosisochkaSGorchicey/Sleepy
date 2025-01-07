@@ -1,8 +1,6 @@
 package com.feature.notification.presentation.main.components
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.core.domain.model.localDB.ScheduleItem
+import com.core.ui.animations.defaultSpring
 import com.core.ui.theme.AppTheme
 
 @Composable
@@ -69,18 +68,18 @@ fun NotificationItemSwipeContainer(
 }
 
 @Composable
-fun DismissBackground(dismissState: SwipeToDismissBoxState) { //todo animated colors
+fun DismissBackground(dismissState: SwipeToDismissBoxState) {
     val backgroundColor by animateColorAsState(
         targetValue = if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart)
             AppTheme.colors.lightRed else AppTheme.colors.transparent,
-        animationSpec = spring(stiffness = Spring.StiffnessLow),
+        animationSpec = defaultSpring(),
         label = "backgroundColor"
     )
 
     val iconColor by animateColorAsState(
         targetValue = if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart)
             AppTheme.colors.milkyWhite else AppTheme.colors.transparent,
-        animationSpec = spring(stiffness = Spring.StiffnessLow),
+        animationSpec = defaultSpring(),
         label = "iconColor"
     )
 
