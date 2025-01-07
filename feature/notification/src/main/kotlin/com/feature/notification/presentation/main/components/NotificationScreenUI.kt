@@ -42,7 +42,8 @@ fun NotificationScreenUI(
         },
         floatingActionButton = {
             AnimatedVisibility( //todo вынести?
-                visible = !state.showOnboardingCard,
+                visible = state.showOnboardingCard,
+                //visible = !state.showOnboardingCard, todo
                 enter = fadeIn(animationSpec = spring(stiffness = Spring.StiffnessLow))
             ) {
                 FloatingButton(onClick = { onEvent(NotificationEvent.OnAddButtonClick) })
@@ -62,17 +63,17 @@ fun NotificationScreenUI(
                 layoutModifier = Modifier.padding(padding)
             )
 
-            NotificationScreenState.Onboarding -> {
-                AnimatedVisibility(
-                    visible = state.showOnboardingCard,
-                    exit = fadeOut(animationSpec = spring(stiffness = Spring.StiffnessLow)) //todo вынести?
-                ) {
-                    OnboardingCard(
-                        modifier = Modifier.padding(padding),
-                        onClick = { onEvent(NotificationEvent.OnOnboardingCardClick) }
-                    )
-                }
-            }
+//            NotificationScreenState.Onboarding -> { todo
+//                AnimatedVisibility(
+//                    visible = state.showOnboardingCard,
+//                    exit = fadeOut(animationSpec = spring(stiffness = Spring.StiffnessLow)) //todo вынести?
+//                ) {
+//                    OnboardingCard(
+//                        modifier = Modifier.padding(padding),
+//                        onClick = { onEvent(NotificationEvent.OnOnboardingCardClick) }
+//                    )
+//                }
+//            }
 
             NotificationScreenState.Usual -> {} //todo?
         }

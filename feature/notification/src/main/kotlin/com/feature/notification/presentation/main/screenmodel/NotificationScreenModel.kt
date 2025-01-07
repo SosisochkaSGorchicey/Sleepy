@@ -109,7 +109,8 @@ class NotificationScreenModel(
             reduce {
                 state.copy(
                     screenState = if (it) NotificationScreenState.Usual
-                    else NotificationScreenState.Onboarding
+                    // else NotificationScreenState.Onboarding todo
+                    else NotificationScreenState.Usual
                 )
             }
         }

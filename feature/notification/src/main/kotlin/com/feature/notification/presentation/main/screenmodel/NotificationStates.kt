@@ -35,7 +35,7 @@ sealed interface NotificationSideEffect {
 
 sealed interface NotificationScreenState {
     data object Loading : NotificationScreenState
-    data object Onboarding : NotificationScreenState
+    //data object Onboarding : NotificationScreenState todo
     data object Usual : NotificationScreenState
 }
 
