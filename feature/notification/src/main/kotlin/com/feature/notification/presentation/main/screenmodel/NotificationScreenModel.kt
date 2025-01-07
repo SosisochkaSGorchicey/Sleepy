@@ -30,7 +30,7 @@ class NotificationScreenModel(
         when (event) {
             NotificationEvent.OnOnboardingCardClick -> onboardingCardDisappear()
             is NotificationEvent.OnWeekItemClick -> changeSelectedWeekItem(selectedWeekItem = event.weekItem)
-            NotificationEvent.OnAddButtonClick -> emitSideEffect(NotificationSideEffect.NavigateToAddScreen)
+            NotificationEvent.OnAddButtonClick -> emitSideEffect(NotificationSideEffect.NavigateToAddScreen())
             NotificationEvent.OnClearCurrentDayClick -> clearCurrentDay()
             NotificationEvent.OnCloseDropDownMenu -> closeDropDownMenu()
             NotificationEvent.OnDeleteAllClick -> deleteAll()
@@ -38,6 +38,9 @@ class NotificationScreenModel(
             is NotificationEvent.OnOpenAlertDialog -> changeAlertDialog(alertDialog = event.alertDialog)
             NotificationEvent.CloseAlertDialog -> changeAlertDialog()
             is NotificationEvent.OnItemSwipeToDelete -> deleteItemById(id = event.itemId)
+            is NotificationEvent.OnItemClick -> emitSideEffect(
+                NotificationSideEffect.NavigateToAddScreen(scheduleItem = event.scheduleItem)
+            )
         }
     }
 

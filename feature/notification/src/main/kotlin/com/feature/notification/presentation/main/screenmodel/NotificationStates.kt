@@ -25,11 +25,12 @@ sealed interface NotificationEvent {
     data object OnOnboardingCardClick : NotificationEvent
     data object OnCloseDropDownMenu : NotificationEvent
     data object OnDropDownMenuClick : NotificationEvent
+    data class OnItemClick(val scheduleItem: ScheduleItem) : NotificationEvent
     data class OnWeekItemClick(val weekItem: WeekItem) : NotificationEvent
 }
 
 sealed interface NotificationSideEffect {
-    data object NavigateToAddScreen : NotificationSideEffect
+    data class NavigateToAddScreen(val scheduleItem: ScheduleItem? = null) : NotificationSideEffect
 }
 
 sealed interface NotificationScreenState {

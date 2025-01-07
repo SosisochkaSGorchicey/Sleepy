@@ -7,17 +7,28 @@ import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.repository.LocalDatabaseRepository
 import com.core.ui.R
+import com.core.ui.utils.millisecondsToLocalTime
 import com.feature.notification.model.WeekItem
+import com.feature.notification.model.getWeekDayById
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalTime
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class AddNotificationScreenModel(
-    private val localDatabaseRepository: LocalDatabaseRepository
+    private val localDatabaseRepository: LocalDatabaseRepository,
+    private val scheduleItem: ScheduleItem?,
 ) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
-    initialState = AddNotificationState()
+    initialState = AddNotificationState(
+        selectedTime = scheduleItem?.millisecondOfDay?.millisecondsToLocalTime() ?: LocalTime(0, 0)
+    )
 ) {
+
+    init {
+        println("TAG: scheduleItem $scheduleItem")
+        initData()
+    }
+
     override fun onEvent(event: AddNotificationEvent) {
         when (event) {
             is AddNotificationEvent.OnWeekItemClick -> weekItemClickLogic(weekItem = event.clickedWeekItem)
@@ -31,21 +42,62 @@ class AddNotificationScreenModel(
         }
     }
 
+    private fun initData() {
+        scheduleItem?.let { item ->
+            reducer {
+                state.copy(
+                    createNotification = item.createPush,
+                    chosenWeekItems = item.weekDayId.getWeekDayById()?.let { listOf(it) }
+                        ?: emptyList(),
+                    titleText = item.titleText,
+                    descriptionText = item.descriptionText
+                )
+            }
+        }
+    }
+
     private fun saveItem() = intent {
         when {
             !state.daysAreChosen() -> showError(R.string.error_no_days_selected)
             !state.textsAreValid() -> showError(R.string.error_empty_text_fields)
             else -> {
-                state.chosenWeekItems.forEach { weekItem ->
-                    localDatabaseRepository.saveScheduleItem(
-                        scheduleItem = ScheduleItem(
-                            createPush = state.createNotification,
-                            weekDayId = weekItem.id,
-                            millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
-                            titleText = state.titleText,
-                            descriptionText = state.descriptionText
+                println("TAG:  state.chosenWeekItems ${state.chosenWeekItems}")
+
+                if (scheduleItem == null) {
+                    state.chosenWeekItems.forEach { weekItem ->
+                        localDatabaseRepository.saveScheduleItem(
+                            scheduleItem = ScheduleItem(
+                                createPush = state.createNotification,
+                                weekDayId = weekItem.id,
+                                millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                                titleText = state.titleText,
+                                descriptionText = state.descriptionText
+                            )
                         )
-                    )
+                    }
+                } else {
+                    state.chosenWeekItems.forEach { weekItem ->
+                        if (weekItem.id == scheduleItem.weekDayId) {
+                            localDatabaseRepository.saveScheduleItem(
+                                scheduleItem = scheduleItem.copy(
+                                    createPush = state.createNotification,
+                                    millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                                    titleText = state.titleText,
+                                    descriptionText = state.descriptionText
+                                )
+                            )
+                        } else {
+                            localDatabaseRepository.saveScheduleItem(
+                                scheduleItem = ScheduleItem(
+                                    createPush = state.createNotification,
+                                    weekDayId = weekItem.id,
+                                    millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                                    titleText = state.titleText,
+                                    descriptionText = state.descriptionText
+                                )
+                            )
+                        }
+                    }
                 }
 
                 emitSideEffect(AddNotificationSideEffect.NavigateBack)

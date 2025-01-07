@@ -10,7 +10,7 @@ data class AddNotificationState(
     val createNotification: Boolean = true,
     val daysHintIsVisible: Boolean = false,
     val chosenWeekItems: List<WeekItem> = emptyList(),
-    val selectedTime: LocalTime = LocalTime(0, 0),
+    val selectedTime: LocalTime,
     val titleText: String = "",
     val descriptionText: String = "",
     @StringRes val errorTextRes: Int? = null

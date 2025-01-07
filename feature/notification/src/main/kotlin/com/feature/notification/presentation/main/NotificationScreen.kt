@@ -26,7 +26,9 @@ object NotificationScreen : Screen {
 
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
-                NotificationSideEffect.NavigateToAddScreen -> navigator.push(AddNotificationScreen)
+                is NotificationSideEffect.NavigateToAddScreen -> navigator.push(
+                    AddNotificationScreen(scheduleItem = sideEffect.scheduleItem)
+                )
             }
         }
     }

@@ -42,7 +42,7 @@ fun NotificationLayout(
             ) { notificationItem ->
                 NotificationItemSwipeContainer(
                     notificationItem = notificationItem,
-                    onItemClick = {}, //todo
+                    onItemClick = { onEvent(NotificationEvent.OnItemClick(scheduleItem = notificationItem)) },
                     onItemDelete = {
                         onEvent(
                             NotificationEvent.OnOpenAlertDialog(

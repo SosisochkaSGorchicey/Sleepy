@@ -2,6 +2,7 @@ package com.feature.notification.di
 
 import cafe.adriel.voyager.core.registry.screenModule
 import com.core.common.navigation.SharedScreen
+import com.core.domain.model.localDB.ScheduleItem
 import com.feature.notification.presentation.add.screenmodel.AddNotificationScreenModel
 import com.feature.notification.presentation.main.NotificationScreen
 import com.feature.notification.presentation.main.screenmodel.NotificationScreenModel
@@ -16,5 +17,7 @@ val notificationScreenModule = screenModule {
 
 val notificationFeatureModule = module {
     factoryOf(::NotificationScreenModel)
-    factoryOf(::AddNotificationScreenModel)
+    factory { (myArgument: ScheduleItem) ->
+        AddNotificationScreenModel(get(), myArgument)
+    }
 }

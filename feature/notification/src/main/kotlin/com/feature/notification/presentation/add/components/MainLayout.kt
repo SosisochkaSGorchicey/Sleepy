@@ -56,7 +56,8 @@ fun MainLayout(
         )
 
         TimeSelector(
-            onTimeSelected = { onEvent(AddNotificationEvent.OnTimeSelect(it)) }
+            onTimeSelected = { onEvent(AddNotificationEvent.OnTimeSelect(it)) },
+            startTime = state.selectedTime
         )
 
         SectionTitle(textRes = R.string.section_title_title)

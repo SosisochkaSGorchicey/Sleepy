@@ -16,6 +16,7 @@ class LocalDatabaseRepositoryImpl(
             .map { it.toDomain() }
 
     override suspend fun saveScheduleItem(scheduleItem: ScheduleItem) {
+        println("TAG: LocalDatabaseRepositoryImpl saveScheduleItem scheduleItem $scheduleItem")
         scheduleDao.upsertScheduleItem(scheduleItemModel = scheduleItem.toData())
     }
 

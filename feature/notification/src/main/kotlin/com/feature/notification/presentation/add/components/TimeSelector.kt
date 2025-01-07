@@ -17,7 +17,8 @@ import kotlinx.datetime.LocalTime
 
 @Composable
 fun TimeSelector(
-    onTimeSelected: (LocalTime) -> Unit
+    onTimeSelected: (LocalTime) -> Unit,
+    startTime: LocalTime
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -39,7 +40,8 @@ fun TimeSelector(
             ),
             textStyle = AppTheme.typography.bodyMedium,
             textColor = AppTheme.colors.baseBlue,
-            onSnappedTime = onTimeSelected
+            onSnappedTime = onTimeSelected,
+            startTime = startTime
         )
     }
 }

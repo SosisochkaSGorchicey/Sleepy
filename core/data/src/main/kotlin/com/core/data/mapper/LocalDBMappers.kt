@@ -17,6 +17,7 @@ fun List<ScheduleItemModel>.toDomain(): List<ScheduleItem> =
 
 fun ScheduleItem.toData(): ScheduleItemModel =
     ScheduleItemModel(
+        id = this.id,
         createPush = this.createPush,
         weekDayId = this.weekDayId,
         millisecondOfDay = this.millisecondOfDay,

@@ -15,3 +15,6 @@ fun Int.millisecondsToTime(): String {
     }
     return localTime.format(dateTimeFormat)
 }
+
+fun Int.millisecondsToLocalTime(): LocalTime =
+    LocalTime.fromMillisecondOfDay(this)
