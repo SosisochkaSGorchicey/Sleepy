@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.core.ui.modifiers.hideKeyboardByTaping
 import com.core.ui.theme.AppTheme
 import com.core.ui.uiElements.ErrorSnackbar
 import com.core.ui.uiElements.mainScreenElements.SimpleBackIcon
@@ -32,7 +33,11 @@ fun AddNotificationScreenUI(
         containerColor = AppTheme.colors.baseGray,
         contentColor = AppTheme.colors.baseBlue
     ) { padding ->
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .hideKeyboardByTaping()
+        ) {
             BackgroundImage()
 
             MainLayout(
