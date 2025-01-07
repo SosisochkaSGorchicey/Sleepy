@@ -26,6 +26,7 @@ fun MainLayout(
 ) {
     Column(
         modifier = Modifier
+            .padding(bottom = padding.calculateBottomPadding())
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp),
@@ -80,7 +81,6 @@ fun MainLayout(
 
         MainButton(
             modifier = Modifier
-                .padding(bottom = padding.calculateBottomPadding())
                 .padding(vertical = 20.dp)
                 .fillMaxWidth(),
             onClick = { onEvent(AddNotificationEvent.OnSaveClick) },
