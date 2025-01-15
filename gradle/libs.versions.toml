@@ -34,6 +34,7 @@ legacy = "1.0.0"
 room = "2.6.1"
 datetime = "0.6.1"
 wheel-picker = "1.0.2-compose1.7"
+google-services = "4.4.2"
 
 [libraries]
 
@@ -111,6 +112,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 
 #Convention plugins
 convetion-application = { id = "convention.android.application", version = "unspecified" }

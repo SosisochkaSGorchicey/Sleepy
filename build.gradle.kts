@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.ksp) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlin.serizliation) apply false
+    alias(libs.plugins.google.services) apply false
 
     alias(libs.plugins.convetion.feature) apply false
     alias(libs.plugins.convetion.library) apply false

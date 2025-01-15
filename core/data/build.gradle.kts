@@ -4,11 +4,21 @@ import java.io.FileInputStream
 plugins {
     alias(libs.plugins.convetion.library)
     alias(libs.plugins.kotlin.serizliation)
+    alias(libs.plugins.google.services)
 }
 
 android.namespace = "com.core.data"
 
 dependencies {
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-messaging")
+
     implementation(projects.core.domain)
     implementation(projects.core.database)
 
