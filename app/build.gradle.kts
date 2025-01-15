@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "com.alice.sleepy"
-    defaultConfig.applicationId = "com.alice.sleepy"
+    namespace = "com.simple.mobile.sleepy"
+    defaultConfig.applicationId = "com.simple.mobile.sleepy"
 }
 
 dependencies {

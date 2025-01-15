@@ -1,12 +1,11 @@
-package com.core.sleepy.di
+package com.simple.mobile.sleepy.di
 
 import android.app.Application
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.core.data.di.dataModule
 import com.core.database.di.databaseModule
 import com.core.domain.di.domainModule
-import com.core.domain.repository.DataStoreRepository
-import com.core.sleepy.tabGraphScreen
+import com.simple.mobile.sleepy.tabGraphScreen
 import com.feature.audioContent.di.contentFeatureModule
 import com.feature.auth.di.authModule
 import com.feature.auth.di.authScreenModule
@@ -19,7 +18,6 @@ import com.feature.notification.di.notificationFeatureModule
 import com.feature.notification.di.notificationScreenModule
 import com.feature.player.di.playerModule
 import com.feature.player.di.playerScreenModule
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

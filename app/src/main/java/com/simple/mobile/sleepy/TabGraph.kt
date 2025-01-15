@@ -1,4 +1,4 @@
-package com.core.sleepy
+package com.simple.mobile.sleepy
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.registry.screenModule

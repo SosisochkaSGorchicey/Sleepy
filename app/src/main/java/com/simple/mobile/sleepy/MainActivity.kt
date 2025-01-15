@@ -1,4 +1,4 @@
-package com.core.sleepy
+package com.simple.mobile.sleepy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
