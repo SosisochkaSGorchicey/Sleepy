@@ -27,4 +27,5 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.audioContent)
     implementation(projects.feature.notification)
+    implementation(libs.firebase.common.ktx)
 }

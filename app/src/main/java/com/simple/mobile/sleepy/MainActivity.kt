@@ -10,11 +10,13 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.core.common.navigation.SharedScreen
 import com.core.ui.theme.AppTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(scrim = 0),
