@@ -69,7 +69,7 @@ fun MainLayout(
             onValueChange = { onEvent(AddNotificationEvent.OnTitleChange(it)) }
         )
 
-        SectionTitle(textRes = R.string.section_title_title)
+        SectionTitle(textRes = R.string.section_title_description)
 
         MainTextField(
             currentText = state.descriptionText,
