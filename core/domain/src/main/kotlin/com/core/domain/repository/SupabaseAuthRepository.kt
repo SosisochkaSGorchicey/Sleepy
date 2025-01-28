@@ -6,6 +6,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 interface SupabaseAuthRepository {
+
+    suspend fun getUserId(): String
+
     suspend fun signIn(
         email: String,
         password: String

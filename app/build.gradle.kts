@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.convetion.application)
     alias(libs.plugins.convetion.compose.app)
+    alias(libs.plugins.google.services)
 }
 
 android {

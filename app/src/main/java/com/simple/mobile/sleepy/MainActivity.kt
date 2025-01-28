@@ -17,6 +17,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
+        println("TAG: FirebaseApp.getInstance() ${FirebaseApp.getInstance()}")
+
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(scrim = 0),

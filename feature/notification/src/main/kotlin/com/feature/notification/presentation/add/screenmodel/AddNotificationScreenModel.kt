@@ -5,7 +5,7 @@ import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
-import com.core.domain.repository.LocalDatabaseRepository
+import com.core.domain.usecase.CreateScheduleItemUseCase
 import com.core.ui.R
 import com.core.ui.utils.millisecondsToLocalTime
 import com.feature.notification.model.WeekItem
@@ -16,7 +16,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class AddNotificationScreenModel(
-    private val localDatabaseRepository: LocalDatabaseRepository,
+    private val createScheduleItemUseCase: CreateScheduleItemUseCase,
     private val scheduleItem: ScheduleItem?,
 ) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
     initialState = AddNotificationState(
@@ -65,7 +65,7 @@ class AddNotificationScreenModel(
 
                 if (scheduleItem == null) {
                     state.chosenWeekItems.forEach { weekItem ->
-                        localDatabaseRepository.saveScheduleItem(
+                        createScheduleItemUseCase(
                             scheduleItem = ScheduleItem(
                                 createPush = state.createNotification,
                                 weekDayId = weekItem.id,
@@ -78,7 +78,7 @@ class AddNotificationScreenModel(
                 } else {
                     state.chosenWeekItems.forEach { weekItem ->
                         if (weekItem.id == scheduleItem.weekDayId) {
-                            localDatabaseRepository.saveScheduleItem(
+                            createScheduleItemUseCase(
                                 scheduleItem = scheduleItem.copy(
                                     createPush = state.createNotification,
                                     millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
@@ -87,7 +87,7 @@ class AddNotificationScreenModel(
                                 )
                             )
                         } else {
-                            localDatabaseRepository.saveScheduleItem(
+                            createScheduleItemUseCase(
                                 scheduleItem = ScheduleItem(
                                     createPush = state.createNotification,
                                     weekDayId = weekItem.id,

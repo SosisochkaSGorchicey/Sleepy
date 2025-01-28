@@ -17,6 +17,9 @@ class SupabaseAuthRepositoryImpl(
     private val auth: Auth,
     private val dataStoreRepository: DataStoreRepository
 ) : SupabaseAuthRepository {
+    override suspend fun getUserId(): String =
+        auth.currentUserOrNull()?.id ?: ""
+
     override suspend fun signIn(email: String, password: String) {
         auth.signInWith(Email) {
             this.email = email

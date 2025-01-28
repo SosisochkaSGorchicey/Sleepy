@@ -1,5 +1,6 @@
 package com.core.domain.di
 
+import com.core.domain.usecase.CreateScheduleItemUseCase
 import com.core.domain.usecase.IsUserLoggedInUseCase
 import com.core.domain.usecase.SignInUseCase
 import com.core.domain.usecase.SignUpAnonymously
@@ -12,4 +13,5 @@ val domainModule = module {
     singleOf(::SignUpUseCase)
     singleOf(::SignUpAnonymously)
     singleOf(::IsUserLoggedInUseCase)
+    singleOf(::CreateScheduleItemUseCase)
 }

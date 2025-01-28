@@ -8,13 +8,18 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.core.data.BuildConfig
 import com.core.data.repository.DataStoreRepositoryImpl
+import com.core.data.repository.FirestoreRepositoryImpl
 import com.core.data.repository.LocalDatabaseRepositoryImpl
 import com.core.data.repository.SupabaseAuthRepositoryImpl
 import com.core.data.repository.SupabaseDatabaseRepositoryImpl
 import com.core.domain.repository.DataStoreRepository
+import com.core.domain.repository.FirestoreRepository
 import com.core.domain.repository.LocalDatabaseRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import com.core.domain.repository.SupabaseDatabaseRepository
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
@@ -36,10 +41,12 @@ val dataModule = module {
     singleOf(::DataStoreRepositoryImpl) bind DataStoreRepository::class
     singleOf(::SupabaseDatabaseRepositoryImpl) bind SupabaseDatabaseRepository::class
     singleOf(::LocalDatabaseRepositoryImpl) bind LocalDatabaseRepository::class
+    singleOf(::FirestoreRepositoryImpl) bind FirestoreRepository::class
 
     singleOf(::provideSupabaseClient)
     singleOf(::provideSupabaseAuth)
     singleOf(::provideSupabasePostgrest)
+    singleOf(::provideFirebaseFirestore)
 }
 
 internal fun Module.provideDataStorePref(): KoinDefinition<DataStore<Preferences>> = single {
@@ -72,3 +79,4 @@ private fun provideSupabaseClient(): SupabaseClient {
 
 private fun provideSupabaseAuth(client: SupabaseClient): Auth = client.auth
 private fun provideSupabasePostgrest(client: SupabaseClient): Postgrest = client.postgrest
+private fun provideFirebaseFirestore(): FirebaseFirestore = Firebase.firestore
