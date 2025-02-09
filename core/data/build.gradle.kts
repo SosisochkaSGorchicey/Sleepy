@@ -21,7 +21,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
 
     implementation(projects.core.domain)
-    implementation(projects.core.database)
 
     implementation(libs.coroutines.core)
     implementation(libs.koin.android)

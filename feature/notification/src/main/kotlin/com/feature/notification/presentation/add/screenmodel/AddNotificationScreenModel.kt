@@ -6,6 +6,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.usecase.CreateScheduleItemUseCase
+import com.core.domain.usecase.UpdateScheduleItemUseCase
 import com.core.ui.R
 import com.core.ui.utils.millisecondsToLocalTime
 import com.feature.notification.model.WeekItem
@@ -18,6 +19,7 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 class AddNotificationScreenModel(
     private val createScheduleItemUseCase: CreateScheduleItemUseCase,
     private val scheduleItem: ScheduleItem?,
+    private val updateScheduleItemUseCase: UpdateScheduleItemUseCase
 ) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
     initialState = AddNotificationState(
         selectedTime = scheduleItem?.millisecondOfDay?.millisecondsToLocalTime() ?: LocalTime(0, 0)

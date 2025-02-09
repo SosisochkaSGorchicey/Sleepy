@@ -9,12 +9,10 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.core.data.BuildConfig
 import com.core.data.repository.DataStoreRepositoryImpl
 import com.core.data.repository.FirestoreRepositoryImpl
-import com.core.data.repository.LocalDatabaseRepositoryImpl
 import com.core.data.repository.SupabaseAuthRepositoryImpl
 import com.core.data.repository.SupabaseDatabaseRepositoryImpl
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.FirestoreRepository
-import com.core.domain.repository.LocalDatabaseRepository
 import com.core.domain.repository.SupabaseAuthRepository
 import com.core.domain.repository.SupabaseDatabaseRepository
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,7 +38,6 @@ val dataModule = module {
     singleOf(::SupabaseAuthRepositoryImpl) bind SupabaseAuthRepository::class
     singleOf(::DataStoreRepositoryImpl) bind DataStoreRepository::class
     singleOf(::SupabaseDatabaseRepositoryImpl) bind SupabaseDatabaseRepository::class
-    singleOf(::LocalDatabaseRepositoryImpl) bind LocalDatabaseRepository::class
     singleOf(::FirestoreRepositoryImpl) bind FirestoreRepository::class
 
     singleOf(::provideSupabaseClient)

@@ -4,16 +4,11 @@ import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.repository.FirestoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 
-class CreateScheduleItemUseCase(
+class UpdateScheduleItemUseCase(
     private val firestoreRepository: FirestoreRepository,
     private val supabaseAuthRepository: SupabaseAuthRepository
 ) {
     suspend operator fun invoke(scheduleItem: ScheduleItem) {
-        val userId = supabaseAuthRepository.getUserId()
 
-        firestoreRepository.saveSchedule(
-            userId = userId,
-            scheduleItem = scheduleItem
-        )
     }
 }

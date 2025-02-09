@@ -3,22 +3,50 @@ package com.core.data.repository
 import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.repository.FirestoreRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class FirestoreRepositoryImpl(
-    private val firebaseFirestore: FirebaseFirestore
+    private val firebaseFirestore: FirebaseFirestore,
 ) : FirestoreRepository {
-    override suspend fun saveSchedule(userId: String, schedule: ScheduleItem) {
-        val scheduleRef = firebaseFirestore
+
+    private val _scheduleItems: MutableStateFlow<List<ScheduleItem>> = MutableStateFlow(emptyList())
+    override val scheduleItems = _scheduleItems.asStateFlow()
+
+    private val scheduleRef = { userId: String ->
+        firebaseFirestore
             .collection("users")
             .document(userId)
             .collection("schedule")
+    }
 
-        scheduleRef.add(schedule)
+    override suspend fun saveSchedule(userId: String, scheduleItem: ScheduleItem) {
+        scheduleRef(userId).add(scheduleItem)
             .addOnSuccessListener { documentReference ->
                 println("TAG: Firestore Расписание добавлено с ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
                 println("TAG: Firestore Ошибка добавления расписания $e")
             }
+    }
+
+    override fun observeScheduleForUser(userId: String) {
+        scheduleRef(userId).addSnapshotListener { snapshots, error ->
+            if (error != null) {
+                println("TAG: Ошибка получения обновлений $error")
+                return@addSnapshotListener
+            }
+
+            if (snapshots != null) {
+                val scheduleList = mutableListOf<ScheduleItem>()
+                for (document in snapshots.documents) {
+                    val schedule = document.toObject(ScheduleItem::class.java)
+                    if (schedule != null) {
+                        scheduleList.add(schedule.copy(id = document.id))
+                    }
+                }
+                _scheduleItems.value = scheduleList
+            }
+        }
     }
 }

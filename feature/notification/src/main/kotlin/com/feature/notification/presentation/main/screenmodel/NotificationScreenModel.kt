@@ -4,7 +4,8 @@ import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.repository.DataStoreRepository
-import com.core.domain.repository.LocalDatabaseRepository
+import com.core.domain.repository.FirestoreRepository
+import com.core.domain.usecase.ObserveScheduleItemUseCase
 import com.feature.notification.model.WeekItem
 import com.feature.notification.model.getWeekDayById
 import kotlinx.datetime.Clock
@@ -16,7 +17,8 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 
 class NotificationScreenModel(
     private val dataStoreRepository: DataStoreRepository,
-    private val localDatabaseRepository: LocalDatabaseRepository
+    private val firestoreRepository: FirestoreRepository,
+    private val observeScheduleItemUseCase: ObserveScheduleItemUseCase
 ) : MviScreenModel<NotificationState, NotificationSideEffect, NotificationEvent>(
     initialState = NotificationState()
 ) {
@@ -24,6 +26,11 @@ class NotificationScreenModel(
     init {
         decideScreenState()
         setDefaultDay()
+        observeSchedule()
+    }
+
+    private fun observeSchedule() = intent {
+        observeScheduleItemUseCase()
     }
 
     override fun onEvent(event: NotificationEvent) {
@@ -44,25 +51,25 @@ class NotificationScreenModel(
         }
     }
 
-    private fun deleteItemById(id: Int?) {
-        id?.let {
-            intent { localDatabaseRepository.deleteById(id = it) }
-            changeAlertDialog()
-        }
+    private fun deleteItemById(id: String) {
+//        id?.let { todo
+//            intent { localDatabaseRepository.deleteById(id = it) }
+//            changeAlertDialog()
+//        }
     }
 
     private fun clearCurrentDay() = intent {
-        state.selectedWeekItems?.let { list ->
-            if (list.firstOrNull() != null) {
-                intent { localDatabaseRepository.deleteForWeekDay(weekDayId = list.first().id) }
-                changeAlertDialog()
-            }
-        }
+//        state.selectedWeekItems?.let { list -> todo
+//            if (list.firstOrNull() != null) {
+//                intent { localDatabaseRepository.deleteForWeekDay(weekDayId = list.first().id) }
+//                changeAlertDialog()
+//            }
+//        }
     }
 
     private fun deleteAll() {
-        intent { localDatabaseRepository.deleteAll() }
-        changeAlertDialog()
+//        intent { localDatabaseRepository.deleteAll() } todo
+//        changeAlertDialog()
     }
 
     private fun changeAlertDialog(alertDialog: AlertDialog? = null) =
@@ -95,10 +102,12 @@ class NotificationScreenModel(
     }
 
     private fun getItemsForWeek(idOfWeekItem: Int) = intent {
-        localDatabaseRepository.itemsByWeekDayId(weekDayId = idOfWeekItem)
-            .collect {
-                reduce { state.copy(notificationItems = it) }
+        firestoreRepository.scheduleItems.collect { listOfAll ->
+            val filteredByWeekDay = listOfAll.filter {
+                it.weekDayId == idOfWeekItem
             }
+            reduce { state.copy(notificationItems = filteredByWeekDay) }
+        }
     }
 
     private fun onboardingCardDisappear() =
@@ -109,7 +118,6 @@ class NotificationScreenModel(
             reduce {
                 state.copy(
                     screenState = if (it) NotificationScreenState.Usual
-                    // else NotificationScreenState.Onboarding todo
                     else NotificationScreenState.Usual
                 )
             }

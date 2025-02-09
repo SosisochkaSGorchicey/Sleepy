@@ -38,7 +38,7 @@ fun NotificationLayout(
         ) {
             items(
                 items = state.notificationItems,
-                key = { it.id ?: it.hashCode() }
+                key = { it.id }
             ) { notificationItem ->
                 NotificationItemSwipeContainer(
                     notificationItem = notificationItem,

@@ -16,7 +16,7 @@ data class NotificationState(
 )
 
 sealed interface NotificationEvent {
-    data class OnItemSwipeToDelete(val itemId: Int?) : NotificationEvent
+    data class OnItemSwipeToDelete(val itemId: String) : NotificationEvent
     data object CloseAlertDialog : NotificationEvent
     data class OnOpenAlertDialog(val alertDialog: AlertDialog) : NotificationEvent
     data object OnDeleteAllClick : NotificationEvent
@@ -33,9 +33,8 @@ sealed interface NotificationSideEffect {
     data class NavigateToAddScreen(val scheduleItem: ScheduleItem? = null) : NotificationSideEffect
 }
 
-sealed interface NotificationScreenState {
+sealed interface NotificationScreenState { //todo
     data object Loading : NotificationScreenState
-    //data object Onboarding : NotificationScreenState todo
     data object Usual : NotificationScreenState
 }
 

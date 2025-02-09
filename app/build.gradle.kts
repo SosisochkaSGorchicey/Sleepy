@@ -20,7 +20,6 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
     implementation(projects.core.domain)
-    implementation(projects.core.database)
 
     implementation(projects.feature.initial)
     implementation(projects.feature.auth)

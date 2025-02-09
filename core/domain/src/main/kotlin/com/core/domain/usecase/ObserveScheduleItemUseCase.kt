@@ -1,19 +1,14 @@
 package com.core.domain.usecase
 
-import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.repository.FirestoreRepository
 import com.core.domain.repository.SupabaseAuthRepository
 
-class CreateScheduleItemUseCase(
+class ObserveScheduleItemUseCase(
     private val firestoreRepository: FirestoreRepository,
     private val supabaseAuthRepository: SupabaseAuthRepository
 ) {
-    suspend operator fun invoke(scheduleItem: ScheduleItem) {
+    suspend operator fun invoke() {
         val userId = supabaseAuthRepository.getUserId()
-
-        firestoreRepository.saveSchedule(
-            userId = userId,
-            scheduleItem = scheduleItem
-        )
+        firestoreRepository.observeScheduleForUser(userId = userId)
     }
 }
