@@ -45,6 +45,14 @@ class FirestoreRepositoryImpl(
             .addOnFailureListener { e -> println("TAG: Error updating document $e") }
     }
 
+    override suspend fun delete(userId: String, scheduleItemId: String) {
+        scheduleRef(userId)
+            .document(scheduleItemId)
+            .delete()
+            .addOnSuccessListener { println("TAG: DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> println("TAG: Error deleting document $e") }
+    }
+
     override fun observeScheduleForUser(userId: String) {
         scheduleRef(userId).addSnapshotListener { snapshots, error ->
             if (error != null) {

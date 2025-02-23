@@ -9,6 +9,7 @@ interface FirestoreRepository {
 
     suspend fun saveSchedule(userId: String, scheduleItem: ScheduleItem)
     suspend fun updateSchedule(userId: String, scheduleItem: ScheduleItem)
+    suspend fun delete(userId: String, scheduleItemId: String)
 
 
     fun observeScheduleForUser(userId: String)

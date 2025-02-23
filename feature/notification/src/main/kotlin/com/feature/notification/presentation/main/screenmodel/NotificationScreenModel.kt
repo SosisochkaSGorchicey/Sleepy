@@ -5,6 +5,9 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.FirestoreRepository
+import com.core.domain.usecase.storage.DeleteAllScheduleItemsUseCase
+import com.core.domain.usecase.storage.DeleteScheduleItemUseCase
+import com.core.domain.usecase.storage.DeleteScheduleItemsForWeekdayUseCase
 import com.core.domain.usecase.storage.ObserveScheduleItemUseCase
 import com.feature.notification.model.WeekItem
 import com.feature.notification.model.getWeekDayById
@@ -18,7 +21,10 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 class NotificationScreenModel(
     private val dataStoreRepository: DataStoreRepository,
     private val firestoreRepository: FirestoreRepository,
-    private val observeScheduleItemUseCase: ObserveScheduleItemUseCase
+    private val observeScheduleItemUseCase: ObserveScheduleItemUseCase,
+    private val deleteScheduleItemUseCase: DeleteScheduleItemUseCase,
+    private val deleteAllScheduleItemsUseCase: DeleteAllScheduleItemsUseCase,
+    private val deleteScheduleItemsForWeekdayUseCase: DeleteScheduleItemsForWeekdayUseCase
 ) : MviScreenModel<NotificationState, NotificationSideEffect, NotificationEvent>(
     initialState = NotificationState()
 ) {
@@ -51,26 +57,22 @@ class NotificationScreenModel(
         }
     }
 
-    private fun deleteItemById(id: String) {
-//        id?.let { todo
-//            intent { localDatabaseRepository.deleteById(id = it) }
-//            changeAlertDialog()
-//        }
+    private fun deleteItemById(id: String) = intent {
+        deleteScheduleItemUseCase(scheduleItemId = id)
+        changeAlertDialog()
     }
 
     private fun clearCurrentDay() = intent {
-//        state.selectedWeekItems?.let { list -> todo
-//            if (list.firstOrNull() != null) {
-//                intent { localDatabaseRepository.deleteForWeekDay(weekDayId = list.first().id) }
-//                changeAlertDialog()
-//            }
-//        }
+        state.selectedWeekItems?.let { list ->
+            val currentWeekDay = list.firstOrNull()
+            currentWeekDay?.let {
+                deleteScheduleItemsForWeekdayUseCase(idOfWeekItem = it.id)
+                changeAlertDialog()
+            }
+        }
     }
 
-    private fun deleteAll() {
-//        intent { localDatabaseRepository.deleteAll() } todo
-//        changeAlertDialog()
-    }
+    private fun deleteAll() = intent { deleteAllScheduleItemsUseCase() }
 
     private fun changeAlertDialog(alertDialog: AlertDialog? = null) =
         reducer {
