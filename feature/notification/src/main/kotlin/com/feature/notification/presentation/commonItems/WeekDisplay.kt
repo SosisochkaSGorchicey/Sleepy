@@ -20,9 +20,10 @@ import com.feature.notification.model.WeekItem
 
 @Composable
 fun WeekDisplay(
+    modifier: Modifier = Modifier.fillMaxWidth(),
     selectedWeekItems: List<WeekItem>?,
     onClick: (WeekItem) -> Unit,
-    modifier: Modifier = Modifier.fillMaxWidth()
+    enabled: Boolean = true,
 ) {
     Row(
         modifier = modifier,
@@ -33,7 +34,8 @@ fun WeekDisplay(
             WeekItemDisplay(
                 weekItem = weekItem,
                 isSelected = selectedWeekItems?.contains(weekItem) ?: false,
-                onClick = { onClick(weekItem) }
+                onClick = { onClick(weekItem) },
+                enabled = enabled
             )
         }
     }
@@ -43,7 +45,8 @@ fun WeekDisplay(
 private fun RowScope.WeekItemDisplay(
     weekItem: WeekItem,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    enabled: Boolean
 ) {
     Box(
         modifier = Modifier
@@ -58,7 +61,10 @@ private fun RowScope.WeekItemDisplay(
                 color = AppTheme.colors.baseBlue,
                 shape = AppTheme.shapes.mediumCornersPercent
             )
-            .clickable(onClick = onClick)
+            .clickable(
+                onClick = onClick,
+                enabled = enabled
+            )
             .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center
     ) {

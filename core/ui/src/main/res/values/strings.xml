@@ -65,6 +65,7 @@
     <string name="section_title_description">Description</string>
     <string name="placeholder_add_notification">Enter text…</string>
     <string name="section_hint_day">You can choose one day or several days in a row</string>
+    <string name="section_hint_day_disabled">You can\'t select the days when the item changes</string>
     <string name="save_button">Save</string>
     <string name="error_empty_text_fields">All fields must be filled in</string>
     <string name="error_no_days_selected">You must choose at least one day</string>

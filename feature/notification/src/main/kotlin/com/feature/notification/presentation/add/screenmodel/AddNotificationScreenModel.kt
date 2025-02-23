@@ -22,12 +22,12 @@ class AddNotificationScreenModel(
     private val updateScheduleItemUseCase: UpdateScheduleItemUseCase
 ) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
     initialState = AddNotificationState(
-        selectedTime = scheduleItem?.millisecondOfDay?.millisecondsToLocalTime() ?: LocalTime(0, 0)
+        selectedTime = scheduleItem?.millisecondOfDay?.millisecondsToLocalTime() ?: LocalTime(0, 0),
+        canEditWeekDays = scheduleItem == null // если update - нельзя менять weekday
     )
 ) {
 
     init {
-        println("TAG: scheduleItem $scheduleItem")
         initData()
     }
 

@@ -13,7 +13,8 @@ data class AddNotificationState(
     val selectedTime: LocalTime,
     val titleText: String = "",
     val descriptionText: String = "",
-    @StringRes val errorTextRes: Int? = null
+    @StringRes val errorTextRes: Int? = null,
+    val canEditWeekDays: Boolean
 ) {
     fun daysAreChosen(): Boolean = chosenWeekItems.isNotEmpty()
 
