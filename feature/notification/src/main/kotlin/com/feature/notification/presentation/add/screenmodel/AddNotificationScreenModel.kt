@@ -58,47 +58,47 @@ class AddNotificationScreenModel(
         }
     }
 
+    private fun updateItem(scheduleItem: ScheduleItem) = intent {
+        updateScheduleItemUseCase(
+            scheduleItem = scheduleItem.copy(
+                createPush = state.createNotification,
+                millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                titleText = state.titleText,
+                descriptionText = state.descriptionText
+            )
+        )
+    }
+
+    private fun createItem(weekItemId: Int) = intent {
+        createScheduleItemUseCase(
+            scheduleItem = ScheduleItem(
+                createPush = state.createNotification,
+                weekDayId = weekItemId,
+                millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                titleText = state.titleText,
+                descriptionText = state.descriptionText
+            )
+        )
+    }
+
+    val updateOnlyCurrentDay: Boolean = true //todo
+
     private fun saveItem() = intent {
         when {
             !state.daysAreChosen() -> showError(R.string.error_no_days_selected)
             !state.textsAreValid() -> showError(R.string.error_empty_text_fields)
             else -> {
-                println("TAG:  state.chosenWeekItems ${state.chosenWeekItems}")
-
-                if (scheduleItem == null) {
+                if (scheduleItem == null) { // создание нового айтема
                     state.chosenWeekItems.forEach { weekItem ->
-                        createScheduleItemUseCase(
-                            scheduleItem = ScheduleItem(
-                                createPush = state.createNotification,
-                                weekDayId = weekItem.id,
-                                millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
-                                titleText = state.titleText,
-                                descriptionText = state.descriptionText
-                            )
-                        )
+                        createItem(weekItemId = weekItem.id)
                     }
-                } else {
-                    state.chosenWeekItems.forEach { weekItem ->
-                        if (weekItem.id == scheduleItem.weekDayId) {
-                            createScheduleItemUseCase(
-                                scheduleItem = scheduleItem.copy(
-                                    createPush = state.createNotification,
-                                    millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
-                                    titleText = state.titleText,
-                                    descriptionText = state.descriptionText
-                                )
-                            )
-                        } else {
-                            createScheduleItemUseCase(
-                                scheduleItem = ScheduleItem(
-                                    createPush = state.createNotification,
-                                    weekDayId = weekItem.id,
-                                    millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
-                                    titleText = state.titleText,
-                                    descriptionText = state.descriptionText
-                                )
-                            )
-                        }
+                } else { //апдейт старого айтема
+                    //todo запрос апдейтим все или не все
+                    if (updateOnlyCurrentDay) {
+                        updateItem(scheduleItem = scheduleItem)
+                    } else {
+                        // todo найти все схожие дни у все недели по полям: millisecondOfDay, descriptionText, titleText, createPush
+                        // todo update для всех этих айтемов
                     }
                 }
 

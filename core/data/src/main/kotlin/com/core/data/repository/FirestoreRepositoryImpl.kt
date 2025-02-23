@@ -30,6 +30,21 @@ class FirestoreRepositoryImpl(
             }
     }
 
+    override suspend fun updateSchedule(userId: String, scheduleItem: ScheduleItem) {
+        scheduleRef(userId)
+            .document(scheduleItem.id)
+            .update(
+                mapOf(
+                    "createPush" to scheduleItem.createPush,
+                    "descriptionText" to scheduleItem.descriptionText,
+                    "millisecondOfDay" to scheduleItem.millisecondOfDay,
+                    "titleText" to scheduleItem.titleText,
+                )
+            )
+            .addOnSuccessListener { println("TAG: DocumentSnapshot successfully updated!") }
+            .addOnFailureListener { e -> println("TAG: Error updating document $e") }
+    }
+
     override fun observeScheduleForUser(userId: String) {
         scheduleRef(userId).addSnapshotListener { snapshots, error ->
             if (error != null) {

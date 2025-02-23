@@ -6,6 +6,7 @@ import com.core.domain.usecase.storage.ObserveScheduleItemUseCase
 import com.core.domain.usecase.auth.SignInUseCase
 import com.core.domain.usecase.auth.SignUpAnonymously
 import com.core.domain.usecase.auth.SignUpUseCase
+import com.core.domain.usecase.storage.UpdateScheduleItemUseCase
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
@@ -16,5 +17,6 @@ val domainModule = module {
     singleOf(::IsUserLoggedInUseCase)
 
     singleOf(::CreateScheduleItemUseCase)
+    singleOf(::UpdateScheduleItemUseCase)
     singleOf(::ObserveScheduleItemUseCase)
 }

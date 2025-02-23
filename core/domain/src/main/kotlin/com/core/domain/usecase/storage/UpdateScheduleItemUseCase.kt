@@ -9,6 +9,11 @@ class UpdateScheduleItemUseCase(
     private val supabaseAuthRepository: SupabaseAuthRepository
 ) {
     suspend operator fun invoke(scheduleItem: ScheduleItem) {
+        val userId = supabaseAuthRepository.getUserId()
 
+        firestoreRepository.updateSchedule(
+            userId = userId,
+            scheduleItem = scheduleItem
+        )
     }
 }
