@@ -1,5 +1,6 @@
 package com.core.ui.uiElements.mainScreenElements
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.AlertDialog
@@ -16,7 +17,10 @@ import com.core.ui.theme.AppTheme
 @Composable
 fun MainAlertDialog(
     onDismissRequest: () -> Unit,
+    onDismiss: () -> Unit,
+    @StringRes dismissTextRes: Int = R.string.warning_default_dismiss,
     onConfirmation: () -> Unit,
+    @StringRes confirmTextRes: Int = R.string.warning_default_confirm,
     dialogTitle: String = stringResource(R.string.warning_default_title),
     dialogText: String,
     icon: ImageVector = Icons.Outlined.Info
@@ -49,7 +53,7 @@ fun MainAlertDialog(
                 }
             ) {
                 Text(
-                    text = stringResource(R.string.warning_default_confirm),
+                    text = stringResource(confirmTextRes),
                     style = AppTheme.typography.bodySmallBold,
                     color = AppTheme.colors.lightRed
                 )
@@ -58,11 +62,11 @@ fun MainAlertDialog(
         dismissButton = {
             TextButton(
                 onClick = {
-                    onDismissRequest()
+                    onDismiss()
                 }
             ) {
                 Text(
-                    text = stringResource(R.string.warning_default_dismiss),
+                    text = stringResource(dismissTextRes),
                     style = AppTheme.typography.bodySmallBold,
                     color = AppTheme.colors.baseBlue
                 )

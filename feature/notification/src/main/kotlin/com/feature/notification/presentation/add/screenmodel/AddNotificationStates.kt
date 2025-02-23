@@ -3,6 +3,7 @@ package com.feature.notification.presentation.add.screenmodel
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.feature.notification.model.WeekItem
+import com.feature.notification.presentation.main.screenmodel.NotificationEvent
 import kotlinx.datetime.LocalTime
 
 @Immutable
@@ -14,7 +15,8 @@ data class AddNotificationState(
     val titleText: String = "",
     val descriptionText: String = "",
     @StringRes val errorTextRes: Int? = null,
-    val canEditWeekDays: Boolean
+    val canEditWeekDays: Boolean,
+    val showAlertDialogBeforeUpdate: Boolean = false
 ) {
     fun daysAreChosen(): Boolean = chosenWeekItems.isNotEmpty()
 
@@ -22,6 +24,9 @@ data class AddNotificationState(
 }
 
 sealed interface AddNotificationEvent {
+    data object OnUpdateOnlyCurrentClick : AddNotificationEvent
+    data object OnCloseUpdateDialog: AddNotificationEvent
+    data object OnUpdateAllClick : AddNotificationEvent
     data object OnBackButtonClick : AddNotificationEvent
     data object OnDaysHintClick : AddNotificationEvent
     data object OnSaveClick : AddNotificationEvent

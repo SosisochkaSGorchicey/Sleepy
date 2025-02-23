@@ -6,6 +6,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
 import com.core.domain.usecase.storage.CreateScheduleItemUseCase
+import com.core.domain.usecase.storage.UpdateAllSimilarScheduleItemsUseCase
 import com.core.domain.usecase.storage.UpdateScheduleItemUseCase
 import com.core.ui.R
 import com.core.ui.utils.millisecondsToLocalTime
@@ -14,12 +15,14 @@ import com.feature.notification.model.getWeekDayById
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalTime
 import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class AddNotificationScreenModel(
     private val createScheduleItemUseCase: CreateScheduleItemUseCase,
     private val scheduleItem: ScheduleItem?,
-    private val updateScheduleItemUseCase: UpdateScheduleItemUseCase
+    private val updateScheduleItemUseCase: UpdateScheduleItemUseCase,
+    private val updateAllSimilarScheduleItemsUseCase: UpdateAllSimilarScheduleItemsUseCase
 ) : MviScreenModel<AddNotificationState, AddNotificationSideEffect, AddNotificationEvent>(
     initialState = AddNotificationState(
         selectedTime = scheduleItem?.millisecondOfDay?.millisecondsToLocalTime() ?: LocalTime(0, 0),
@@ -41,6 +44,9 @@ class AddNotificationScreenModel(
             is AddNotificationEvent.OnDescriptionChange -> changeDescription(newValue = event.newValue)
             is AddNotificationEvent.OnTitleChange -> changeTitle(newValue = event.newValue)
             AddNotificationEvent.OnSaveClick -> saveItem()
+            AddNotificationEvent.OnUpdateAllClick -> updateAllDays()
+            AddNotificationEvent.OnUpdateOnlyCurrentClick -> updateOnlyCurrentDay()
+            AddNotificationEvent.OnCloseUpdateDialog -> changeDialogDialogBeforeUpdateVisibility()
         }
     }
 
@@ -81,7 +87,6 @@ class AddNotificationScreenModel(
         )
     }
 
-    val updateOnlyCurrentDay: Boolean = true //todo
 
     private fun saveItem() = intent {
         when {
@@ -92,19 +97,37 @@ class AddNotificationScreenModel(
                     state.chosenWeekItems.forEach { weekItem ->
                         createItem(weekItemId = weekItem.id)
                     }
+                    emitSideEffect(AddNotificationSideEffect.NavigateBack)
                 } else { //апдейт старого айтема
-                    //todo запрос апдейтим все или не все
-                    if (updateOnlyCurrentDay) {
-                        updateItem(scheduleItem = scheduleItem)
-                    } else {
-                        // todo найти все схожие дни у все недели по полям: millisecondOfDay, descriptionText, titleText, createPush
-                        // todo update для всех этих айтемов
-                    }
+                    changeDialogDialogBeforeUpdateVisibility()
                 }
-
-                emitSideEffect(AddNotificationSideEffect.NavigateBack)
             }
         }
+    }
+
+    private fun changeDialogDialogBeforeUpdateVisibility() =
+        reducer { state.copy(showAlertDialogBeforeUpdate = !state.showAlertDialogBeforeUpdate) }
+
+    private fun updateOnlyCurrentDay() = intent {
+        changeDialogDialogBeforeUpdateVisibility()
+        if (scheduleItem != null) updateItem(scheduleItem = scheduleItem)
+        postSideEffect(AddNotificationSideEffect.NavigateBack)
+    }
+
+    private fun updateAllDays() = intent {
+        changeDialogDialogBeforeUpdateVisibility()
+        if (scheduleItem != null) {
+            updateAllSimilarScheduleItemsUseCase(
+                oldScheduleItem = scheduleItem,
+                updatedScheduleItem = scheduleItem.copy(
+                    createPush = state.createNotification,
+                    millisecondOfDay = state.selectedTime.toMillisecondOfDay(),
+                    titleText = state.titleText,
+                    descriptionText = state.descriptionText
+                )
+            )
+        }
+        postSideEffect(AddNotificationSideEffect.NavigateBack)
     }
 
     private fun showError(errorTextRes: Int) = intent {

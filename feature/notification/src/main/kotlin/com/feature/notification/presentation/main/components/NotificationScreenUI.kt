@@ -78,6 +78,7 @@ fun NotificationScreenUI(
         state.currentAlertDialog?.let {
             MainAlertDialog(
                 onDismissRequest = { onEvent(NotificationEvent.CloseAlertDialog) },
+                onDismiss = { onEvent(NotificationEvent.CloseAlertDialog) },
                 onConfirmation = { onEvent(it.notificationEvent) },
                 dialogText = stringResource(id = it.warningTextRes)
             )

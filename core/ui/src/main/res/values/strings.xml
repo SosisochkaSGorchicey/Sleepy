@@ -69,5 +69,8 @@
     <string name="save_button">Save</string>
     <string name="error_empty_text_fields">All fields must be filled in</string>
     <string name="error_no_days_selected">You must choose at least one day</string>
+    <string name="dialog_update_text">Do you want to change just this day?</string>
+    <string name="update_all_button">Update all</string>
+    <string name="update_this">Just this</string>
 
 </resources>
