@@ -1,4 +1,4 @@
-package com.core.domain.usecase
+package com.core.domain.usecase.storage
 
 import com.core.domain.repository.FirestoreRepository
 import com.core.domain.repository.SupabaseAuthRepository

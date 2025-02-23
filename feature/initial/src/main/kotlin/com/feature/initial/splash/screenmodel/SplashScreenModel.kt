@@ -4,7 +4,7 @@ import com.core.common.mvi.MviScreenModel
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.supabase.auth.LoggedInState
-import com.core.domain.usecase.IsUserLoggedInUseCase
+import com.core.domain.usecase.auth.IsUserLoggedInUseCase
 import com.feature.initial.splash.toTextRes
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.syntax.simple.intent

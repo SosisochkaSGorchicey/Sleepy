@@ -5,8 +5,8 @@ import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.supabase.SupabaseResult
-import com.core.domain.usecase.SignInUseCase
-import com.core.domain.usecase.SignUpAnonymously
+import com.core.domain.usecase.auth.SignInUseCase
+import com.core.domain.usecase.auth.SignUpAnonymously
 import com.feature.auth.utils.emailIsValid
 import com.feature.auth.utils.passwordIsValid
 import com.core.ui.utils.toTextRes

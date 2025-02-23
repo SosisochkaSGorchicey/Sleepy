@@ -18,6 +18,6 @@ val notificationScreenModule = screenModule {
 val notificationFeatureModule = module {
     factoryOf(::NotificationScreenModel)
     factory { (myArgument: ScheduleItem) ->
-        AddNotificationScreenModel(get(), myArgument)
+        AddNotificationScreenModel(get(), myArgument, get())
     }
 }

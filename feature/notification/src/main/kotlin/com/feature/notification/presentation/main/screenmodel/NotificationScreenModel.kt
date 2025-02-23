@@ -5,7 +5,7 @@ import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.repository.DataStoreRepository
 import com.core.domain.repository.FirestoreRepository
-import com.core.domain.usecase.ObserveScheduleItemUseCase
+import com.core.domain.usecase.storage.ObserveScheduleItemUseCase
 import com.feature.notification.model.WeekItem
 import com.feature.notification.model.getWeekDayById
 import kotlinx.datetime.Clock

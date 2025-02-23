@@ -1,4 +1,4 @@
-package com.core.domain.usecase
+package com.core.domain.usecase.auth
 
 import com.core.domain.model.supabase.auth.LoggedInState
 import com.core.domain.repository.DataStoreRepository

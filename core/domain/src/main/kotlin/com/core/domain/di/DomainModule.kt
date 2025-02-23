@@ -1,11 +1,11 @@
 package com.core.domain.di
 
-import com.core.domain.usecase.CreateScheduleItemUseCase
-import com.core.domain.usecase.IsUserLoggedInUseCase
-import com.core.domain.usecase.ObserveScheduleItemUseCase
-import com.core.domain.usecase.SignInUseCase
-import com.core.domain.usecase.SignUpAnonymously
-import com.core.domain.usecase.SignUpUseCase
+import com.core.domain.usecase.storage.CreateScheduleItemUseCase
+import com.core.domain.usecase.auth.IsUserLoggedInUseCase
+import com.core.domain.usecase.storage.ObserveScheduleItemUseCase
+import com.core.domain.usecase.auth.SignInUseCase
+import com.core.domain.usecase.auth.SignUpAnonymously
+import com.core.domain.usecase.auth.SignUpUseCase
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

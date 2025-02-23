@@ -5,8 +5,8 @@ import com.core.common.mvi.blockingReducer
 import com.core.common.mvi.emitSideEffect
 import com.core.common.mvi.reducer
 import com.core.domain.model.localDB.ScheduleItem
-import com.core.domain.usecase.CreateScheduleItemUseCase
-import com.core.domain.usecase.UpdateScheduleItemUseCase
+import com.core.domain.usecase.storage.CreateScheduleItemUseCase
+import com.core.domain.usecase.storage.UpdateScheduleItemUseCase
 import com.core.ui.R
 import com.core.ui.utils.millisecondsToLocalTime
 import com.feature.notification.model.WeekItem
